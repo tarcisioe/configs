@@ -1,0 +1,105 @@
+# zsh variables
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+DIRSTACKSIZE=8
+KEYTIMEOUT=1
+
+
+# zsh base configuration
+setopt appendhistory # no history overwriting
+setopt autopushd pushdminus pushdsilent pushdtohome
+set -o vi
+
+
+# setup antigen
+if [[ -f "${HOME}/.antigen.zsh" ]]
+then
+    source ${HOME}/.antigen.zsh
+
+    antigen bundle pip
+
+    antigen apply
+fi
+
+
+# autoloads
+# completion is autoloaded by antigen apply
+autoload -U colors && colors
+autoload -U vcs_info # for git info on prompt
+autoload -U up-line-or-beginning-search   # both here are for
+autoload -U down-line-or-beginning-search # better history search
+
+
+# function defs
+git_color() {
+    if ! which git > /dev/null 2>&1
+    then
+        return
+    fi
+
+    if [[ -n "$(git ls-files --other --exclude-standard 2> /dev/null)" ]] || ! git diff-files --quiet --ignore-submodules 2> /dev/null
+    then
+        echo 'red'
+        return
+    fi
+
+    if ! git diff-index --cached --quiet --ignore-submodules HEAD -- 2> /dev/null
+    then
+        echo 'yellow'
+        return
+    fi
+
+    echo 'green'
+}
+
+
+# setup completion
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' insert-tab false
+zstyle ':completion:*' menu select
+zstyle :compinstall filename "${HOME}/.zshrc"
+
+
+# setup left prompt
+# user:host dir $
+function zle-line-init {
+    vim_mode="${${KEYMAP/vicmd/red}/(main|viins)/blue}"
+    zle reset-prompt
+}
+function zle-keymap-select {
+    zle-line-init
+}
+zle -N zle-keymap-select
+zle -N zle-line-init
+PROMPT='%{$fg_bold[blue]%}%n%{$fg_bold[white]%}:%{$fg_bold[blue]%}%m %{$fg[white]%}%1~ %{$fg_bold[${vim_mode}]%}$%{$reset_color%} '
+
+
+# setup right prompt
+setopt prompt_subst
+zstyle ':vcs_info:*' action_formats '%b|%a'
+zstyle ':vcs_info:*' formats '%b'
+precmd() {
+    vcs_info
+    if [[ -n "${vcs_info_msg_0_}" ]]
+    then
+        RPROMPT="(%{$fg[$(git_color)]%}${vcs_info_msg_0_}%{$reset_color%})"
+    else
+        RPROMPT=''
+    fi
+}
+
+
+# setup history search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+
+
+# aliases
+alias ls='ls --color'
+
+
+# source local definitions if any
+[[ -f ${HOME}/.zshrc_local ]] && source ${HOME}/.zshrc_local

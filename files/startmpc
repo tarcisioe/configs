@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mpd 2> /dev/null
+gmpc

@@ -1,0 +1,21 @@
+URxvt*.geometry: 80x25
+URxvt*.depth: 32
+URxvt*.background: rgba:0000/0000/0000/DDDD
+URxvt*.foreground: #FFFFFF
+URxvt*.scrollBar: false
+URxvt*.scrollTtyOutput: false
+URxvt*.scrollTtyKeypress: true
+URxvt*.font: xft:Deja Vu Sans Mono for Powerline:size=9
+URxvt*.perl-ext-common: font-size
+URxvt*.keysym.C-Up: perl:font-size:increase
+URxvt*.keysym.C-Down: perl:font-size:decrease
+URxvt*.keysym.C-S-Up: perl:font-size:incglobal
+URxvt*.keysym.C-S-Down: perl:font-size:decglobal
+URxvt*.keysym.C-0: perl:font-size:reset
+
+xft.antialias: true
+xft.hinting: true
+xft.hintstyle: hintslight
+
+Emacs.font: Deja Vu Sans Mono for Powerline:size=12
+Emacs.fontBackend: xft

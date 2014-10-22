@@ -1,0 +1,91 @@
+set nocompatible        " no vi compatibility
+set scrolloff=999       " center cursor
+set t_Co=256            " 256 color
+set cursorline          " highlight current line
+set laststatus=2        " airline needs this
+set ttimeoutlen=0       " no airline delay
+set nofoldenable        " no folding
+set autochdir
+set completeopt=menu,menuone,longest  " disable doc window on completion
+set backspace=indent,eol,start  " make that backspace key work the way it should
+set clipboard=unnamedplus  " make system clipboard work
+
+set showcmd             " display incomplete commands
+set nobackup            " no backup files
+set number              " line numbers
+set ruler               " current row and column
+set mouse=a             " mouse support
+
+set hlsearch            " highlight searches
+set incsearch           " do incremental searching
+set showmatch           " jump to matches when entering regexp
+set ignorecase          " ignore case on search
+set smartcase           " uppercase forces search casing
+
+set visualbell t_vb=    " turn off error beep/flash
+set novisualbell        " turn off visual bell
+
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+
+syntax on
+
+" vundle setup
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'Syntastic'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tomtom/tlib_vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'garbas/vim-snipmate'
+
+" Python
+Plugin 'davidhalter/jedi-vim'
+Plugin 'michaeljsmith/vim-indent-object'
+
+" C/C++
+Plugin 'Rip-Rip/clang_complete'
+
+" Org-Mode
+Plugin 'tpope/vim-speeddating'
+Plugin 'jceb/vim-orgmode'
+
+" Theme
+Plugin 'jnurmine/Zenburn'
+
+call vundle#end()
+
+filetype plugin indent on
+
+" General customizations
+colorscheme zenburn
+hi Normal ctermfg=188 ctermbg=500
+
+" Airline Setup
+let g:airline_powerline_fonts=1                  " use powerline arrows
+let g:airline_theme='zenburn'                    " nicer theme
+let g:airline#extensions#tabline#enabled=1       " enable tabline support
+let g:airline#extensions#tabline#tab_nr_type=1   " show tab numbers
+let g:airline#extensions#tabline#show_buffers=0  " hide buffers
+let g:airline#extensions#tabline#tab_min_count=2 " hide tabline for one tab
+
+" Enable :lnext for Syntastic
+let g:syntastic_auto_jump=1
+let g:syntastic_always_populate_loc_list=1
+
+" Clear whitespace before saving
+au BufWritePre * :%s/\s\+$//e
+
+" Key mappings
+nmap <silent> q :q<CR>
+nmap <silent> ,i gg=G''
+nmap <silent> ,c :!spawn<CR><CR>

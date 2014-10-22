@@ -1,0 +1,28 @@
+if [ -e ${HOME}/.xinitrc_before ]
+then
+    source ${HOME}/.xinitrc_before
+fi
+
+if [ -e ${HOME}/.bash_profile ]
+then
+    source ${HOME}/.bash_profile
+fi
+
+$BGCMD $WALLPAPER
+
+if which $COMPMGR
+then
+    $COMPMGR &
+fi
+
+if [ -e ${HOME}/.xinitrc_after ]
+then
+    source ${HOME}/.xinitrc_after
+fi
+
+if which dbus-launch
+then
+    DBUS_LAUNCH=dbus-launch
+fi
+
+$DBUS_LAUNCH $WM

@@ -1,0 +1,6 @@
+[user]
+    email = tarcisio.crocomo@gmail.com
+    name = Tarcísio Eduardo Moreira Crocomo
+
+[alias]
+    tree = log --graph --decorate --pretty=oneline --abbrev-commit --all
