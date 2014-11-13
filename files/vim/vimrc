@@ -5,7 +5,7 @@ set cursorline          " highlight current line
 set laststatus=2        " airline needs this
 set ttimeoutlen=0       " no airline delay
 set nofoldenable        " no folding
-set autochdir
+set autochdir           " cd to file directory
 set completeopt=menu,menuone,longest  " disable doc window on completion
 set backspace=indent,eol,start  " make that backspace key work the way it should
 set clipboard=unnamedplus  " make system clipboard work
@@ -86,6 +86,7 @@ let g:syntastic_always_populate_loc_list=1
 au BufWritePre * :%s/\s\+$//e
 
 " Key mappings
+let mapleader=','
 nmap <silent> q :q<CR>
-nmap <silent> ,i gg=G''
-nmap <silent> ,c :!spawn<CR><CR>
+nmap <silent> <leader>i gg=G''
+nmap <silent> <leader>c :!spawn<CR><CR>
