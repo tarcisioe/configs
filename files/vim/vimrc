@@ -85,6 +85,9 @@ let g:syntastic_always_populate_loc_list=1
 " Clear whitespace before saving
 au BufWritePre * :%s/\s\+$//e
 
+" Highlight stuff after column 80
+match ErrorMsg '\%81v.+'
+
 " Key mappings
 let mapleader=','
 nmap <silent> q :q<CR>
