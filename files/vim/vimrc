@@ -47,7 +47,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tomtom/tlib_vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'garbas/vim-snipmate'
-Plugin 'https://gitlab.com/tarcisioe/check-notes.git'
+Plugin 'https://gitlab.com/tarcisioe/checknotes.vim.git'
 
 " Python
 Plugin 'davidhalter/jedi-vim'
