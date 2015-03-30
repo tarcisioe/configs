@@ -47,6 +47,9 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tomtom/tlib_vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'garbas/vim-snipmate'
+Plugin 'chrisbra/NrrwRgn'
+
+" Notes
 Plugin 'https://gitlab.com/tarcisioe/checknotes.vim.git'
 
 " Python
@@ -91,6 +94,19 @@ match ErrorMsg '\%81v.+'
 
 " Key mappings
 let mapleader=','
+" Normal mappings:
+"   quit with q when no changes were made
 nmap <silent> q :q<CR>
+"   indent the whole file
 nmap <silent> <leader>i gg=G''
+"   run spawn script for opening new terminal
 nmap <silent> <leader>c :!spawn<CR><CR>
+"   remove highlights
+nmap <silent> <leader>h :nohl<CR>
+"   run lnext or lprev
+nmap <silent> <leader>n :lnext<CR>
+nmap <silent> <leader>p :lprev<CR>
+
+" Visual mappings:
+"   narrow to region and maximize narrowed window
+vmap <silent> <leader>nn :NR<CR><C-w>_
