@@ -53,6 +53,10 @@ function git_color {
     echo 'green'
 }
 
+function source_if_exists {
+    [[ -f "${1}" ]] && . "${1}"
+}
+
 # hooks for populating the "vim_mode" variable so we can change the
 # prompt color accordingly
 function zle-line-init {
@@ -96,36 +100,11 @@ precmd() {
 
 
 ### be compatible with any terminal emulator ###
-function zkbd_file() {
-    [[ -f ~/.zkbd/${TERM}-${VENDOR}-${OSTYPE} ]] && printf '%s' ~/".zkbd/${TERM}-${VENDOR}-${OSTYPE}" && return 0
-    [[ -f ~/.zkbd/${TERM}-${DISPLAY}          ]] && printf '%s' ~/".zkbd/${TERM}-${DISPLAY}"          && return 0
-    return 1
-}
-
-# try to find zkbd file for current terminal
-keyfile=$(zkbd_file)
-ret=$?
-
-# if not found, run zkbd to create it and then grab it
-if [[ ${ret} -ne 0 ]]; then
-    zkbd
-    keyfile=$(zkbd_file)
-    ret=$?
-fi
-
-# source the result or warn for failure
-if [[ ${ret} -eq 0 ]] ; then
-    source "${keyfile}"
-else
-    printf 'Failed to setup keys using zkbd.\n'
-fi
-
-# unset stuff
-unfunction zkbd_file; unset keyfile ret
-
-# use history backwards search on up and down
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
+# run zkbd and move the result to ~/.zkbd/default
+# if default is under version control and in some
+# machine it is not working, run zkbd and move the
+# result to ~/.zkbd/local
+source_if_exists "${HOME}/.zkbd/local" || source_if_exists "${HOME}/.zkbd/default"
 
 # setup keys accordingly
 [[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
@@ -159,4 +138,4 @@ setopt complete_aliases # do not expand aliases before completion
 alias ls='ls -F --color'
 
 # source local definitions if any
-[[ -f ${HOME}/.zshrc_local ]] && source ${HOME}/.zshrc_local
+source_if_exists "${HOME}/.zshrc_local"
