@@ -54,7 +54,7 @@ function git_color {
 }
 
 function source_if_exists {
-    [[ -f "${1}" ]] && . "${1}"
+    [[ -e "${1}" ]] && . "${1}"
 }
 
 # hooks for populating the "vim_mode" variable so we can change the
