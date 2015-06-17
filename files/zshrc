@@ -10,7 +10,6 @@ light_blue=27
 dark_red=124
 
 
-
 ### setup antigen ###
 if [[ -f "${HOME}/.antigen.zsh" ]]
 then
@@ -110,21 +109,26 @@ source_if_exists "${HOME}/.zkbd/local" || source_if_exists "${HOME}/.zkbd/defaul
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
+
+function setup_key {
+    [[ -n "${1}" ]] && bindkey "${1}" "$2"
+}
+
 # setup keys accordingly
-[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
-[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-beginning-search
-[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-beginning-search
-[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
+set -o vi # be sure we are on vi mode
+setup_key "${key[Home]}" beginning-of-line
+setup_key "${key[End]}" end-of-line
+setup_key "${key[Insert]}" overwrite-mode
+setup_key "${key[Delete]}" delete-char
+setup_key "${key[Up]}" up-line-or-beginning-search
+setup_key "${key[Down]}" down-line-or-beginning-search
+setup_key "${key[Left]}" backward-char
+setup_key "${key[Right]}" forward-char
 
 
 ### zsh usability configurations ###
 setopt appendhistory # no history overwriting
 setopt autopushd pushdminus pushdsilent pushdtohome
-set -o vi
 
 # eval dircolors if possible
 COLORFILE=${HOME}/.dir_colors
