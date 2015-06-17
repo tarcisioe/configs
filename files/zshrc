@@ -63,17 +63,25 @@ zstyle :compinstall filename "${HOME}/.zshrc"
 
 # setup left prompt
 # user:host dir $
+
+# hooks for populating the "vim_mode" variable so we can change the
+# prompt color accordingly
+light_blue=27
+dark_red=124
+
 function zle-line-init {
-    vim_mode="${${KEYMAP/vicmd/red}/(main|viins)/blue}"
+    vim_mode="${${KEYMAP/vicmd/${dark_red}}/(main|viins)/${light_blue}}"
     zle reset-prompt
 }
 function zle-keymap-select {
     zle-line-init
 }
+
 zle -N zle-keymap-select
 zle -N zle-line-init
-PROMPT='%{$fg_bold[blue]%}%n%{$fg_bold[white]%}:%{$fg_bold[blue]%}%m %{$fg[white]%}%1~ %{$fg_bold[${vim_mode}]%}$%{$reset_color%} '
 
+# populate prompt
+PROMPT='%B%F{${light_blue}}%n%f:%F{${light_blue}}%m%f %c %F{${vim_mode}}▶%f%b '
 
 # setup right prompt
 setopt prompt_subst
@@ -99,6 +107,11 @@ bindkey "^[[B" down-line-or-beginning-search
 
 # aliases
 alias ls='ls --color'
+
+# eval dircolors if possible
+
+COLORFILE=${HOME}/.dir_colors
+[[ -f ${COLORFILE} && $(tput colors) == 256 ]] && which dircolors > /dev/null && eval $(dircolors ${COLORFILE})
 
 
 # source local definitions if any
