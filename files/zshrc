@@ -106,6 +106,10 @@ precmd() {
 # result to ~/.zkbd/local
 source_if_exists "${HOME}/.zkbd/local" || source_if_exists "${HOME}/.zkbd/default"
 
+# use history backwards search on up and down
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
 # setup keys accordingly
 [[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
 [[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
