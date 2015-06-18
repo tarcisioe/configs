@@ -15,7 +15,7 @@ PS1="\[\033[01;34m\]\u\[\033[01;37m\]:\[\033[01;34m\]\h\[\033[01;37m\] \w \[\033
 
 # Todo-list
 
-if [ -e ${HOME}/.todo ]
+if [ -f ${HOME}/.todo ]
 then
     cat ${HOME}/.todo
 fi
