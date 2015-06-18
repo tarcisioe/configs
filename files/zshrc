@@ -70,14 +70,14 @@ function zle-keymap-select {
 
 ### setup left prompt ###
 # will look like (except colors):
-# user:host dir ▶
+# user:host dir $
 
 # set hooks in place
 zle -N zle-keymap-select
 zle -N zle-line-init
 
 # populate prompt
-PROMPT='%B%F{${light_blue}}%n%f:%F{${light_blue}}%m%f %c %F{${vim_mode}}▶%f%b '
+PROMPT='%B%F{${light_blue}}%n%f:%F{${light_blue}}%m%f %c %F{${vim_mode}}$%f%b '
 
 
 ## setup right prompt ##
