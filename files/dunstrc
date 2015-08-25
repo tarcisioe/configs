@@ -1,5 +1,5 @@
 [global]
-    font = Monospace 10
+    font = Monospace 14
 
     # The format of the message. Possible variables are:
     #   %a  appname
@@ -113,8 +113,8 @@
     browser = /usr/bin/firefox -new-tab
 
 [frame]
-    width = 1
-    color = "#000000"
+    width = 0
+    color = "#d7d7d7"
 
 [shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key
@@ -138,12 +138,12 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the '#' and following  would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888888"
+    background = "#000000"
+    foreground = "#ffffff"
     timeout = 10
 
 [urgency_normal]
-    background = "#666666"
+    background = "#000000"
     foreground = "#ffffff"
     timeout = 10
 
