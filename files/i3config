@@ -9,8 +9,20 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# use super as modifier key
 set $mod Mod4
 
+# define styles for windows
+new_window 1pixel
+new_float normal
+
+# font for window titles. ISO 10646 = Unicode
+font pango:DejaVu Sans Mono 8
+
+# use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# define workspaces, since I use names
 set $ws1 1: telegram
 set $ws2 2: web
 set $ws3 3: view
@@ -20,72 +32,7 @@ set $ws6 6: code
 set $ws7 7: code
 set $ws8 8: code
 set $ws9 9: code
-set $ws10 10: gmpc
-
-# font for window titles. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# start a terminal
-bindsym $mod+F1 exec i3-sensible-terminal
-bindsym $mod+F2 exec --no-startup-id chromium
-bindsym $mod+F3 exec --no-startup-id telegram
-bindsym $mod+F4 exec --no-startup-id emacsclient -c
-bindsym $mod+t exec --no-startup-id showtime
-bindsym $mod+b exec --no-startup-id battstatus
-bindsym $mod+c exec --no-startup-id calendar
-bindsym $mod+l exec --no-startup-id slock
-bindsym $mod+p exec --no-startup-id cleese playpause
-bindsym $mod+s exec --no-startup-id currentsong
-bindsym $mod+v exec --no-startup-id currentvol
-bindsym $mod+period exec --no-startup-id cleese next
-bindsym $mod+comma exec --no-startup-id cleese prev
-bindsym $mod+KP_Divide exec --no-startup-id cleese volumestep -5
-bindsym $mod+KP_Multiply exec --no-startup-id cleese volumestep 5
-
-# kill focused window
-bindsym $mod+q kill
-
-# start dmenu (a program launcher)
-bindsym $mod+e exec dmenu_run
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-# split in horizontal orientation
-bindsym $mod+equal split h
-
-# split in vertical orientation
-bindsym $mod+minus split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+u fullscreen
-
-# change container layout (stacked, tabbed, default)
-bindsym $mod+o layout default
-
-# toggle tiling / floating
-bindsym $mod+Shift+apostrophe floating enable border normal
-bindsym $mod+apostrophe floating disable border 1pixel
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
+set $ws10 10: khaki
 
 # switch to workspace
 bindsym $mod+exclam workspace $ws1
@@ -111,29 +58,142 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
+# keyboard shortcuts
+bindsym $mod+F1 exec i3-sensible-terminal
+bindsym $mod+F2 exec --no-startup-id chromium
+bindsym $mod+F3 exec --no-startup-id telegram
+bindsym $mod+F4 exec --no-startup-id pavucontrol
+bindsym $mod+F10 exec --no-startup-id urxvt -name khaki -e khaki
+
+bindsym Menu exec --no-startup-id console
+
+# notifications
+bindsym $mod+t exec --no-startup-id showtime
+bindsym $mod+b exec --no-startup-id battstatus
+bindsym $mod+c exec --no-startup-id calendar
+
+# mpd
+bindsym $mod+p exec --no-startup-id cleese playpause
+bindsym $mod+period exec --no-startup-id cleese next
+bindsym $mod+comma exec --no-startup-id cleese prev
+bindsym $mod+minus exec --no-startup-id cleese volumestep -5
+bindsym $mod+equal exec --no-startup-id cleese volumestep 5
+bindsym $mod+v exec --no-startup-id currentvol
+bindsym $mod+s exec --no-startup-id currentsong
+bindsym $mod+Shift+s exec --no-startup-id showplaylist
+
+# lock
+bindsym $mod+Ctrl+l exec --no-startup-id slock
+
+# screenshots (shift for clipboard, super for area)
+bindsym --release Print exec --no-startup-id sshot
+bindsym --release shift+Print exec --no-startup-id sshot -c
+bindsym --release $mod+Print exec --no-startup-id sshot -s
+bindsym --release shift+$mod+Print exec --no-startup-id sshot -cs
+
+# keyboard brightness
+bindcode 237 exec --no-startup-id sudo keybrightness down
+bindcode 238 exec --no-startup-id sudo keybrightness up
+
+# kill focused window
+bindsym $mod+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+e exec dmenu_run
+
+# switch focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move windows
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# resize
+mode "resize" {
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+
+    # resize twitch player
+    bindsym $mod+t [instance="twitch.*popout" class="Chromium"] floating enable border none, resize shrink width 10000 px, resize grow width 885 px, resize shrink height 10000 px, resize grow height 535 px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# split in horizontal orientation
+bindsym $mod+Ctrl+Right split h
+
+# split in vertical orientation
+bindsym $mod+Ctrl+Down split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+u fullscreen
+
+# change container layout (stacked, tabbed, default)
+bindsym $mod+o layout default
+
+# toggle tiling / floating
+bindsym $mod+Shift+apostrophe floating enable border toggle
+bindsym $mod+apostrophe floating disable border 1pixel
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+Shift+a focus child
+
 # reload the configuration file
-bindsym $mod+Shift+J reload
+bindsym $mod+Shift+r reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+P restart
+bindsym $mod+Shift+p restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+greater exit
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+    colors {
+        # class            border  backgr. text
+        focused_workspace  #525252 #333333 #CCCCCC
+        active_workspace   #333333 #0F0F0F #AAAAAA
+        inactive_workspace #333333 #0F0F0F #AAAAAA
+        urgent_workspace   #666666 #800000 #CCCCCC
+    }
 }
 
-new_window 1pixel
-new_float normal
+# colors
+# class                 border  backgr. text    indicator
+client.focused          #525252 #333333 #CCCCCC #CCCCCC
+client.focused_inactive #333333 #0F0F0F #AAAAAA #666666
+client.unfocused        #333333 #000000 #AAAAAA
+client.urgent           #666666 #900000 #CCCCCC
 
-assign [class="telegram"] $ws1
+# assignments
+assign [class="Telegram"] $ws1
 assign [class="Google-chrome"] $ws2
+assign [instance="web.telegram.org" class="Chromium"] $ws1
 assign [class="Chromium"] $ws2
 assign [class="Evince"] $ws3
 assign [class="MuPDF"] $ws3
 assign [class="Ristretto"] $ws3
 assign [class="Gmpc"] $ws10
+assign [instance="khaki" class="URxvt"] $ws10
 
 for_window [class="Google-chrome"] border none
-for_window [instance="fl-urxvt"] floating enable border normal
+for_window [class="Chromium"] border none
+for_window [instance="twitch.*popout" class="Chromium"] floating enable border none, resize shrink width 10000 px, resize grow width 885 px, resize shrink height 10000 px, resize grow height 535 px
+for_window [class="Pavucontrol"] floating enable border normal
+for_window [instance="urxvt-console"] floating enable border 1pixel

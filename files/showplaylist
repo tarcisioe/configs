@@ -1,0 +1,1 @@
+notify-send -t 1500 -- "$(cleese playlist)"

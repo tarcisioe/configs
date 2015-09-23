@@ -6,12 +6,13 @@ DIRSTACKSIZE=8
 KEYTIMEOUT=1
 
 # color aliases
-light_blue=27
+light_blue=25
 dark_red=124
+ROOT=$(($EUID == 0))
 
 
 ### setup antigen ###
-if [[ -f "${HOME}/.antigen.zsh" ]]
+if [[ ! (${ROOT} == 1) && (-f "${HOME}/.antigen.zsh") ]]
 then
     source ${HOME}/.antigen.zsh
 
@@ -72,31 +73,35 @@ function zle-keymap-select {
 # will look like (except colors):
 # user:host dir $
 
+setopt prompt_subst
+
 # set hooks in place
 zle -N zle-keymap-select
 zle -N zle-line-init
 
 # populate prompt
-PROMPT='%B%F{${light_blue}}%n%f:%F{${light_blue}}%m%f %c %F{${vim_mode}}$%f%b '
+COLOR="$(print -P "%(#~${dark_red}~${light_blue})")"
+PROMPT='%B%F{${COLOR}}%n%f:%F{${COLOR}}%m%f %c %F{${vim_mode}}%(#~#~$)%f%b '
 
 
 ## setup right prompt ##
 # will show git info as
 # (branch_name)
 # and color-code the staging area status
-setopt prompt_subst
-zstyle ':vcs_info:*' action_formats '%b|%a'
-zstyle ':vcs_info:*' formats '%b'
-precmd() {
-    vcs_info
-    if [[ -n "${vcs_info_msg_0_}" ]]
-    then
-        RPROMPT="(%{$fg[$(git_color)]%}${vcs_info_msg_0_}%{$reset_color%})"
-    else
-        RPROMPT=''
-    fi
-}
-
+if [[ ${ROOT} == 0 ]]
+then
+    zstyle ':vcs_info:*' action_formats '%b|%a'
+    zstyle ':vcs_info:*' formats '%b'
+    precmd() {
+        vcs_info
+        if [[ -n "${vcs_info_msg_0_}" ]]
+        then
+            RPROMPT="(%{$fg[$(git_color)]%}${vcs_info_msg_0_}%{$reset_color%})"
+        else
+            RPROMPT=''
+        fi
+    }
+fi
 
 ### be compatible with any terminal emulator ###
 # run zkbd and move the result to ~/.zkbd/default

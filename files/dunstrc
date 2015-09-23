@@ -36,6 +36,7 @@
     # ignore newlines '\n' in notifications
     ignore_newline = no
 
+    show_indicators = no
 
     # the geometry of the window
     # geometry [{width}]x{height}][+/-{x}+/-{y}]

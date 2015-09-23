@@ -1,7 +1,5 @@
 set nocompatible        " no vi compatibility
 set scrolloff=999       " center cursor
-set t_Co=256            " 256 color
-set cursorline          " highlight current line
 set laststatus=2        " airline needs this
 set ttimeoutlen=0       " no airline delay
 set nofoldenable        " no folding
@@ -32,7 +30,8 @@ set autoindent
 
 syntax on
 
-" vundle setup
+
+" Vundle setup
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -46,8 +45,11 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tomtom/tlib_vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'garbas/vim-snipmate'
 Plugin 'chrisbra/NrrwRgn'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'osyo-manga/vim-over'
+" Plugin 'SirVer/ultisnips'
 
 " Notes
 Plugin 'https://gitlab.com/tarcisioe/checknotes.vim.git'
@@ -65,32 +67,50 @@ Plugin 'jceb/vim-orgmode'
 
 " Theme
 Plugin 'jnurmine/Zenburn'
+Plugin 'nanotech/jellybeans.vim'
 
 call vundle#end()
 
 filetype plugin indent on
 
+
 " General customizations
-colorscheme zenburn
-hi Normal ctermfg=188 ctermbg=500
+"   theme
+if !(&term =~ 'linux')
+    set t_Co=256 " 256 color
+    colorscheme zenburn
+    "   remove bg color (use default one, normally transparent for me)
+    hi Normal ctermfg=188 ctermbg=500
+    set cursorline " highlight current line
+    let g:airline_powerline_fonts=1 " use powerline arrows
+    let g:airline_theme='zenburn'   " nicer theme
+else
+    colorscheme desert
+endif
+
+
+"   clear whitespace before saving
+au BufWritePre * :%s/\s\+$//e
+"   highlight stuff after column 80
+match ErrorMsg '\%81v.\+'
+
+
+" UĺtiSnips setup
+"   tab to jump
+" let g:UltiSnipsJumpForwardTrigger='<tab>'
+
 
 " Airline Setup
-let g:airline_powerline_fonts=1                  " use powerline arrows
-let g:airline_theme='zenburn'                    " nicer theme
 let g:airline#extensions#tabline#enabled=1       " enable tabline support
 let g:airline#extensions#tabline#tab_nr_type=1   " show tab numbers
 let g:airline#extensions#tabline#show_buffers=0  " hide buffers
 let g:airline#extensions#tabline#tab_min_count=2 " hide tabline for one tab
 
-" Enable :lnext for Syntastic
-let g:syntastic_auto_jump=1
-let g:syntastic_always_populate_loc_list=1
 
-" Clear whitespace before saving
-au BufWritePre * :%s/\s\+$//e
+" Syntastic setup
+let g:syntastic_auto_jump=1                " jump to first error
+let g:syntastic_always_populate_loc_list=1 " enable :lnext
 
-" Highlight stuff after column 80
-match ErrorMsg '\%81v.+'
 
 " Key mappings
 let mapleader=','
@@ -106,7 +126,28 @@ nmap <silent> <leader>h :nohl<CR>
 "   run lnext or lprev
 nmap <silent> <leader>n :lnext<CR>
 nmap <silent> <leader>p :lprev<CR>
+"   turn off arrows
+noremap <silent> <Left> <NOP>
+noremap <silent> <Down> <NOP>
+noremap <silent> <Up> <NOP>
+noremap <silent> <Right> <NOP>
+
+" Insert mappings:
+"   turn off arrows
+inoremap <silent> <Left> <NOP>
+inoremap <silent> <Down> <NOP>
+inoremap <silent> <Up> <NOP>
+inoremap <silent> <Right> <NOP>
 
 " Visual mappings:
 "   narrow to region and maximize narrowed window
 vmap <silent> <leader>nn :NR<CR><C-w>_
+"   turn off arrows
+vnoremap <silent> <Left> <NOP>
+vnoremap <silent> <Down> <NOP>
+vnoremap <silent> <Up> <NOP>
+vnoremap <silent> <Right> <NOP>
+
+cnoreabbr %s OverCommandLine<CR>%s
+cnoreabbr '<,'>s OverCommandLine<CR>'<,'>s
+

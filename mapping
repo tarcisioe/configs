@@ -1,8 +1,12 @@
 ~/.antigen.zsh antigen/antigen.zsh
 ~/.bashrc bashrc
 ~/bin/calendar calendar
+~/bin/currentsong currentsong
+~/bin/currentsong /home/tarcisioe/bin/showplaylist
+~/bin/showplaylist showplaylist
 ~/bin/showtime showtime
 ~/bin/spawn spawn
+~/bin/sshot sshot
 ~/bin/startmpc startmpc
 ~/bin/tardefuse tardefuse
 ~/.config/dunst/dunstrc dunstrc
