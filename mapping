@@ -1,6 +1,7 @@
 ~/.antigen.zsh antigen/antigen.zsh
 ~/.bashrc bashrc
 ~/bin/calendar calendar
+~/bin/console console
 ~/bin/currentsong currentsong
 ~/bin/currentsong /home/tarcisioe/bin/showplaylist
 ~/bin/showplaylist showplaylist
