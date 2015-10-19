@@ -1,154 +1,22 @@
-### zsh variables ###
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 DIRSTACKSIZE=8
 KEYTIMEOUT=1
 
-# color aliases
-light_blue=25
-dark_red=124
-ROOT=$(($EUID == 0))
-
-
-### setup antigen ###
-if [[ ! (${ROOT} == 1) && (-f "${HOME}/.antigen.zsh") ]]
-then
-    source ${HOME}/.antigen.zsh
-
-    antigen bundle pip
-
-    antigen apply
-fi
-
-
-### autoloads ###
-# completion is autoloaded by 'antigen apply'
-autoload colors && colors
-autoload zkbd # for correct key functionalities
-autoload -U vcs_info # for git info on prompt
-autoload -U up-line-or-beginning-search   # both here are for
-autoload -U down-line-or-beginning-search # better history search
-
-
-### function defs ###
-function git_color {
-    if ! which git > /dev/null 2>&1
-    then
-        return
-    fi
-
-    if [[ -n "$(git ls-files --other --exclude-standard 2> /dev/null)" ]] || ! git diff-files --quiet --ignore-submodules 2> /dev/null
-    then
-        echo 'red'
-        return
-    fi
-
-    if ! git diff-index --cached --quiet --ignore-submodules HEAD -- 2> /dev/null
-    then
-        echo 'yellow'
-        return
-    fi
-
-    echo 'green'
-}
-
-function source_if_exists {
-    [[ -e "${1}" ]] && . "${1}"
-}
-
-# hooks for populating the "vim_mode" variable so we can change the
-# prompt color accordingly
-function zle-line-init {
-    vim_mode="${${KEYMAP/vicmd/${dark_red}}/(main|viins)/${light_blue}}"
-    zle reset-prompt
-}
-
-function zle-keymap-select {
-    zle-line-init
-}
-
-
-### setup left prompt ###
-# will look like (except colors):
-# user:host dir $
-
-setopt prompt_subst
-
-# set hooks in place
-zle -N zle-keymap-select
-zle -N zle-line-init
-
-# populate prompt
-COLOR="$(print -P "%(#~${dark_red}~${light_blue})")"
-PROMPT='%B%F{${COLOR}}%n%f:%F{${COLOR}}%m%f %c %F{${vim_mode}}%(#~#~$)%f%b '
-
-
-## setup right prompt ##
-# will show git info as
-# (branch_name)
-# and color-code the staging area status
-if [[ ${ROOT} == 0 ]]
-then
-    zstyle ':vcs_info:*' action_formats '%b|%a'
-    zstyle ':vcs_info:*' formats '%b'
-    precmd() {
-        vcs_info
-        if [[ -n "${vcs_info_msg_0_}" ]]
-        then
-            RPROMPT="(%{$fg[$(git_color)]%}${vcs_info_msg_0_}%{$reset_color%})"
-        else
-            RPROMPT=''
-        fi
-    }
-fi
-
-### be compatible with any terminal emulator ###
-# run zkbd and move the result to ~/.zkbd/default
-# if default is under version control and in some
-# machine it is not working, run zkbd and move the
-# result to ~/.zkbd/local
-source_if_exists "${HOME}/.zkbd/local" || source_if_exists "${HOME}/.zkbd/default"
-
-# use history backwards search on up and down
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-
-
-function setup_key {
-    [[ -n "${1}" ]] && bindkey "${1}" "$2"
-}
-
-# setup keys accordingly
-set -o vi # be sure we are on vi mode
-setup_key "${key[Home]}" beginning-of-line
-setup_key "${key[End]}" end-of-line
-setup_key "${key[Insert]}" overwrite-mode
-setup_key "${key[Delete]}" delete-char
-setup_key "${key[Up]}" up-line-or-beginning-search
-setup_key "${key[Down]}" down-line-or-beginning-search
-setup_key "${key[Left]}" backward-char
-setup_key "${key[Right]}" forward-char
-
-
-### zsh usability configurations ###
-setopt appendhistory # no history overwriting
-setopt autopushd pushdminus pushdsilent pushdtohome
-
-# eval dircolors if possible
+# define DIRCOLORS
 COLORFILE=${HOME}/.dir_colors
 [[ -e ${COLORFILE} && $(tput colors) == 256 ]] && which dircolors > /dev/null && eval $(dircolors ${COLORFILE})
+PACKAGES=${HOME}/.zsh
 
-# setup completion
-zstyle ':completion:*' insert-unambiguous true
-zstyle ':completion:*' insert-tab false
-zstyle ':completion:*' menu select
-zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
-zstyle :compinstall filename "${HOME}/.zshrc"
-setopt complete_aliases # do not expand aliases before completion
+# get the require function
+source ${PACKAGES}/init.zsh ${PACKAGES} &> /dev/null || return
 
-# aliases
-alias ls='ls -F --color'
+require plugins
+require prompt
+require keyboard
+require completion
+require aliases
+require custom-cd
 
-# source local definitions if any
-source_if_exists "${HOME}/.zshrc_local"
+require-if-exists localdefs

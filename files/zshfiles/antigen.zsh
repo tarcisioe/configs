@@ -1,0 +1,1 @@
+/home/tarcisioe/.configmanager/files/antigen/antigen.zsh
