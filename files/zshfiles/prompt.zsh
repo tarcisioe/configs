@@ -4,6 +4,7 @@ require check-root
 
 # setup hook for line-init, just needed for first time
 function zle-line-init {
+    prompt_vim_color=$(vim-color)
     zle reset-prompt
 }
 
@@ -22,7 +23,7 @@ setopt prompt_subst
 COLOR="$(print -P "%(#~${DARK_RED}~${LIGHT_BLUE})")"
 
 # define left-prompt
-PROMPT='%B%F{${COLOR}}%n%f:%F{${COLOR}}%m%f %c %F{$(vim-color)}%(#~#~$)%f%b '
+PROMPT='%B%F{${COLOR}}%n%f:%F{${COLOR}}%m%f %c %F{${prompt_vim_color}}%(#~#~$)%f%b '
 
 # define right-prompt if not root, showing git information
 if [[ ${ROOT} == 0 ]]
