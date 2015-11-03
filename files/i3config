@@ -91,6 +91,9 @@ bindsym --release shift+Print exec --no-startup-id sshot -c
 bindsym --release $mod+Print exec --no-startup-id sshot -s
 bindsym --release shift+$mod+Print exec --no-startup-id sshot -cs
 
+# utils
+bindsym $mod+shift+c exec --no-startup-id carinhaaquela
+
 # keyboard brightness
 bindcode 237 exec --no-startup-id sudo keybrightness down
 bindcode 238 exec --no-startup-id sudo keybrightness up
@@ -185,7 +188,7 @@ client.urgent           #666666 #900000 #CCCCCC
 assign [class="Telegram"] $ws1
 assign [class="Google-chrome"] $ws2
 assign [instance="web.telegram.org" class="Chromium"] $ws1
-assign [class="Chromium"] $ws2
+assign [class="^[Cc]hromium"] $ws2
 assign [class="Evince"] $ws3
 assign [class="MuPDF"] $ws3
 assign [class="Ristretto"] $ws3
