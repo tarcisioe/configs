@@ -19,4 +19,4 @@ require completion
 require aliases
 require custom-cd
 
-require-if-exists localdefs
+require-if-exists localdefs || true

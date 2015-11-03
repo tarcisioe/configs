@@ -25,6 +25,8 @@ COLOR="$(print -P "%(#~${DARK_RED}~${LIGHT_BLUE})")"
 # define left-prompt
 PROMPT='%B%F{${COLOR}}%n%f:%F{${COLOR}}%m%f %c %F{${prompt_vim_color}}%(#~#~$)%f%b '
 
+ZLE_RPROMPT_INDENT=0
+
 # define right-prompt if not root, showing git information
 if [[ ${ROOT} == 0 ]]
 then
@@ -36,10 +38,12 @@ then
         vcs_info
         if [[ -n "${vcs_info_msg_0_}" ]]
         then
-            RPROMPT="(%{$fg[$(git-color)]%}${vcs_info_msg_0_}%{$reset_color%})"
+            GIT_INFO="(%{$fg[$(git-color)]%}${vcs_info_msg_0_}%{$reset_color%})"
         else
-            RPROMPT=''
+            GIT_INFO=''
         fi
+        RETURN="%(?.. %? ↵"
+        RPROMPT="${GIT_INFO}${RETURN}"
     }
 fi
 
