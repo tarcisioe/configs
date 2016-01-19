@@ -11,6 +11,7 @@
 ~/bin/sshot sshot
 ~/bin/startmpc startmpc
 ~/bin/tardefuse tardefuse
+~/bin/togglekbd togglekbd
 ~/.config/dunst/dunstrc dunstrc
 ~/.dir_colors dir_colors
 ~/.emacs.d emacsd

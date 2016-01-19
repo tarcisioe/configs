@@ -17,6 +17,7 @@ require prompt
 require keyboard
 require completion
 require aliases
+require python-utils
 require custom-cd
 
 require-if-exists localdefs || true

@@ -3,7 +3,7 @@ function find-file-backwards {
     while [[ "${current_path}" != "/" ]]
     do
         local file="${current_path}/$1"
-        if [ -f "${file}" ]
+        if [ -e "${file}" ]
         then
             echo "${file}"
             return
