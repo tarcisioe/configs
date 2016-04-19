@@ -17,7 +17,10 @@ new_window 1pixel
 new_float normal
 
 # font for window titles. ISO 10646 = Unicode
-font pango:DejaVu Sans Mono 8
+font pango:Droid Sans Mono 8
+
+# set long command to float, sticky and resize windows
+set $float_video floating enable border none, resize shrink width 10000 px, resize grow width 885 px, resize shrink height 10000 px, resize grow height 490 px, sticky toggle, exec --no-startup-id movefloat up right
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -67,6 +70,8 @@ bindsym $mod+F10 exec --no-startup-id urxvt -name khaki -e khaki
 
 bindsym $mod+Shift+Return exec --no-startup-id togglekbd
 bindsym Menu exec --no-startup-id console
+bindsym $mod+Shift+t exec --no-startup-id runtwitch
+bindsym $mod+y exec --no-startup-id playlink
 
 # notifications
 bindsym $mod+t exec --no-startup-id showtime
@@ -93,7 +98,7 @@ bindsym --release $mod+Print exec --no-startup-id sshot -s
 bindsym --release shift+$mod+Print exec --no-startup-id sshot -cs
 
 # utils
-bindsym $mod+shift+c exec --no-startup-id carinhaaquela
+bindsym $mod+Shift+c exec --no-startup-id carinhaaquela
 
 # keyboard brightness
 bindcode 237 exec --no-startup-id sudo keybrightness down
@@ -117,6 +122,15 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
+#move floating windows
+bindsym $mod+Left exec --no-startup-id movefloat left
+bindsym $mod+Down exec --no-startup-id movefloat down
+bindsym $mod+Up exec --no-startup-id movefloat up
+bindsym $mod+Right exec --no-startup-id movefloat right
+
+# toggle stickiness (workspace independence)
+bindsym $mod+Ctrl+t sticky toggle
+
 # resize
 mode "resize" {
     bindsym Left resize shrink width 10 px or 10 ppt
@@ -124,8 +138,8 @@ mode "resize" {
     bindsym Up resize shrink height 10 px or 10 ppt
     bindsym Down resize grow height 10 px or 10 ppt
 
-    # resize twitch player
-    bindsym $mod+t [instance="twitch.*popout" class="Chromium"] floating enable border none, resize shrink width 10000 px, resize grow width 885 px, resize shrink height 10000 px, resize grow height 535 px
+    # resize players
+    bindsym $mod+t $float_video
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -176,6 +190,9 @@ bar {
         inactive_workspace #333333 #0F0F0F #AAAAAA
         urgent_workspace   #666666 #800000 #CCCCCC
     }
+    # font pango:DejaVu Sans Mono, Awesome 8
+    font pango:Droid Sans Mono for Powerline, DejaVu Sans Mono for Powerline, Awesome 8
+    status_command i3elapsed
 }
 
 # colors
@@ -197,8 +214,10 @@ assign [class="Ristretto"] $ws3
 assign [class="Gmpc"] $ws10
 assign [instance="khaki" class="URxvt"] $ws10
 
+for_window [class="mpv"] $float_video
 for_window [class="Google-chrome"] border none
-for_window [class="Chromium"] border none
+for_window [class="[Cc]hromium"] border none
 for_window [instance="twitch.*popout" class="[Cc]hromium"] floating enable border none, resize shrink width 10000 px, resize grow width 885 px, resize shrink height 10000 px, resize grow height 535 px
+for_window [instance="youtube.*embed" class="[Cc]hromium"] floating enable border none, resize shrink width 10000 px, resize grow width 885 px, resize shrink height 10000 px, resize grow height 490 px
 for_window [class="Pavucontrol"] floating enable border normal
-for_window [instance="urxvt-console"] floating enable border 1pixel
+for_window [instance="urxvt-console"] floating enable border none

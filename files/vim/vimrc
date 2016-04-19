@@ -7,6 +7,7 @@ set autochdir           " cd to file directory
 set completeopt=menu,menuone,longest  " disable doc window on completion
 set backspace=indent,eol,start  " make that backspace key work the way it should
 set clipboard=unnamedplus  " make system clipboard work
+set clipboard^=autoselect
 
 set showcmd             " display incomplete commands
 set nobackup            " no backup files
@@ -67,6 +68,7 @@ Plugin 'jceb/vim-orgmode'
 
 " Theme
 Plugin 'jnurmine/Zenburn'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'nanotech/jellybeans.vim'
 
 call vundle#end()
@@ -117,6 +119,7 @@ let mapleader=','
 " Normal mappings:
 "   quit with q when no changes were made
 nmap <silent> q :q<CR>
+nmap <silent> <leader>q :q all<CR>
 "   indent the whole file
 nmap <silent> <leader>i gg=G''
 "   run spawn script for opening new terminal
@@ -150,4 +153,4 @@ vnoremap <silent> <Right> <NOP>
 
 cnoreabbr %s OverCommandLine<CR>%s
 cnoreabbr '<,'>s OverCommandLine<CR>'<,'>s
-
+cnoreabbr s/ OverCommandLine<CR>s/

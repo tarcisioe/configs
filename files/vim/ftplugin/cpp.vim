@@ -19,3 +19,4 @@ silent! iunmap <Down>
 silent! iunmap <Right>
 
 nmap <silent> <leader>i ma:%!uncrustify -c ~/.uncrustify.cfg -l CPP -q<CR>'a
+inoremap <NUL> <C-X><C-U>

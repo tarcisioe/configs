@@ -15,6 +15,11 @@ PS1="\[\033[01;34m\]\u\[\033[01;37m\]:\[\033[01;34m\]\h\[\033[01;37m\] \w \[\033
 
 # Todo-list
 
+if [ -e ${HOME}/.bash_completion.d ]
+then
+    . ${HOME}/.bash_completion.d/*
+fi
+
 if [ -f ${HOME}/.todo ]
 then
     cat ${HOME}/.todo

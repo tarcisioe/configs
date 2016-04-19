@@ -26,3 +26,4 @@ setup-key "${key[Up]}" up-line-or-beginning-search
 setup-key "${key[Down]}" down-line-or-beginning-search
 setup-key "${key[Left]}" backward-char
 setup-key "${key[Right]}" forward-char
+setup-key "${key[Backspace]}" backward-delete-char

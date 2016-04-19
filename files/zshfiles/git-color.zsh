@@ -1,3 +1,5 @@
+require find-file-backwards
+
 function git-color {
     if ! which git > /dev/null 2>&1
     then
@@ -18,3 +20,4 @@ function git-color {
 
     echo 'green'
 }
+

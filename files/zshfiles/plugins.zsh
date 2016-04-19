@@ -1,11 +1,13 @@
 require check-root
+require zgen
 
 if [[ ! (${ROOT} == 1) ]]
 then
-    if require-if-exists antigen
+    if ! zgen saved
     then
-        antigen bundle pip
+        zgen oh-my-zsh plugins/pip
+        zgen load b4b4r07/zsh-vimode-visual
 
-        antigen apply
+        zgen save
     fi
 fi

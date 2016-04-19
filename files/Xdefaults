@@ -1,11 +1,11 @@
 URxvt*.geometry: 80x25
 URxvt*.depth: 32
-URxvt*.background: rgba:0000/0000/0000/DDDD
+URxvt*.background: rgba:0000/0000/0000/BBBB
 URxvt*.foreground: #FFFFFF
 URxvt*.scrollBar: false
 URxvt*.scrollTtyOutput: false
 URxvt*.scrollTtyKeypress: true
-URxvt*.font: xft:Deja Vu Sans Mono for Powerline:size=9
+URxvt*.font: xft:Droid Sans Mono for Powerline:size=9
 URxvt*.perl-ext-common: font-size
 URxvt*.keysym.C-Up: perl:font-size:increase
 URxvt*.keysym.C-Down: perl:font-size:decrease

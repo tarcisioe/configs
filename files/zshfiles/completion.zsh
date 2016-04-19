@@ -1,4 +1,14 @@
+require check-root
+require dircolors
+
+# add ./comp to completion path
+if [[ ${ROOT} == 0 ]]
+then
+    fpath=("${INITPATH}"/comp $fpath)
+fi
+
 # load zsh completion utilities
+_compdir="$MY_SCRIPTS_PATH"/comp
 autoload -U compinit && compinit
 
 # configure completion to behave nicely

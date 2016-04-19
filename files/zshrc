@@ -5,13 +5,12 @@ DIRSTACKSIZE=8
 KEYTIMEOUT=1
 
 # define DIRCOLORS
-COLORFILE=${HOME}/.dir_colors
-[[ -e ${COLORFILE} && $(tput colors) == 256 ]] && which dircolors > /dev/null && eval $(dircolors ${COLORFILE})
 PACKAGES=${HOME}/.zsh
 
 # get the require function
-source ${PACKAGES}/init.zsh ${PACKAGES} &> /dev/null || return
+source ${PACKAGES}/init.zsh &> /dev/null || return
 
+require dircolors
 require plugins
 require prompt
 require keyboard
@@ -19,5 +18,7 @@ require completion
 require aliases
 require python-utils
 require custom-cd
+require ssh-agent
 
 require-if-exists localdefs || true
+cd .

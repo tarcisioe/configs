@@ -1,0 +1,21 @@
+#compdef cleese
+
+function _cleese {
+    local state
+
+    _arguments "1: :($(cleese commands))" && return 0
+
+    case $words[2] in
+        replace) ;&
+        add)
+            if [[ $CURRENT == 3 ]]
+            then
+                read prefix <<< ${words[3]#'"'}
+                possibilities=("${(@f)$(cleese prefix-search "$prefix")}")
+                _multi_parts / possibilities && return 0
+            fi
+            ;;
+    esac
+}
+
+_cleese

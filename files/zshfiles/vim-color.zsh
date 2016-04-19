@@ -2,5 +2,9 @@ require colors
 
 # this function returns what color to use in prompt (only when changing keymap)
 function vim-color {
-    echo "${${KEYMAP/vicmd/${DARK_RED}}/(main|viins)/${LIGHT_BLUE}}"
+    case $KEYMAP in
+        main|viins) echo "${LIGHT_BLUE}" ;;
+        vicmd) echo "${DARK_RED}" ;;
+        vivis) echo "${DARK_ORANGE}" ;;
+    esac
 }
