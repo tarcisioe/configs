@@ -57,3 +57,20 @@ And you can keep your bundles up to date by running
 ```
 
 whenever needed.
+
+Git configuration
+-----------------
+
+Since `~/.gitconfig` usually contains name and email information,
+and is manipulated directly by `git config`, this repository maps
+the git configuration to `~/.gitextra`.
+
+To use the configurations, you have to use Git 1.7.10.2 or later and
+add
+
+```conf
+[include]
+    path = ~/.gitextra
+```
+
+to your own `~/.gitconfig`.

@@ -22,7 +22,7 @@
 ~/.fonts/DroidSansMono-Powerline.otf DroidSansMono-Powerline.otf
 ~/.fonts/DroidSansMono.ttf DroidSansMono.ttf
 ~/.fonts/DroidSans.ttf DroidSans.ttf
-~/.gitconfig gitconfig
+~/.gitextra gitconfig
 ~/.i3/config i3config
 ~/.vim vim
 ~/.wallpaper/till.png till.png
