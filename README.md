@@ -27,6 +27,18 @@ bash link.sh
 bash migrate.sh
 ```
 
+Using single files
+------------------
+
+To use a single configuration file or directory, use `use.sh`
+
+```bash
+git submodule init
+git submodule update
+bash use.sh vim
+bash use.sh i3config
+```
+
 Vim configurations
 ------------------
 
