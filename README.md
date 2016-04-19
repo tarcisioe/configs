@@ -12,8 +12,8 @@ If you clone this repository, it is recommended that you use it
 to base your own configurations on, instead of always updating
 from it. I might at any moment make changes you won't like.
 
-Using this configurations
--------------------------
+Using these configurations
+--------------------------
 
 To install the configurations, enter the cloned repository and run:
 
