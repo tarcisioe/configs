@@ -9,7 +9,7 @@ wrap() {
 
     for option in $OPTIONS
     do
-        if [[ "$option" != "$SCRIPT" ]]
+        if [[ "$(readlink -f "$option")" != "$SCRIPT" ]]
         then
             echo "$option"
             break
