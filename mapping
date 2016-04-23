@@ -1,9 +1,14 @@
 ~/.bashrc bashrc
+~/bin/battstatus battstatus
 ~/bin/calendar calendar
 ~/bin/carinhaaquela carinhaaquela
 ~/bin/console console
 ~/bin/currentsong currentsong
-~/bin/currentsong /home/tarcisioe/bin/showplaylist
+~/bin/dmenu dmenu
+~/bin/movefloat movefloat
+~/bin/playlink playlink
+~/bin/recordwindow recordwindow
+~/bin/runtwitch runtwitch
 ~/bin/showplaylist showplaylist
 ~/bin/showtime showtime
 ~/bin/spawn spawn

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+eval "$(slop)"
+
+if [[ $Cancel == 'true' ]]
+then
+    exit -1
+fi
+
+ffmpeg -video_size "$(($W-1))x$((H-1))" -framerate 25 -f x11grab -i :0.0+"$X","$Y" -f pulse -ac 2 -i default output.webm -pix_fmt yuv420p

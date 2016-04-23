@@ -39,4 +39,5 @@ function mkvenv {
     [[ $(${python} -V 2>&1) =~ "Python 3" ]] || module="virtualenv"
     ${python} -m ${module} .venv
     -enter-venv
+    pip install --upgrade pip
 }

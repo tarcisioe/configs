@@ -1,0 +1,157 @@
+#!/usr/bin/env python
+import json
+
+from subprocess import Popen, PIPE
+
+
+def run(line, input=None):
+    if isinstance(line, str):
+        line = line.split()
+    p = Popen(line, stdout=PIPE, stderr=PIPE)
+    out, err = p.communicate(input)
+    if not err:
+        return str(out, 'utf-8')
+    else:
+        print(err)
+
+
+def i3_msg(command=None, type=None):
+    line = ['i3-msg']
+    if command is not None:
+        line.append(command)
+    if type is not None:
+        line.extend(('-t', type))
+    return(json.loads(run(line)))
+
+
+def current_window_id():
+    id_line = run(['xprop', '-root', '32x', '\t$0', '_NET_ACTIVE_WINDOW'])
+    _, win_id = id_line.split()
+    return int(win_id, 16)
+
+
+def current_workspace_size():
+    outputs = i3_msg(type='get_outputs')
+
+    active_output, *_ = [out for out in outputs if out['active']]
+    max_x = active_output['rect']['width']
+    max_y = active_output['rect']['height']
+
+    (_, top_height), (bottom_y, _) = join_bars(sorted(i3bar_vertical_info()),
+                                               max_y)
+
+    return 0, top_height, max_x, bottom_y
+
+
+def join_bars(bar_info, max_y):
+    print(bar_info)
+    remaining = bar_info + [(max_y, 0)]
+    joined = [(0, 0)]
+
+    while remaining:
+        (next_y, next_height), *remaining = remaining
+        y, height = joined[-1]
+        if y + height == next_y:
+            joined[-1] = (y, height + next_height)
+        else:
+            joined.append((next_y, next_height))
+
+    return joined
+
+
+def search_tree(pred):
+    tree = i3_msg(type='get_tree')
+
+    nodes = [tree]
+    found = []
+
+    while nodes:
+        node = nodes.pop()
+        nodes.extend(node['nodes'])
+        nodes.extend(node['floating_nodes'])
+        if pred(node):
+            found.append(node)
+
+    return found
+
+
+def by_id(id):
+    return search_tree(lambda node: node['window'] == id)
+
+
+def by_class(class_name):
+    return search_tree(lambda node: (node.get('window_properties') is not None
+                                     and class_name in
+                                     node['window_properties']['class']))
+
+
+def geometry(window):
+    return (window['rect']['x'], window['rect']['y'],
+            window['rect']['width'], window['rect']['height'])
+
+
+def i3bar_vertical_info():
+    i3bars = by_class('i3bar')
+    geometries = (geometry(bar) for bar in i3bars)
+    return [(y, height) for _, y, _, height in geometries]
+
+
+def window_size(win_id):
+    window, = by_id(win_id)
+    width = window['rect']['width']
+    height = window['rect']['height'] + window['deco_rect']['height']
+    return width, height
+
+
+def window_position(win_id):
+    window, = by_id(win_id)
+    x = window['rect']['x']
+    y = window['rect']['y'] - window['deco_rect']['height']
+    return x, y
+
+
+def move_to(win_id, x, y):
+    i3_msg("[id={}] move position {} px {} px".format(win_id, x, y))
+
+
+def move_up(win_id):
+    _, base_y, _, _ = current_workspace_size()
+    window, = by_id(win_id)
+    x, _ = window_position(win_id)
+    move_to(win_id, x, base_y)
+
+
+def move_left(win_id):
+    base_x, _, _, _ = current_workspace_size()
+    window, = by_id(win_id)
+    _, y = window_position(win_id)
+    move_to(win_id, base_x, y)
+
+
+def move_right(win_id):
+    _, _, max_x, _ = current_workspace_size()
+    width, _ = window_size(win_id)
+    _, y = window_position(win_id)
+    move_to(win_id, max_x - width, y)
+
+
+def move_down(win_id):
+    _, _, _, max_y = current_workspace_size()
+    _, height = window_size(win_id)
+    x, _ = window_position(win_id)
+    move_to(win_id, x, max_y - height)
+
+
+if __name__ == '__main__':
+    import sys
+
+    directions = {
+        'up': move_up,
+        'down': move_down,
+        'left': move_left,
+        'right': move_right,
+    }
+
+    for direction in sys.argv[1:]:
+        movement = directions[direction]
+        movement(current_window_id())
