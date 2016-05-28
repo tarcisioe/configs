@@ -31,32 +31,16 @@ def current_window_id():
 
 
 def current_workspace_size():
-    outputs = i3_msg(type='get_outputs')
+    outputs = i3_msg(type='get_workspaces')
 
-    active_output, *_ = [out for out in outputs if out['active']]
-    max_x = active_output['rect']['width']
-    max_y = active_output['rect']['height']
+    workspace, *_ = [out for out in outputs if out['focused']]
 
-    (_, top_height), (bottom_y, _) = join_bars(sorted(i3bar_vertical_info()),
-                                               max_y)
+    x = workspace['rect']['x']
+    y = workspace['rect']['y']
+    w = workspace['rect']['width']
+    h = workspace['rect']['height']
 
-    return 0, top_height, max_x, bottom_y
-
-
-def join_bars(bar_info, max_y):
-    print(bar_info)
-    remaining = bar_info + [(max_y, 0)]
-    joined = [(0, 0)]
-
-    while remaining:
-        (next_y, next_height), *remaining = remaining
-        y, height = joined[-1]
-        if y + height == next_y:
-            joined[-1] = (y, height + next_height)
-        else:
-            joined.append((next_y, next_height))
-
-    return joined
+    return x, y, x+w, y+h
 
 
 def search_tree(pred):
@@ -77,23 +61,6 @@ def search_tree(pred):
 
 def by_id(id):
     return search_tree(lambda node: node['window'] == id)
-
-
-def by_class(class_name):
-    return search_tree(lambda node: (node.get('window_properties') is not None
-                                     and class_name in
-                                     node['window_properties']['class']))
-
-
-def geometry(window):
-    return (window['rect']['x'], window['rect']['y'],
-            window['rect']['width'], window['rect']['height'])
-
-
-def i3bar_vertical_info():
-    i3bars = by_class('i3bar')
-    geometries = (geometry(bar) for bar in i3bars)
-    return [(y, height) for _, y, _, height in geometries]
 
 
 def window_size(win_id):

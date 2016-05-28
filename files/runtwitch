@@ -2,4 +2,4 @@
 
 stream=$(dmenu -p "Enter twitch handle" <<< "")
 
-livestreamer -p mpv "https://twitch.tv/$stream" high & disown
+livestreamer -p mpv "https://twitch.tv/$stream" high 2> /dev/null & disown

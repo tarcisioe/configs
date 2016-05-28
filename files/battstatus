@@ -1,1 +1,22 @@
-notify-send -t 1000 $(cat /sys/class/power_supply/BAT0/capacity)%
+#!/bin/bash
+
+BATT=$(cat /sys/class/power_supply/BAT0/capacity)
+STATUS=$(cat /sys/class/power_supply/BAT0/status)
+
+if [[ $STATUS == "Charging" ]]
+then
+    symbol=
+elif (($BATT <= 25))
+then
+    symbol=
+elif (($BATT <= 50))
+then
+    symbol=
+elif (($BATT <= 75))
+then
+    symbol=
+else
+    symbol=
+fi
+
+notify-send -t 1000 "$symbol $BATT%"

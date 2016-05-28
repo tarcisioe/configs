@@ -26,28 +26,34 @@ set $float_video floating enable border none, resize shrink width 10000 px, resi
 floating_modifier $mod
 
 # define workspaces, since I use names
-set $ws1 1: telegram
-set $ws2 2: web
-set $ws3 3: view
-set $ws4 4: code
-set $ws5 5: code
-set $ws6 6: code
-set $ws7 7: code
-set $ws8 8: code
-set $ws9 9: code
-set $ws10 10: khaki
+# workspace 1: telegram
+set $ws1 1: 
+# workspace 2: web
+set $ws2 2: 
+# workspace 3: view
+set $ws3 3: 
+# workspaces 4-9: code
+set $ws4 4: 
+set $ws5 5: 
+set $ws6 6: 
+set $ws7 7: 
+set $ws8 8: 
+set $ws9 9: 
+# workspace 10: khaki
+set $ws10 10: 
+
 
 # switch to workspace
-bindsym $mod+exclam workspace $ws1
-bindsym $mod+at workspace $ws2
-bindsym $mod+numbersign workspace $ws3
-bindsym $mod+dollar workspace $ws4
-bindsym $mod+percent workspace $ws5
-bindsym $mod+dead_diaeresis workspace $ws6
-bindsym $mod+ampersand workspace $ws7
-bindsym $mod+asterisk workspace $ws8
-bindsym $mod+parenleft workspace $ws9
-bindsym $mod+parenright workspace $ws10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -66,6 +72,8 @@ bindsym $mod+F1 exec i3-sensible-terminal
 bindsym $mod+F2 exec --no-startup-id chromium
 bindsym $mod+F3 exec --no-startup-id telegram
 bindsym $mod+F4 exec --no-startup-id pavucontrol
+bindsym $mod+F8 exec --no-startup-id screenlayout lab
+bindsym $mod+Shift+F8 exec --no-startup-id screenlayout default
 bindsym $mod+F10 exec --no-startup-id urxvt -name khaki -e khaki
 
 bindsym $mod+Shift+Return exec --no-startup-id togglekbd
@@ -99,6 +107,7 @@ bindsym --release shift+$mod+Print exec --no-startup-id sshot -cs
 
 # utils
 bindsym $mod+Shift+c exec --no-startup-id carinhaaquela
+bindsym $mod+Shift+w exec --no-startup-id whatevs
 
 # keyboard brightness
 bindcode 237 exec --no-startup-id sudo keybrightness down
@@ -127,6 +136,9 @@ bindsym $mod+Left exec --no-startup-id movefloat left
 bindsym $mod+Down exec --no-startup-id movefloat down
 bindsym $mod+Up exec --no-startup-id movefloat up
 bindsym $mod+Right exec --no-startup-id movefloat right
+
+#move workspaces
+bindsym $mod+m move workspace to output right
 
 # toggle stickiness (workspace independence)
 bindsym $mod+Ctrl+t sticky toggle
@@ -190,10 +202,30 @@ bar {
         inactive_workspace #333333 #0F0F0F #AAAAAA
         urgent_workspace   #666666 #800000 #CCCCCC
     }
+
+    bindsym button4 nop
+    bindsym button5 nop
+
     # font pango:DejaVu Sans Mono, Awesome 8
-    font pango:Droid Sans Mono for Powerline, DejaVu Sans Mono for Powerline, Awesome 8
+    font pango:Droid Sans Mono for Powerline, DejaVu Sans Mono for Powerline, FontAwesome 8
     status_command i3elapsed
+    output eDP1
 }
+
+bar {
+    colors {
+        # class            border  backgr. text
+        focused_workspace  #525252 #333333 #CCCCCC
+        active_workspace   #333333 #0F0F0F #AAAAAA
+        inactive_workspace #333333 #0F0F0F #AAAAAA
+        urgent_workspace   #666666 #800000 #CCCCCC
+    }
+    # font pango:DejaVu Sans Mono, Awesome 8
+    font pango:Droid Sans Mono for Powerline, DejaVu Sans Mono for Powerline, FontAwesome 8
+    output DP1
+    output HDMI
+}
+
 
 # colors
 # class                 border  backgr. text    indicator
@@ -203,21 +235,16 @@ client.unfocused        #333333 #000000 #AAAAAA
 client.urgent           #666666 #900000 #CCCCCC
 
 # assignments
-assign [class="[Tt]elegram"] $ws1
-assign [class="Google-chrome"] $ws2
-assign [instance="web.telegram.org" class="Chromium"] $ws1
+assign [class="^[Tt]elegram"] $ws1
+assign [instance="web.telegram.org" class="^[Cc]hromium"] $ws1
+assign [class="^[Ff]irefox"] $ws1
 assign [class="^[Cc]hromium"] $ws2
-assign [class="Evince"] $ws3
-assign [class="MuPDF"] $ws3
-assign [class="Zathura"] $ws3
-assign [class="Ristretto"] $ws3
-assign [class="Gmpc"] $ws10
+assign [class="^[Zz]athura"] $ws3
 assign [instance="khaki" class="URxvt"] $ws10
 
-for_window [class="mpv"] $float_video
-for_window [class="Google-chrome"] border none
-for_window [class="[Cc]hromium"] border none
-for_window [instance="twitch.*popout" class="[Cc]hromium"] floating enable border none, resize shrink width 10000 px, resize grow width 885 px, resize shrink height 10000 px, resize grow height 535 px
-for_window [instance="youtube.*embed" class="[Cc]hromium"] floating enable border none, resize shrink width 10000 px, resize grow width 885 px, resize shrink height 10000 px, resize grow height 490 px
-for_window [class="Pavucontrol"] floating enable border normal
+for_window [class="^[Mm]pv"] $float_video
+for_window [class="^[Cc]hromium"] border none
+for_window [instance="twitch.*popout" class="^[Cc]hromium"] floating enable border none, resize shrink width 10000 px, resize grow width 885 px, resize shrink height 10000 px, resize grow height 535 px
+for_window [instance="youtube.*embed" class="^[Cc]hromium"] $float_video
+for_window [class="^[Pp]avucontrol"] floating enable border normal
 for_window [instance="urxvt-console"] floating enable border none

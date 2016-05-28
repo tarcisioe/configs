@@ -27,6 +27,7 @@
 ~/.fonts/DroidSansMono-Powerline.otf DroidSansMono-Powerline.otf
 ~/.fonts/DroidSansMono.ttf DroidSansMono.ttf
 ~/.fonts/DroidSans.ttf DroidSans.ttf
+~/.fonts/fontawesome-webfont.ttf fontawesome-webfont.ttf
 ~/.gitextra gitconfig
 ~/.i3/config i3config
 ~/.vim vim
