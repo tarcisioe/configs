@@ -1,26 +1,23 @@
-HISTFILE=~/.histfile
-HISTSIZE=32000
-SAVEHIST=32000
-DIRSTACKSIZE=8
-KEYTIMEOUT=1
-
-setopt HIST_IGNORE_SPACE
-
-# define DIRCOLORS
-PACKAGES=${HOME}/.zsh
+if [[ $- != *i* ]] ; then
+    # Shell is non-interactive.  Be done now!
+    return
+fi
 
 # get the require function
-source ${PACKAGES}/init.zsh &> /dev/null || return
+PACKAGES=${HOME}/.shutils
+source ${PACKAGES}/init.sh &> /dev/null || return
 
-require dircolors
-require plugins
-require prompt
-require keyboard
-require completion
+require-if-exists base
+
 require aliases
-require python-utils
+require completion
 require custom-cd
+require dircolors
+require prompt
+require python-utils
 require ssh-agent
 
-require-if-exists localdefs || true
+require-if-exists plugins
+require-if-exists keyboard
+require-if-exists localdefs
 cd .

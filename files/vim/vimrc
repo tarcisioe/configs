@@ -1,145 +1,38 @@
-set nocompatible        " no vi compatibility
-set scrolloff=999       " center cursor
-set laststatus=2        " airline needs this
-set ttimeoutlen=0       " no airline delay
-set nofoldenable        " no folding
-set autochdir           " cd to file directory
-set completeopt=menu,menuone,longest  " disable doc window on completion
-set backspace=indent,eol,start  " make that backspace key work the way it should
-set clipboard=unnamedplus  " make system clipboard work
-set clipboard^=autoselect
+set nocompatible                "no vi compatibility
 
-set showcmd             " display incomplete commands
-set nobackup            " no backup files
-set number              " line numbers
-set ruler               " current row and column
-set mouse=a             " mouse support
+syntax on                       "enable syntax highlighting
+filetype plugin on              "enable plugins for filetypes
 
-set hlsearch            " highlight searches
-set incsearch           " do incremental searching
-set showmatch           " jump to matches when entering regexp
-set ignorecase          " ignore case on search
-set smartcase           " uppercase forces search casing
+set path=**                     "make file search recursive
+set wildmenu                    "enable cool menu
+set mouse=a                     "get mouse working on mouse-capable terminals
+set backspace=indent,eol,start  "make backspace work everywhere
+set laststatus=2
+set ttimeoutlen=0               "no delay when going back into normal mode
+set clipboard=unnamedplus       "make vim clipboard the same as the system one
+set clipboard^=autoselect       "copy on selection like in X
+set nofoldenable                "disable default folding of text
+set nobackup                    "no annoying backups of files
+set number                      "line numbers
+set ruler                       "show row and column on bottom right
+"set autochdir                   "change directory to where the file is
 
-set visualbell t_vb=    " turn off error beep/flash
-set novisualbell        " turn off visual bell
+set expandtab                   "spaces instead of tab
+set tabstop=4                   "tabwidth is 4 spaces
+set shiftwidth=4                "indent by 4 with >> and <<
+set autoindent                  "start nextline indented
 
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-set autoindent
+set hlsearch                    "highlight searches
+set incsearch                   "do incremental searching
+set showmatch                   "jump to matches when entering regexp
+set ignorecase                  "ignore case on search
+set smartcase                   "uppercase forces search casing
 
-syntax on
+set listchars=tab:——,space:·
 
+command! -nargs=1 Source runtime! conf.d/<args>
 
-" Vundle setup
-filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
-Plugin 'Syntastic'
-Plugin 'garbas/vim-snipmate'
-Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tomtom/tlib_vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'chrisbra/NrrwRgn'
-Plugin 'scrooloose/nerdtree'
-Plugin 'osyo-manga/vim-over'
-
-" Notes
-Plugin 'https://gitlab.com/tarcisioe/checknotes.vim.git'
-
-" Python
-Plugin 'davidhalter/jedi-vim'
-Plugin 'michaeljsmith/vim-indent-object'
-
-" C/C++
-Plugin 'Rip-Rip/clang_complete'
-
-" Theme
-Plugin 'jnurmine/Zenburn'
-Plugin 'vim-airline/vim-airline-themes' " zenburn for airline
-
-call vundle#end()
-
-filetype plugin indent on
-
-
-" General customizations
-"   theme
-if !(&term =~ 'linux')
-    set t_Co=256 " 256 color
-    colorscheme zenburn
-    " remove bg color (use default one, normally transparent for me)
-    hi Normal ctermfg=188 ctermbg=500
-    set cursorline " highlight current line
-    let g:airline_powerline_fonts=1 " use powerline arrows
-    let g:airline_theme='zenburn'   " nicer theme
-else
-    colorscheme desert
-endif
-
-
-"   clear whitespace before saving
-au BufWritePre * :%s/\s\+$//e
-"   highlight stuff after column 80
-match ErrorMsg '\%81v.\+'
-
-
-" Airline Setup
-let g:airline#extensions#tabline#enabled=1       " enable tabline upport
-let g:airline#extensions#tabline#tab_nr_type=1   " show tab numbers
-let g:airline#extensions#tabline#show_buffers=0  " hide buffers
-let g:airline#extensions#tabline#tab_min_count=2 " hide tabline for one tab
-
-
-" Syntastic setup
-let g:syntastic_auto_jump=1                " jump to first error
-let g:syntastic_always_populate_loc_list=1 " enable :lnext
-
-
-" Key mappings
-let mapleader=','
-" Normal mappings:
-"   quit with q when no changes were made
-nmap <silent> q :q<CR>
-nmap <silent> <leader>q :q all<CR>
-"   indent the whole file
-nmap <silent> <leader>i gg=G''
-"   run spawn script for opening new terminal
-nmap <silent> <leader>c :!spawn<CR><CR>
-"   remove highlights
-nmap <silent> <leader>h :nohl<CR>
-"   run lnext or lprev
-nmap <silent> <leader>n :lnext<CR>
-nmap <silent> <leader>p :lprev<CR>
-"   turn off arrows
-noremap <silent> <Left> <NOP>
-noremap <silent> <Down> <NOP>
-noremap <silent> <Up> <NOP>
-noremap <silent> <Right> <NOP>
-
-" Insert mappings:
-"   turn off arrows
-inoremap <silent> <Left> <NOP>
-inoremap <silent> <Down> <NOP>
-inoremap <silent> <Up> <NOP>
-inoremap <silent> <Right> <NOP>
-
-" Visual mappings:
-"   narrow to region and maximize narrowed window
-vmap <silent> <leader>nn :NR<CR><C-w>_
-"   turn off arrows
-vnoremap <silent> <Left> <NOP>
-vnoremap <silent> <Down> <NOP>
-vnoremap <silent> <Up> <NOP>
-vnoremap <silent> <Right> <NOP>
-
-cnoreabbr %s OverCommandLine<CR>%s
-cnoreabbr '<,'>s OverCommandLine<CR>'<,'>s
-cnoreabbr s/ OverCommandLine<CR>s/
+Source plugins.vim
+Source custom.vim
+Source plugin-setup.vim
+Source keymaps.vim

@@ -1,4 +1,5 @@
 require find-file-backwards
+require custom-cd
 
 function -export-pylintrc {
     local rc_path="$(find-file-backwards pylintrc)"
@@ -31,6 +32,8 @@ function python-cd-hooks {
     -enter-venv
     -export-pylintrc
 }
+
+cd-hook python-cd-hooks
 
 function mkvenv {
     local python="${1}"

@@ -7,4 +7,5 @@ then
     exit -1
 fi
 
-ffmpeg -video_size "$(($W-1))x$((H-1))" -framerate 25 -f x11grab -i :0.0+"$X","$Y" -f pulse -ac 2 -i default output.webm -pix_fmt yuv420p
+ffmpeg -video_size "$(($W-1))x$((H-1))" -framerate 25 -f x11grab -i :0.0+"$X","$Y" -f pulse -ac 2 -c:v libx264 -preset ultrafast -crf 0 out.mkv
+

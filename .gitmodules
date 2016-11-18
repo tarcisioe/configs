@@ -4,3 +4,6 @@
 [submodule "files/zshfiles/zgen"]
 	path = files/zshfiles/zgen
 	url = https://github.com/tarjoilija/zgen
+[submodule "files/shutils/zgen"]
+	path = files/shutils/zgen
+	url = https://github.com/tarjoilija/zgen

@@ -2,4 +2,5 @@
 
 stream=$(dmenu -p "Enter twitch handle" <<< "")
 
-livestreamer -p mpv "https://twitch.tv/$stream" high 2> /dev/null & disown
+loadvideo "https://twitch.tv/$stream"
+# 2> /dev/null & disown
