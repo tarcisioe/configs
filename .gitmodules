@@ -1,9 +1,6 @@
 [submodule "files/vim/bundle/Vundle.vim"]
 	path = files/vim/bundle/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim
-[submodule "files/zshfiles/zgen"]
-	path = files/zshfiles/zgen
-	url = https://github.com/tarjoilija/zgen
 [submodule "files/shutils/zgen"]
 	path = files/shutils/zgen
 	url = https://github.com/tarjoilija/zgen
