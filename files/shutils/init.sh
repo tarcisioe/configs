@@ -11,7 +11,7 @@ else
 fi
 
 INITPATH="$(cd "$(dirname "${INIT_BASENAME}")"; pwd -P)"
-MY_SCRIPTS_PATH=$1
+MY_SCRIPTS_PATH=$INITPATH
 
 function script-path {
     local partial="${INITPATH}"/"${1}"

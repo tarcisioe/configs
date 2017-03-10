@@ -19,6 +19,9 @@ silent! iunmap <Up>
 silent! iunmap <Down>
 silent! iunmap <Right>
 
-nmap <silent> <leader>i ma:%!uncrustify -c ~/.uncrustify.cfg -l CPP -q<CR>'a
-vmap <silent> <leader>i ma:'<,'>!uncrustify -c ~/.uncrustify.cfg -l CPP -q<CR>'a
+nmap <silent> <leader>i ma:.!uncrustify --frag -c ~/.uncrustify.cfg -l CPP -q<CR>'a
+vmap <silent> <leader>i ma:'<,'>!uncrustify --frag -c ~/.uncrustify.cfg -l CPP -q<CR>'a
+map <silent> <leader>c :pyf ~/.vim/clang-format.py<CR>
+imap <silent> <leader>c <C-o>:pyf ~/.vim/clang-format.py<CR>
+
 inoremap <NUL> <C-X><C-U>

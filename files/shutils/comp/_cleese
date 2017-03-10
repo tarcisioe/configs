@@ -1,21 +1,40 @@
 #compdef cleese
 
+typeset -A opt_args
+
+function _secondargcomp {
+    local address port
+
+    address="$1"
+    port="$2"
+
+    if [[ "$address" == "" ]]
+    then
+        address='localhost'
+    fi
+
+    if [[ "$port" == "" ]]
+    then
+        port=6600
+    fi
+
+    case "${words[-2]}" in
+        replace) ;&
+        add)
+            read prefix <<< ${words[-1]#'"'}
+            possibilities=("${(@f)$(cleese --address $address --port $port \
+                                    prefix-search "$prefix" 2> /dev/null)}")
+            _multi_parts / possibilities && return 0
+            ;;
+    esac
+}
+
 function _cleese {
     local state
 
-    _arguments "1: :($(cleese commands))" && return 0
-
-    case $words[2] in
-        replace) ;&
-        add)
-            if [[ $CURRENT == 3 ]]
-            then
-                read prefix <<< ${words[3]#'"'}
-                possibilities=("${(@f)$(cleese prefix-search "$prefix")}")
-                _multi_parts / possibilities && return 0
-            fi
-            ;;
-    esac
+    _arguments '--address: :->address' '--port: :->port' \
+               "1: :($(cleese commands))" \
+               '2: :{_secondargcomp "${opt_args[--address]}" "${opt_args[--port]}"}' && return 0
 }
 
 _cleese

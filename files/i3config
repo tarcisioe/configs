@@ -25,47 +25,31 @@ set $float_video floating enable border none, resize shrink width 10000 px, resi
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# define workspaces, since I use names
-# workspace 1: telegram
-set $ws1 1: 
-# workspace 2: web
-set $ws2 2: 
-# workspace 3: view
-set $ws3 3: 
-# workspaces 4-9: code
-set $ws4 4: 
-set $ws5 5: 
-set $ws6 6: 
-set $ws7 7: 
-set $ws8 8: 
-set $ws9 9: 
-# workspace 10: khaki
-set $ws10 10: 
-
+set_from_resource $display i3wm.display eDP1
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
 
 # keyboard shortcuts
 bindsym $mod+F1 exec i3-sensible-terminal
@@ -97,7 +81,7 @@ bindsym $mod+s exec --no-startup-id currentsong
 bindsym $mod+Shift+s exec --no-startup-id showplaylist
 
 # lock
-bindsym $mod+Ctrl+l exec --no-startup-id slock
+bindsym $mod+Alt+l exec --no-startup-id slock
 
 # screenshots (shift for clipboard, super for area)
 bindsym --release Print exec --no-startup-id sshot
@@ -138,25 +122,32 @@ bindsym $mod+Up exec --no-startup-id movefloat up
 bindsym $mod+Right exec --no-startup-id movefloat right
 
 #move workspaces
-bindsym $mod+m exec --no-startup-id swapws
-bindsym $mod+Shift+m move workspace to output right
+bindsym $mod+Ctrl+h move workspace to output left
+bindsym $mod+Ctrl+j move workspace to output down
+bindsym $mod+Ctrl+k move workspace to output up
+bindsym $mod+Ctrl+l move workspace to output right
+
+bindsym $mod+Shift+Ctrl+h exec --no-startup-id swapws left
+bindsym $mod+Shift+Ctrl+j exec --no-startup-id swapws down
+bindsym $mod+Shift+Ctrl+k exec --no-startup-id swapws up
+bindsym $mod+Shift+Ctrl+l exec --no-startup-id swapws right
 
 # toggle stickiness (workspace independence)
 bindsym $mod+Ctrl+t sticky toggle
 
 # resize
 mode "resize" {
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
 
-    # resize players
-    bindsym $mod+t $float_video
+# resize players
+        bindsym $mod+t $float_video
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym $mod+r mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -170,12 +161,9 @@ bindsym $mod+Ctrl+Down split v
 # enter fullscreen mode for the focused container
 bindsym $mod+u fullscreen
 
-# change container layout (stacked, tabbed, default)
-bindsym $mod+o layout default
-
 # toggle tiling / floating
 bindsym $mod+Shift+apostrophe floating enable border toggle
-bindsym $mod+apostrophe floating disable border 1pixel
+bindsym $mod+apostrophe floating disable border toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -197,39 +185,20 @@ bindsym $mod+Shift+greater exit
 # finds out, if available)
 bar {
     colors {
-        # class            border  backgr. text
+# class            border  backgr. text
         focused_workspace  #525252 #333333 #CCCCCC
-        active_workspace   #333333 #0F0F0F #AAAAAA
-        inactive_workspace #333333 #0F0F0F #AAAAAA
-        urgent_workspace   #666666 #800000 #CCCCCC
+            active_workspace   #333333 #0F0F0F #AAAAAA
+            inactive_workspace #333333 #0F0F0F #AAAAAA
+            urgent_workspace   #666666 #800000 #CCCCCC
     }
 
     bindsym button4 nop
     bindsym button5 nop
 
-    # font pango:DejaVu Sans Mono, Awesome 8
-    font pango:Droid Sans Mono for Powerline, DejaVu Sans Mono for Powerline, FontAwesome 8
+    font pango:DejaVu Sans Mono for Powerline, FontAwesome, icomoon 8
     status_command i3elapsed
-    output eDP1
-    tray_output primary
+    tray_output eDP1
 }
-
-bar {
-    colors {
-        # class            border  backgr. text
-        focused_workspace  #525252 #333333 #CCCCCC
-        active_workspace   #333333 #0F0F0F #AAAAAA
-        inactive_workspace #333333 #0F0F0F #AAAAAA
-        urgent_workspace   #666666 #800000 #CCCCCC
-    }
-    # font pango:DejaVu Sans Mono, Awesome 8
-    font pango:Droid Sans Mono for Powerline, DejaVu Sans Mono for Powerline, FontAwesome 8
-    output DP1
-    output HDMI
-    output HDMI1
-    output HDMI2
-}
-
 
 # colors
 # class                 border  backgr. text    indicator
@@ -239,13 +208,12 @@ client.unfocused        #333333 #000000 #AAAAAA
 client.urgent           #666666 #900000 #CCCCCC
 
 # assignments
-assign [class="^[Tt]elegram"] $ws1
-assign [instance="web.telegram.org" class="^[Cc]hromium"] $ws1
-assign [class="^[Ff]irefox"] $ws1
-assign [class="^[Cc]hromium"] $ws2
-assign [class="^[Gg]oogle"] $ws2
-assign [class="^[Zz]athura"] $ws3
-assign [instance="khaki" class="URxvt"] $ws10
+
+for_window [class="^[Tt]elegram"] move to workspace number 1
+for_window [class="^[Gg]oogle"] move to workspace number 2
+for_window [class="^[Ff]irefox"] move to workspace number 2
+for_window [class="^[Zz]athura"] move to workspace number 3
+for_window [instance="khaki" class="URxvt"] move to workspace number 10
 
 # for_window [class="^[Mm]pv"] $float_video
 for_window [class="^[Cc]hromium"] border none

@@ -1,8 +1,9 @@
 require check-root
-require zgen
 
 if [[ ! (${ROOT} == 1) ]]
 then
+    require zgen
+
     if ! zgen saved
     then
         zgen oh-my-zsh plugins/pip

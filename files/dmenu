@@ -1,20 +1,5 @@
-#!/bin/bash
+#!/bin/sh
 
-SCRIPTNAME=$(basename "$0")
+#$(wrap "$0") -fn "Droid Sans Mono-9" "$@"
 
-SCRIPT=$(readlink -f "$0")
-
-wrap() {
-    OPTIONS="$(which -a ${SCRIPTNAME})"
-
-    for option in $OPTIONS
-    do
-        if [[ "$(readlink -f "$option")" != "$SCRIPT" ]]
-        then
-            echo "$option"
-            break
-        fi
-    done
-}
-
-$(wrap) -fn "Droid Sans Mono-9" "$@"
+rofi -dmenu "$@"

@@ -22,8 +22,12 @@ setopt prompt_subst
 # select color based on being root or not
 COLOR="$(print -P "%(#~${DARK_RED}~${LIGHT_BLUE})")"
 
+function color {
+    [[ $ROOT == "1" ]] && echo $DARK_RED || echo $LIGHT_BLUE
+}
+
 # define left-prompt
-PROMPT='%B%F{${COLOR}}%n%f:%F{${COLOR}}%m%f %c %F{${prompt_vim_color}}%(#~#~$)%f%b '
+PROMPT='%B%F{$(color)}%n%f:%F{$(color)}%m%f %c %F{${prompt_vim_color}}%(#~#~$)%f%b '
 
 ZLE_RPROMPT_INDENT=0
 

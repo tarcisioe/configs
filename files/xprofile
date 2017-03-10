@@ -19,10 +19,3 @@ if [ -e ${HOME}/.xinitrc_after ]
 then
     source ${HOME}/.xinitrc_after
 fi
-
-if which dbus-launch
-then
-    DBUS_LAUNCH=dbus-launch
-fi
-
-$DBUS_LAUNCH $WM

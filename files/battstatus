@@ -1,9 +1,9 @@
 #!/bin/bash
 
 BATT=$(cat /sys/class/power_supply/BAT0/capacity)
-STATUS=$(cat /sys/class/power_supply/BAT0/status)
+STATUS=$(cat /sys/class/power_supply/AC0/online)
 
-if [[ $STATUS == "Charging" ]]
+if [[ $STATUS == 1 ]]
 then
     symbol=
 elif (($BATT <= 25))

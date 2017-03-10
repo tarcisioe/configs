@@ -1,4 +1,4 @@
-ZGEN="${MY_SCRIPTS_PATH}"/zgen/zgen.zsh
+ZGEN="${INITPATH}"/zgen/zgen.zsh
 
 if [[ -f "${ZGEN}" ]]
 then

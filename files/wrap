@@ -1,0 +1,16 @@
+#!/bin/bash
+
+SCRIPTNAME=$(basename "$1")
+
+SCRIPT=$(readlink -f "$1")
+
+OPTIONS="$(which -a ${SCRIPTNAME})"
+
+for option in $OPTIONS
+do
+    if [[ "$(readlink -f "$option")" != "$SCRIPT" ]]
+    then
+        echo "$option"
+        break
+    fi
+done
