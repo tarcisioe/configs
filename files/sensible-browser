@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if which chromium
+then
+    BROWSER=chromium
+elif which google-chrome
+then
+    BROWSER=google-chrome
+elif which google-chrome-stable
+then
+    BROWSER=google-chrome-stable
+elif which firefox
+then
+    BROWSER=firefox
+fi
+
+$BROWSER $@

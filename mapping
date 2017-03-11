@@ -22,6 +22,7 @@
 ~/.local/bin/playlink playlink
 ~/.local/bin/recordwindow recordwindow
 ~/.local/bin/runtwitch runtwitch
+~/.local/bin/sensible-browser sensible-browser
 ~/.local/bin/showplaylist showplaylist
 ~/.local/bin/showtime showtime
 ~/.local/bin/spawn spawn
