@@ -32,7 +32,7 @@ function _secondargcomp {
 function _cleese {
     local state
 
-    _arguments '--address: :->address' '--port: :->port' \
+    _arguments '--address: :->address' '--port: :->port' '--server: :->server' \
                "1: :($(cleese commands))" \
                '2: :{_secondargcomp "${opt_args[--address]}" "${opt_args[--port]}"}' && return 0
 }

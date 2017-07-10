@@ -18,6 +18,7 @@ set nofoldenable                "disable default folding of text
 set nobackup                    "no annoying backups of files
 set number                      "line numbers
 set ruler                       "show row and column on bottom right
+set guicursor=
 "set autochdir                   "change directory to where the file is
 
 set expandtab                   "spaces instead of tab

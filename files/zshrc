@@ -15,6 +15,7 @@ require custom-cd
 require dircolors
 require prompt
 require python-utils
+require node-utils
 require ssh-agent
 
 require-if-exists plugins

@@ -5,10 +5,10 @@ let g:syntastic_auto_jump=0
 let g:syntastic_check_on_open=1
 let g:syntastic_cpp_config_file='.clang_complete'
 let g:syntastic_cpp_compiler='clang++'
-let g:syntastic_cpp_compiler_options='-std=c++14'
+let g:syntastic_cpp_compiler_options='-std=c++1z'
 
 " Enable C++14 in vm-clang
-let g:clang_cpp_options='-std=c++14'
+let g:clang_cpp_options='-std=c++1z'
 
 let g:clang_dotfile='.clang_complete'
 let g:clang_diagsopt=''

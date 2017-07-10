@@ -28,6 +28,11 @@ Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'justmao945/vim-clang'
 Plugin 'vim-scripts/Conque-GDB'
 
+" TypeScript
+Plugin 'Shougo/vimproc.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/tsuquyomi'
+
 " Theme
 Plugin 'jnurmine/Zenburn'
 Plugin 'vim-airline/vim-airline-themes' " zenburn for airline
