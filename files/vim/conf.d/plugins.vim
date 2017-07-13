@@ -5,7 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'Syntastic'
+" Plugin 'Syntastic'
 Plugin 'garbas/vim-snipmate'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
@@ -15,6 +15,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'chrisbra/NrrwRgn'
 Plugin 'osyo-manga/vim-over'
+Plugin 'w0rp/ale'
 
 " Notes
 Plugin 'https://gitlab.com/tarcisioe/checknotes.vim.git'

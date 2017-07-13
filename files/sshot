@@ -19,7 +19,7 @@ save-or-clip() {
         xclip -t image/png "${1}"
         rm "${1}"
     else
-        mv "${1}" "${HOME}/.screenshots/"$(dmenu -p "Filename (.png)" < /dev/null)".png"
+        mv "${1}" "${HOME}/.screenshots/"$(dmenu -p "Filename (.png): " < /dev/null)".png"
     fi
 }
 

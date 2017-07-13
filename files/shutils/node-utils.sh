@@ -33,7 +33,7 @@ function -enter-node-env {
     if [[ -z "${node_env}" ]]
     then
         [[ -n "${NODE_ENV}" ]] && -leave-node-env
-        return
+        return 0
     fi
 
     if [[ -z "${NODE_ENV}" || "$(readlink -f "${NODE_ENV}")" != "$(readlink "${node_env}")" ]]
