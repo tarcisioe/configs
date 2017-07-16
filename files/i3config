@@ -56,8 +56,9 @@ bindsym $mod+F1 exec i3-sensible-terminal
 bindsym $mod+F2 exec --no-startup-id sensible-browser
 bindsym $mod+F3 exec --no-startup-id telegram
 bindsym $mod+F4 exec --no-startup-id pavucontrol
-bindsym $mod+F8 exec --no-startup-id screenlayout $(dmenu <<< "")
-bindsym $mod+Shift+F8 exec --no-startup-id screenlayout default
+bindsym $mod+F5 exec --no-startup-id chromium-profile cellcrypt --proxy-server=socks5://127.0.0.1:9050
+bindsym $mod+F8 exec --no-startup-id screenlayout
+bindsym $mod+Shift+F8 exec --no-startup-id screenlayout default.sh
 bindsym $mod+F10 exec --no-startup-id urxvt -name khaki -e khaki
 
 bindsym $mod+Shift+Return exec --no-startup-id togglekbd
@@ -185,22 +186,20 @@ bindsym $mod+Shift+greater exit
 # finds out, if available)
 bar {
     colors {
-# class            border  backgr. text
+        # class            border  backgr. text
         focused_workspace  #525252 #333333 #CCCCCC
-            active_workspace   #333333 #0F0F0F #AAAAAA
-            inactive_workspace #333333 #0F0F0F #AAAAAA
-            urgent_workspace   #666666 #800000 #CCCCCC
+        active_workspace   #333333 #0F0F0F #AAAAAA
+        inactive_workspace #333333 #0F0F0F #AAAAAA
+        urgent_workspace   #666666 #800000 #CCCCCC
     }
 
     bindsym button4 nop
     bindsym button5 nop
 
     font pango:DejaVu Sans Mono for Powerline, FontAwesome, icomoon 8
-    status_command i3elapsed
+    status_command i3mpdstatus
     tray_output eDP1
 }
-
-fake-outputs 1280x1440+0+0,1280x1024+1280+0
 
 # colors
 # class                 border  backgr. text    indicator
@@ -220,7 +219,6 @@ for_window [instance="khaki" class="URxvt"] move to workspace number 10
 # for_window [class="^[Mm]pv"] $float_video
 for_window [class="^[Cc]hromium"] border none
 for_window [class="^[Gg]oogle"] border none
-for_window [instance="twitch.*popout" class="^[Cc]hromium"] floating enable border none, resize shrink width 10000 px, resize grow width 885 px, resize shrink height 10000 px, resize grow height 535 px
-for_window [instance="youtube.*embed" class="^[Cc]hromium"] $float_video
+for_window [class="^[Mm]pv"] $float_video
 for_window [class="^[Pp]avucontrol"] floating enable border normal
 for_window [instance="urxvt-console"] floating enable border none

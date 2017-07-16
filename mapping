@@ -1,6 +1,7 @@
 ~/.bashrc zshrc
 ~/.config/dunst/dunstrc dunstrc
 ~/.config/i3/config i3config
+~/.config/i3/default i3config
 ~/.dir_colors dir_colors
 ~/.emacs.d emacsd
 ~/.fonts/DejaVuSansMono-BoldOblique-Powerline.ttf DejaVuSansMono-BoldOblique-Powerline.ttf
