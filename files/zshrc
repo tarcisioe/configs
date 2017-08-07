@@ -17,6 +17,7 @@ require prompt
 require python-utils
 require node-utils
 require ssh-agent
+require autoenv
 
 require-if-exists plugins
 require-if-exists keyboard

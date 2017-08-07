@@ -36,6 +36,12 @@ set completeopt-=preview        "no preview window for completion
 
 set listchars=tab:——,space:·
 
+if has('persistent_undo')
+    let undodir = '~/.vim/undodir'
+    call system('mkdir ' . undodir)
+    set undofile
+endif
+
 command! -nargs=1 Source runtime! conf.d/<args>
 
 Source plugins.vim

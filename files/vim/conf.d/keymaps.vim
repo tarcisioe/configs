@@ -35,6 +35,7 @@ imap <silent> <F1> <NOP>
 "   enable other F keys in insert mode as well
 imap <silent> <F11> <C-o><F11>
 imap <silent> <F12> <C-o><F12>
+inoremap <C-Space> <C-x><C-o>
 
 " Visual mappings:
 "   narrow to region and maximize narrowed window
@@ -49,3 +50,5 @@ vnoremap <silent> <Right> <NOP>
 cnoreabbr %s OverCommandLine<CR>%s
 cnoreabbr '<,'>s OverCommandLine<CR>'<,'>s
 cnoreabbr s/ OverCommandLine<CR>s/
+
+cmap w!! w !sudo tee > /dev/null %

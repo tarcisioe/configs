@@ -5,7 +5,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-" Plugin 'Syntastic'
 Plugin 'garbas/vim-snipmate'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'

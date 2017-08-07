@@ -29,7 +29,7 @@ function color {
 # define left-prompt
 PROMPT='%B%F{$(color)}%n%f:%F{$(color)}%m%f %c %F{${prompt_vim_color}}%(#~#~$)%f%b '
 
-ZLE_RPROMPT_INDENT=0
+ZLE_RPROMPT_INDENT=1
 
 # define right-prompt if not root, showing git information
 if [[ ${ROOT} == 0 ]]
