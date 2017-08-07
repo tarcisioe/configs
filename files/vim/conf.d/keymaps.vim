@@ -51,4 +51,4 @@ cnoreabbr %s OverCommandLine<CR>%s
 cnoreabbr '<,'>s OverCommandLine<CR>'<,'>s
 cnoreabbr s/ OverCommandLine<CR>s/
 
-cmap w!! w !sudo tee > /dev/null %
+cnoremap w!! execute 'silent! write !sudo tee % > /dev/null' <bar> edit!<CR>

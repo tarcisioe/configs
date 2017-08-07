@@ -1,3 +1,9 @@
+" Deoplete setup
+let g:deoplete#enable_at_startup = 1
+
+" Deoplete-jedi setup
+let g:deoplete#sources#jedi#server_timeout = 400
+
 " Netrw setup
 let g:netrw_banner=0
 let g:netrw_browse_split=4
