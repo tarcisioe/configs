@@ -2,6 +2,7 @@
 ~/.config/dunst/dunstrc dunstrc
 ~/.config/i3/config i3config
 ~/.config/i3/default i3config
+~/.config/nvim vim
 ~/.dir_colors dir_colors
 ~/.emacs.d emacsd
 ~/.fonts/DejaVuSansMono-BoldOblique-Powerline.ttf DejaVuSansMono-BoldOblique-Powerline.ttf
@@ -25,6 +26,7 @@
 ~/.local/bin/recordwindow recordwindow
 ~/.local/bin/runtwitch runtwitch
 ~/.local/bin/sensible-browser sensible-browser
+~/.local/bin/setupkeys setupkeys
 ~/.local/bin/showplaylist showplaylist
 ~/.local/bin/showtime showtime
 ~/.local/bin/spawn spawn

@@ -221,4 +221,4 @@ for_window [class="^[Cc]hromium"] border none
 for_window [class="^[Gg]oogle"] border none
 for_window [class="^[Mm]pv"] $float_video
 for_window [class="^[Pp]avucontrol"] floating enable border normal
-for_window [instance="urxvt-console"] floating enable border none
+for_window [instance="urxvt-console"] floating enable

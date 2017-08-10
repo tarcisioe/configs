@@ -18,3 +18,6 @@ endif
 au BufWritePre * :%s/\s\+$//e
 " highlight stuff after column 80
 match ErrorMsg '\%81v.\+'
+
+let g:python_host_prog = $HOME . '/.local/nvenv/nvim2/bin/python'
+let g:python3_host_prog = $HOME . '/.local/nvenv/nvim3/bin/python'

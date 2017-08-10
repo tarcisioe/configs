@@ -25,12 +25,19 @@ function check {
 
 WINNAME="urxvt-console"
 
+if which st > /dev/null
+then
+    term="st -g 80x1+1+1 -n ${WINNAME}"
+else
+    term="urxvt -geometry 80x1-0-0 -name ${WINNAME}"
+fi
+
 xprop_output=$(check "${WINNAME}")
 is_showing=$(echo ${xprop_output} | grep Withdrawn)
 
 if [[ -z ${xprop_output} ]]
 then
-    urxvt -name "${WINNAME}" -geometry 80x1-0-0 & disown
+    $term & disown
     exit 0
 elif [[ -z ${is_showing} ]]
 then
