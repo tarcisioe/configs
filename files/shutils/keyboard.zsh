@@ -8,8 +8,8 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
 # load the definitions for the keyboard
-# if local definitions are needed, place in ${PACKAGES}/local-kbd.zsh
-require-if-exists local-kbd || require-if-exists default-kbd
+# if local definitions are needed, place in ${PACKAGES}/kbd/${TERM}.zsh
+require-if-exists ${TERM}-kbd || require-if-exists default-kbd
 
 # helper function to bind key to action if key is valid
 function setup-key {
