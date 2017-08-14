@@ -1,0 +1,10 @@
+#!/bin/bash
+function rename {
+    echo -ne "\033]0;$1\007"
+    sleep 0.01
+    i3-msg mode default > /dev/null
+}
+
+rename VIM
+$(wrap "$0") "$@"
+rename st

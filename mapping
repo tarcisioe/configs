@@ -22,6 +22,7 @@
 ~/.local/bin/console console
 ~/.local/bin/currentsong currentsong
 ~/.local/bin/dmenu dmenu
+~/.local/bin/nvim nvim
 ~/.local/bin/playlink playlink
 ~/.local/bin/recordwindow recordwindow
 ~/.local/bin/runtwitch runtwitch
@@ -34,6 +35,7 @@
 ~/.local/bin/startmpc startmpc
 ~/.local/bin/tardefuse tardefuse
 ~/.local/bin/togglekbd togglekbd
+~/.local/bin/whatevs whatevs
 ~/.local/bin/wrap wrap
 ~/.shutils shutils
 ~/.ssh/config sshconfig

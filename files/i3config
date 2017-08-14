@@ -13,7 +13,7 @@
 set $mod Mod4
 
 # define styles for windows
-new_window 1pixel
+new_window none
 new_float normal
 
 # font for window titles. ISO 10646 = Unicode

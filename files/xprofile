@@ -12,7 +12,7 @@ $BGCMD $WALLPAPER
 
 if which $COMPMGR
 then
-    $COMPMGR &
+    $COMPMGR
 fi
 
 if [ -e ${HOME}/.xinitrc_after ]

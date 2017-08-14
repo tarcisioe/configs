@@ -1,0 +1,2 @@
+printf '¯\_(ツ)_/¯' | xclip
+printf '¯\_(ツ)_/¯' | xclip -selection clipboard
