@@ -10,14 +10,15 @@ source ${PACKAGES}/init.sh &> /dev/null || return
 require-if-exists base
 
 require aliases
+require autoenv
 require completion
 require custom-cd
 require dircolors
 require prompt
 require python-utils
 require node-utils
+require path
 require ssh-agent
-require autoenv
 
 require-if-exists plugins
 require-if-exists keyboard
