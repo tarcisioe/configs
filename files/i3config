@@ -198,7 +198,7 @@ bar {
 
     font pango:DejaVu Sans Mono for Powerline, FontAwesome, icomoon 8
     status_command i3mpdstatus
-    tray_output eDP1
+    tray_output primary
 }
 
 # colors
@@ -211,6 +211,7 @@ client.urgent           #666666 #900000 #CCCCCC
 # assignments
 
 for_window [class="^[Tt]elegram"] move to workspace number 1
+for_window [class="^[Cc]hromium"] move to workspace number 2
 for_window [class="^[Gg]oogle"] move to workspace number 2
 for_window [class="^[Ff]irefox"] move to workspace number 2
 for_window [class="^[Zz]athura"] move to workspace number 3
