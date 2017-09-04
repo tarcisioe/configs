@@ -9,6 +9,11 @@ then
     source ${HOME}/.bash_profile
 fi
 
+if [ -e ${HOME}/.shutils/base-vars.sh ]
+then
+    source ${HOME}/.shutils/base-vars.sh
+fi
+
 $BGCMD $WALLPAPER
 
 if which $COMPMGR
