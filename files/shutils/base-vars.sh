@@ -1,18 +1,22 @@
-[[ -n "${BASE_VARS_DEFINED}" ]] && return
+function add-path {
+    [[ ":$PATH:" != *":${1}:"* ]] && export PATH="${1}:${PATH}"
+}
 
-export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}"
+function first-of {
+    for i in "$@"
+    do
+        if /usr/bin/which "$i" 2> /dev/null > /dev/null
+        then
+            echo "$i"
+            return
+        fi
+    done
+}
+export EDITOR="$(first-of nvim vim nano)"
+export TERMINAL="$(first-of st urxvt)"
 
-if /usr/bin/which nvim 2> /dev/null > /dev/null
-then
-    EDITOR=nvim
-elif /usr/bin/which vim 2> /dev/null > /dev/null
-then
-    EDITOR=vim
-elif /usr/bin/which nano 2> /dev/null > /dev/null
-then
-    EDITOR=nano
-fi
+export GOPATH="$HOME/.gopath"
 
-export EDITOR
-
-export BASE_VARS_DEFINED=1
+add-path /usr/local/bin
+add-path "${GOPATH}/bin"
+add-path "${HOME}"/.local/bin

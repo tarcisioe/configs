@@ -1,3 +1,4 @@
+#!/bin/bash
 if [ -e ${HOME}/.xinitrc_before ]
 then
     source ${HOME}/.xinitrc_before

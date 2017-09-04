@@ -56,7 +56,7 @@ bindsym $mod+F1 exec i3-sensible-terminal
 bindsym $mod+F2 exec --no-startup-id sensible-browser
 bindsym $mod+F3 exec --no-startup-id telegram
 bindsym $mod+F4 exec --no-startup-id pavucontrol
-bindsym $mod+F5 exec --no-startup-id chromium-profile cellcrypt --proxy-server=socks5://127.0.0.1:9050
+bindsym $mod+F5 exec --no-startup-id chromium-profile ccrypt --proxy-server=socks5://127.0.0.1:9050
 bindsym $mod+F8 exec --no-startup-id screenlayout
 bindsym $mod+Shift+F8 exec --no-startup-id screenlayout default.sh
 bindsym $mod+F10 exec --no-startup-id urxvt -name khaki -e khaki

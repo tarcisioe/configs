@@ -12,14 +12,13 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'chrisbra/NrrwRgn'
 Plug 'osyo-manga/vim-over'
 Plug 'w0rp/ale'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'roxma/nvim-completion-manager'
 
 " Notes
 Plug 'https://gitlab.com/tarcisioe/checknotes.vim.git'
 
 " Python
-Plug 'davidhalter/jedi-vim'
-" Plug 'zchee/deoplete-jedi'
 Plug 'michaeljsmith/vim-indent-object'
 
 " C/C++
@@ -27,9 +26,14 @@ Plug 'roxma/clang_complete'
 Plug 'vim-scripts/Conque-GDB'
 
 " TypeScript
-Plug 'Shougo/vimproc.vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
+Plug 'mhartington/nvim-typescript'
+
+" VimL
+Plug 'Shougo/neco-vim'
+
+" Zsh
+Plug 'zchee/deoplete-zsh'
 
 " Theme
 Plug 'jnurmine/Zenburn'
