@@ -8,9 +8,11 @@ let g:ale_cpp_clangtidy_options='-std=c++17'
 let g:ale_cpp_clangtidy_checks=[]
 let g:ale_cpp_gcc_options='-std=c++17'
 
-" Enable C++14 in vm-clang
-let g:clang_cpp_options='-std=c++17'
+let g:ale_cpp_clang_options='-std=c++17'
+let g:ale_cpp_clangcheck_options='-std=c++17'
+let g:ale_cpp_gcc_options='-std=c++17'
 
+let g:clang_cpp_options='-std=c++1z'
 let g:clang_dotfile='.clang_complete'
 let g:clang_diagsopt=''
 
