@@ -1,4 +1,11 @@
 #!/bin/bash
+
+if [ -n $POSIXLY_CORRECT ]
+then
+    # LightDM on Arch tries to source this with /bin/sh. Eew!
+    return
+fi
+
 if [ -e ${HOME}/.xinitrc_before ]
 then
     source ${HOME}/.xinitrc_before
@@ -25,3 +32,10 @@ if [ -e ${HOME}/.xinitrc_after ]
 then
     source ${HOME}/.xinitrc_after
 fi
+
+if [ -z "$WM" ]
+then
+    WM=i3
+fi
+
+exec $WM

@@ -43,6 +43,6 @@
 ~/.vim vim
 ~/.wallpaper/till.png till.png
 ~/.Xdefaults Xdefaults
-~/.xprofile xprofile
+~/.xsession xsession
 ~/.zkbd zkbd
 ~/.zshrc zshrc
