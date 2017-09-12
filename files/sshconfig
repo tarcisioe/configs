@@ -1,4 +1,1 @@
 AddKeysToAgent yes
-
-Host code.dev.seecrypt.net
-    ProxyCommand connect -S 127.0.0.1:9050 %h %p
