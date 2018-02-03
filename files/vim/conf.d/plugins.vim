@@ -1,39 +1,34 @@
 " Vundle setup
 call plug#begin()
 
-Plug 'gmarik/Vundle.vim'
-Plug 'garbas/vim-snipmate'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tomtom/tlib_vim'
-Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'chrisbra/NrrwRgn'
 Plug 'osyo-manga/vim-over'
 Plug 'w0rp/ale'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'roxma/nvim-completion-manager'
 
-" Notes
-Plug 'https://gitlab.com/tarcisioe/checknotes.vim.git'
+" SnipMate
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'garbas/vim-snipmate'
 
 " Python
 Plug 'michaeljsmith/vim-indent-object'
 
 " C/C++
-Plug 'roxma/clang_complete'
 Plug 'vim-scripts/Conque-GDB'
+Plug 'roxma/ncm-clang'
+
+" Rust
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+Plug 'roxma/nvim-cm-racer'
 
 " TypeScript
 Plug 'leafgarland/typescript-vim'
 Plug 'mhartington/nvim-typescript'
-
-" VimL
-Plug 'Shougo/neco-vim'
-
-" Zsh
-Plug 'zchee/deoplete-zsh'
 
 " Theme
 Plug 'jnurmine/Zenburn'

@@ -1,20 +1,6 @@
 setlocal cinoptions=g0  " make C++ scope specifiers unindented
 
-" Enable C++11 in syntastic
-let g:ale_linters.cpp=['clang']
-let g:ale_cpp_clang_options='-std=c++17'
-let g:ale_cpp_clangcheck_options='-std=c++17'
-let g:ale_cpp_clangtidy_options='-std=c++17'
-let g:ale_cpp_clangtidy_checks=[]
-let g:ale_cpp_gcc_options='-std=c++17'
-
-let g:ale_cpp_clang_options='-std=c++17'
-let g:ale_cpp_clangcheck_options='-std=c++17'
-let g:ale_cpp_gcc_options='-std=c++17'
-
-let g:clang_cpp_options='-std=c++1z'
-let g:clang_dotfile='.clang_complete'
-let g:clang_diagsopt=''
+let g:ale_linters.cpp=['clangcheck']
 
 " let arrows work normally
 silent! iunmap <Left>

@@ -3,6 +3,10 @@ require custom-cd
 
 NODE_ENV=""
 NODE_OLD_PATH=""
+NVM_DIR="${HOME}/.nvm"
+
+[[ -s "${NVM_DIR}/nvm.sh" ]] && . "${NVM_DIR}/nvm.sh"
+[[ -s "${NVM_DIR}/bash_completion" ]] && . "${NVM_DIR}/bash_completion"
 
 function -activate-node-env {
     if [[ -z "${NODE_ENV}" ]]

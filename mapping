@@ -38,6 +38,7 @@
 ~/.local/bin/togglekbd togglekbd
 ~/.local/bin/whatevs whatevs
 ~/.local/bin/wrap wrap
+~/.nvm nvm
 ~/.shutils shutils
 ~/.ssh/config sshconfig
 ~/.vim vim

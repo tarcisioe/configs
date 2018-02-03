@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pkill xcape
+
 setxkbmap -option "ctrl:swapcaps"
 xmodmap -e "keycode 9 = "
 xmodmap -e "keycode 255 = Escape"

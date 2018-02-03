@@ -1,10 +1,14 @@
+#!/bin/bash
+
 KBMAP=$(setxkbmap -query | grep variant | cut -d ':' -f 2 | sed -e 's/\s//g')
 
-if [[ $KBMAP == 'dvorak-mod' ]]
-then
-    setxkbmap br abnt2
-else
-    setxkbmap br dvorak-mod
-fi
+case "$KBMAP" in
+    'dvorak-mod')
+        setxkbmap br abnt2
+        ;;
+    *)
+        setxkbmap br dvorak-mod
+        ;;
+esac
 
 setupkeys

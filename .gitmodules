@@ -4,3 +4,6 @@
 [submodule "files/shutils/zgen"]
 	path = files/shutils/zgen
 	url = https://github.com/tarjoilija/zgen
+[submodule "files/nvm"]
+	path = files/nvm
+	url = https://github.com/creationix/nvm

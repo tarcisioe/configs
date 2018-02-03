@@ -59,7 +59,7 @@ bindsym $mod+F4 exec --no-startup-id pavucontrol
 bindsym $mod+F5 exec --no-startup-id chromium-profile ccrypt --proxy-server=socks5://127.0.0.1:9050
 bindsym $mod+F8 exec --no-startup-id screenlayout
 bindsym $mod+Shift+F8 exec --no-startup-id screenlayout default.sh
-bindsym $mod+F10 exec --no-startup-id urxvt -name khaki -e khaki
+bindsym $mod+F10 exec --no-startup-id st -n khaki -e khaki
 
 bindsym $mod+Shift+Return exec --no-startup-id togglekbd
 bindsym Menu exec --no-startup-id console
@@ -72,8 +72,12 @@ bindsym $mod+b exec --no-startup-id battstatus
 bindsym $mod+c exec --no-startup-id calendar
 
 # mpd
+bindsym XF86AudioPlay exec --no-startup-id cleese playpause
+bindsym XF86AudioPause exec --no-startup-id cleese playpause
 bindsym $mod+p exec --no-startup-id cleese playpause
+bindsym XF86AudioNext exec --no-startup-id cleese next
 bindsym $mod+period exec --no-startup-id cleese next
+bindsym XF86AudioPrev exec --no-startup-id cleese prev
 bindsym $mod+comma exec --no-startup-id cleese prev
 bindsym $mod+minus exec --no-startup-id cleese volumestep -5
 bindsym $mod+equal exec --no-startup-id cleese volumestep 5
@@ -82,13 +86,14 @@ bindsym $mod+s exec --no-startup-id currentsong
 bindsym $mod+Shift+s exec --no-startup-id showplaylist
 
 # lock
-bindsym $mod+Alt+l exec --no-startup-id slock
+bindsym $mod+Ctrl+Shift+l exec --no-startup-id dm-tool lock
 
 # screenshots (shift for clipboard, super for area)
 bindsym --release Print exec --no-startup-id sshot
 bindsym --release shift+Print exec --no-startup-id sshot -c
 bindsym --release $mod+Print exec --no-startup-id sshot -s
 bindsym --release shift+$mod+Print exec --no-startup-id sshot -cs
+bindsym --release shift+$mod+o exec --no-startup-id sshot -cs
 
 # utils
 bindsym $mod+Shift+c exec --no-startup-id carinhaaquela
@@ -100,6 +105,7 @@ bindcode 238 exec --no-startup-id sudo keybrightness up
 
 # kill focused window
 bindsym $mod+q kill
+bindsym $mod+w exec xdotool search --onlyvisible --class Google windowactivate key --delay 400 o o
 
 # start dmenu (a program launcher)
 bindsym $mod+e exec dmenu_run
@@ -128,10 +134,10 @@ bindsym $mod+Ctrl+j move workspace to output down
 bindsym $mod+Ctrl+k move workspace to output up
 bindsym $mod+Ctrl+l move workspace to output right
 
-bindsym $mod+Shift+Ctrl+h exec --no-startup-id swapws left
-bindsym $mod+Shift+Ctrl+j exec --no-startup-id swapws down
-bindsym $mod+Shift+Ctrl+k exec --no-startup-id swapws up
-bindsym $mod+Shift+Ctrl+l exec --no-startup-id swapws right
+# bindsym $mod+Shift+Ctrl+h exec --no-startup-id swapws left
+# bindsym $mod+Shift+Ctrl+j exec --no-startup-id swapws down
+# bindsym $mod+Shift+Ctrl+k exec --no-startup-id swapws up
+# bindsym $mod+Shift+Ctrl+l exec --no-startup-id swapws right
 
 # toggle stickiness (workspace independence)
 bindsym $mod+Ctrl+t sticky toggle
@@ -210,12 +216,12 @@ client.urgent           #666666 #900000 #CCCCCC
 
 # assignments
 
-for_window [class="^[Tt]elegram"] move to workspace number 1
-for_window [class="^[Cc]hromium"] move to workspace number 2
-for_window [class="^[Gg]oogle"] move to workspace number 2
-for_window [class="^[Ff]irefox"] move to workspace number 2
-for_window [class="^[Zz]athura"] move to workspace number 3
-for_window [instance="khaki" class="URxvt"] move to workspace number 10
+assign [class="^[Tt]elegram"] workspace number 1
+assign [class="^[Cc]hromium"] workspace number 2
+assign [class="^[Gg]oogle"] workspace number 2
+assign [class="^[Ff]irefox"] workspace number 2
+assign [class="^[Zz]athura"] workspace number 3
+assign [instance="khaki"] workspace number 10
 
 # for_window [class="^[Mm]pv"] $float_video
 for_window [class="^[Cc]hromium"] border none
