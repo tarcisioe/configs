@@ -1,5 +1,5 @@
 function add-path {
-    [[ ":$PATH:" != *":${1}:"* ]] && export PATH="${1}:${PATH}"
+    [[ ":$PATH:" != *":${1}:"* ]] && export PATH="${1}:${PATH}" || return 0
 }
 
 function first-of {
