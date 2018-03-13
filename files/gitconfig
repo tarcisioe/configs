@@ -1,4 +1,8 @@
 [alias]
+    prune-local = !git branch -vv |\
+                   grep ': gone]' |\
+                   awk '{ print $1 }' |\
+                   xargs git branch -d
     tree = log --graph --decorate --pretty=oneline --abbrev-commit --all
     jedi = push --force
     yolo = !git commit -m \"$(curl -s http://whatthecommit.com/index.txt)\"
