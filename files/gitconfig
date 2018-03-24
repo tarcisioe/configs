@@ -6,3 +6,4 @@
     tree = log --graph --decorate --pretty=oneline --abbrev-commit --all
     jedi = push --force
     yolo = !git commit -m \"$(curl -s http://whatthecommit.com/index.txt)\"
+    git = !git

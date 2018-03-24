@@ -3,7 +3,7 @@ require custom-cd
 
 NODE_ENV=""
 NODE_OLD_PATH=""
-NVM_DIR="${HOME}/.nvm"
+NVM_DIR="$(realpath "${HOME}/.nvm")"
 
 [[ -s "${NVM_DIR}/nvm.sh" ]] && . "${NVM_DIR}/nvm.sh"
 [[ -s "${NVM_DIR}/bash_completion" ]] && . "${NVM_DIR}/bash_completion"
