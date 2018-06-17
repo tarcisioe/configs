@@ -21,10 +21,14 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/Conque-GDB'
 Plug 'roxma/ncm-clang'
 
+" LanguageServer
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 " Rust
 Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
-Plug 'roxma/nvim-cm-racer'
 
 " TypeScript
 Plug 'leafgarland/typescript-vim'

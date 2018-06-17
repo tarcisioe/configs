@@ -2,7 +2,7 @@
 function rename {
     echo -ne "\033]0;$1\007"
     sleep 0.01
-    if i3 --get-socketpath
+    if i3 --get-socketpath > /dev/null
     then
         i3-msg mode default > /dev/null
     fi

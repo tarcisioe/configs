@@ -13,6 +13,11 @@ let g:airline#extensions#tabline#tab_nr_type=1   " show tab numbers
 let g:airline#extensions#tabline#show_buffers=0  " hide buffers
 let g:airline#extensions#tabline#tab_min_count=2 " hide tabline for one tab
 
+" Setup LanguageServer
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    \ }
+
 " Setup SnipMate
 let g:snips_no_mappings = 1
 " wrap the mapping
