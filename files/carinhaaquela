@@ -1,2 +1,3 @@
+#!/bin/bash
 printf '( ͡° ͜ʖ ͡°)' | xclip
 printf '( ͡° ͜ʖ ͡°)' | xclip -selection clipboard
