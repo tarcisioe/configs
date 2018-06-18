@@ -24,5 +24,5 @@ save-or-clip() {
 }
 
 TMP="$(mktemp --suffix=.png)" &&
-maim ${FLAGS} "$TMP" &&
+maim -u ${FLAGS} "$TMP" &&
 save-or-clip "$TMP"
