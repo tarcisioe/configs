@@ -9,6 +9,8 @@ source ${PACKAGES}/init.sh &> /dev/null || return
 
 require-if-exists base
 
+require-if-exists localpre
+
 require aliases
 require autoenv
 require base-vars
@@ -22,5 +24,5 @@ require ssh-agent
 
 require-if-exists plugins
 require-if-exists keyboard
-require-if-exists localdefs
+require-if-exists localpost
 cd .
