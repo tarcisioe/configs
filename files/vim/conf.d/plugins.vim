@@ -32,7 +32,6 @@ Plug 'rust-lang/rust.vim'
 
 " TypeScript
 Plug 'leafgarland/typescript-vim'
-Plug 'mhartington/nvim-typescript'
 
 " Theme
 Plug 'jnurmine/Zenburn'

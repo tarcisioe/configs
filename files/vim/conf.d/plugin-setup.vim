@@ -4,9 +4,6 @@ let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_liststyle = 3
 
-" Enable deoplete
-let g:deoplete#enable_at_startup = 1
-
 " Airline Setup
 let g:airline#extensions#tabline#enabled=1       " enable tabline support
 let g:airline#extensions#tabline#tab_nr_type=1   " show tab numbers
@@ -16,6 +13,8 @@ let g:airline#extensions#tabline#tab_min_count=2 " hide tabline for one tab
 " Setup LanguageServer
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    \ 'typescript': ['typescript-language-server', '--stdio', '--log-level', '1'],
+    \ 'python': ['pyls'],
     \ }
 
 " Setup SnipMate
