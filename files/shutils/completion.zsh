@@ -1,6 +1,5 @@
 require check-root
 require dircolors
-require plugins
 
 # add ./comp to completion path
 if [[ ${ROOT} == 0 ]]

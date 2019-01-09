@@ -44,3 +44,5 @@ function mkvenv {
     -enter-venv
     pip install --upgrade pip
 }
+
+eval "$(pyenv init -)"

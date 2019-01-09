@@ -35,10 +35,7 @@ function require {
             local is_imported=${!importedvar} ;;
     esac
 
-    if [[ ${is_imported} == "1" ]]
-    then
-        return 0
-    fi
+    [[ ${is_imported} == "1" ]] && return 0
 
     if source "$(script-path "${1}")"
     then
