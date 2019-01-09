@@ -1,0 +1,9 @@
+[Unit]
+Description=Ibus Daemon user service
+
+[Service]
+ExecStart=/usr/bin/ibus-daemon -rx
+Restart=always
+
+[Install]
+WantedBy=xsession.target

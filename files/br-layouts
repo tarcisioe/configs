@@ -1,5 +1,5 @@
 //
-// based on 
+// based on
 // "a very simple Brasilian ABNT2 keyboard
 // by Ricardo Y. Igarashi (iga@that.com.br)
 // Adds suport for dead-keys in I18N applications
@@ -19,8 +19,8 @@ xkb_symbols "abnt2" {
     key <AE06>	{ [         6, dead_diaeresis,  notsign,    diaeresis ]	};
     key <AE12>	{ [     equal,       plus,      section,  dead_ogonek ]	};
 
-    key <AD01>  { [         q,          Q,        slash,        slash ] };   
-    key <AD02>  { [         w,          W,     question,     question ] };   
+    key <AD01>  { [         q,          Q,        slash,        slash ] };
+    key <AD02>  { [         w,          W,     question,     question ] };
     key <AD03>	{ [         e,          E,     EuroSign,     EuroSign ]	};
     key <AD04>	{ [         r,          R,   registered,   registered ]	};
     key <AD11>	{ [dead_acute, dead_grave,        acute,        grave ]	};
@@ -62,7 +62,7 @@ xkb_symbols "nodeadkeys" {
 };
 
 
-// ABNT2 Keyboard to IBM/Lenovo Thinkpads 
+// ABNT2 Keyboard to IBM/Lenovo Thinkpads
 // by Piter PUNK <piterpk@terra.com.br>
 //
 partial alphanumeric_keys
@@ -208,7 +208,7 @@ xkb_symbols "dvorak-mod" {
     name[Group1]="Portuguese (Brazil, Dvorak Mod)";
 
 // Numeric row
-    key <TLDE> { [     apostrophe,        quotedbl,           dead_caron, dead_doubleacute ] };
+    key <TLDE> { [     apostrophe,        quotedbl,             ccedilla, dead_doubleacute ] };
     key <AE01> { [         exclam,               1,          onesuperior,       exclamdown ] };
     key <AE02> { [             at,               2,          twosuperior,          onehalf ] };
     key <AE03> { [     numbersign,               3,        threesuperior,    threequarters ] };
@@ -224,7 +224,7 @@ xkb_symbols "dvorak-mod" {
 
 
 // Upper row
-    key <AD01> { [        slash,        question,               degree,     questiondown ] };
+    key <AD01> { [        slash,        question,            backslash,     questiondown ] };
     key <AD02> { [        comma,            less,           0x01000329,       0x01000313 ] };
     key <AD03> { [       period,         greater,           0x01002022,   periodcentered ] };
     key <AD04> { [            p,               P,                thorn,            THORN ] };
@@ -249,7 +249,7 @@ xkb_symbols "dvorak-mod" {
     key <AC09> { [            n,               N,                  eng,              ENG ] };
     key <AC10> { [            s,               S,               ssharp,           ssharp ] };
     key <AC11> { [   dead_tilde, dead_circumflex,           asciitilde,      asciicircum ] };
-    key <BKSL> { [        minus,      underscore,           0x01002015,       0x01000336 ] };
+    key <BKSL> { [        minus,      underscore,                  bar,       0x01000336 ] };
 
 // Lower row
     key <LSGT> { [     ccedilla,        Ccedilla,            backslash,              bar ] };
@@ -265,7 +265,7 @@ xkb_symbols "dvorak-mod" {
     key <AB10> { [            z,               Z,           0x0100201F,       0x0100201B ] };
     key <AB11> { [    backslash,             bar,             currency,        brokenbar ] };
 
-    key <SPCE> { [        space,           space,         nobreakspace,     nobreakspace ] };
+    key <SPCE> { [        space,           space,                space,            space ] };
 
 // Configures the "," for the numeric keypad
     include "kpdl(comma)"

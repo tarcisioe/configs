@@ -1,16 +1,35 @@
 #!/bin/bash
+set -eou pipefail
+
+if [[ -f /tmp/vshot.pid ]]
+then
+    kill $(</tmp/vshot.pid) &&
+        notify-send "Done capturing." ||
+        notify-send "Couldn't stop capture."
+    rm -f /tmp/vshot.pid
+    exit
+fi
+
+AUDIO=
 
 while getopts ":a" flag
 do
     case "${flag}" in
         a)
             AUDIO="-f pulse -ac 2 -i default"
+            ;;
     esac
 done
 
+geometry=$(slop -f "%x %y %w %h %g")
+read -r X Y W H G <<< "${geometry}"
 
-geometryinfo=$(slop -f "%x %y %w %h %g") || exit -1
+TMP="/tmp/output.mp4"
 
-read -r X Y W H G <<< ${geometryinfo}
+ffmpeg -y -video_size "$(($W-1))x$((H-1))" \
+       -framerate 25 -f x11grab \
+       -i :0.0+"${X}","${Y}" ${AUDIO} ${TMP} &
+echo "${!}" >> /tmp/vshot.pid
+wait
 
-ffmpeg -video_size "$(($W-1))x$((H-1))" -framerate 25 -f x11grab -i :0.0+"$X","$Y" $AUDIO output.mp4
+xclip -sel c -t text/uri-list <<< "file://${TMP}"

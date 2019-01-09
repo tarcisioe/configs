@@ -1,7 +1,7 @@
 #!/bin/bash
 
-BATT=$(cat /sys/class/power_supply/BAT0/capacity)
-STATUS=$(cat /sys/class/power_supply/AC0/online)
+BATT=$(cat /sys/class/power_supply/BAT1/capacity)
+STATUS=$(cat /sys/class/power_supply/ADP1/online)
 
 if [[ $STATUS == 1 ]]
 then

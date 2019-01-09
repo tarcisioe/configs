@@ -8,24 +8,27 @@ Plug 'tpope/vim-unimpaired'
 Plug 'chrisbra/NrrwRgn'
 Plug 'osyo-manga/vim-over'
 Plug 'w0rp/ale'
-Plug 'roxma/nvim-completion-manager'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2'
+
+Plug 'ncm2/ncm2-bufword'
 
 " SnipMate
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'garbas/vim-snipmate'
 
 " Python
+Plug 'ncm2/ncm2-jedi'
 Plug 'michaeljsmith/vim-indent-object'
-
-" C/C++
-Plug 'vim-scripts/Conque-GDB'
-Plug 'roxma/ncm-clang'
 
 " LanguageServer
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+
+" C++
+Plug 'ncm2/ncm2-pyclang'
 
 " Rust
 Plug 'rust-lang/rust.vim'

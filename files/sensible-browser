@@ -1,17 +1,30 @@
 #!/bin/bash
 
-if which chromium
-then
-    BROWSER=chromium
-elif which google-chrome
-then
-    BROWSER=google-chrome
-elif which google-chrome-stable
-then
-    BROWSER=google-chrome-stable
-elif which firefox
-then
-    BROWSER=firefox
-fi
+set -eou pipefail
 
-exec $BROWSER $@
+BROWSER="${BROWSER:-}"
+
+BROWSERS=(
+    $BROWSER
+    chromium
+    google-chrome
+    google-chrome-stable
+    firefox
+)
+
+main() {
+    local browser
+
+    for i in "${BROWSERS[@]}"
+    do
+        if which $i
+        then
+            browser="$i"
+            break
+        fi
+    done
+
+    exec $i $@
+}
+
+main $@

@@ -4,6 +4,10 @@ let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_liststyle = 3
 
+" Enable ncm2
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+
 " Airline Setup
 let g:airline#extensions#tabline#enabled=1       " enable tabline support
 let g:airline#extensions#tabline#tab_nr_type=1   " show tab numbers

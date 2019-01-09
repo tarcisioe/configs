@@ -38,4 +38,9 @@ then
     WM=i3
 fi
 
-exec $WM
+$WM &
+
+systemctl --user import-environment PATH DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORiTY
+systemctl --no-block --user start xsession.target
+
+wait

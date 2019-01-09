@@ -19,6 +19,7 @@ function _secondargcomp {
     fi
 
     case "${words[-2]}" in
+        total-time) ;&
         replace) ;&
         add)
             read prefix <<< ${words[-1]#'"'}
