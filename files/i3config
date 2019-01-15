@@ -205,7 +205,7 @@ bar {
     bindsym button5 nop
 
     font pango:DejaVu Sans Mono for Powerline, FontAwesome, icomoon 8
-    status_command /home/tarcisioe/workspace/asyncstatus/example.sh
+    status_command $HOME/workspace/asyncstatus/example.py
     tray_output primary
 }
 
