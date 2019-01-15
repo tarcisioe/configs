@@ -5,6 +5,7 @@
 ~/.config/i3/config i3config
 ~/.config/i3/default i3config
 ~/.config/nvim vim
+~/.config/qutebrowser/autoconfig.yml qutebrowser-config.yml
 ~/.config/systemd systemd
 ~/.dir_colors dir_colors
 ~/.emacs.d emacsd
