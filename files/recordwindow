@@ -28,7 +28,11 @@ TMP="/tmp/output.mp4"
 
 ffmpeg -y -video_size "$(($W-1))x$((H-1))" \
        -framerate 25 -f x11grab \
-       -i :0.0+"${X}","${Y}" ${AUDIO} ${TMP} &
+       -i :0.0+"${X}","${Y}" \
+       ${AUDIO} \
+       -vf 'scale=trunc(iw/2)*2:-2' \
+       -pix_fmt yuv420p \
+       ${TMP} &
 echo "${!}" >> /tmp/vshot.pid
 wait
 

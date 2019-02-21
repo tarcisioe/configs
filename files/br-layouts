@@ -200,7 +200,7 @@ xkb_symbols "dvorak" {
 // Luiz Portella    lfpor@lujz.org
 // Nando Florestan  nando2003@mandic.com.br
 // Ari Caldeira     ari@tecladobrasileiro.com.br
-// Tarcisio Crocomo tarcisiocrococmo@gmail.com
+// Tarcisio Crocomo tarcisioe@pm.me
 //
 partial alphanumeric_keys
 xkb_symbols "dvorak-mod" {

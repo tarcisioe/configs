@@ -21,11 +21,11 @@ then
     source ${HOME}/.shutils/base-vars.sh
 fi
 
-$BGCMD $WALLPAPER
+$BGCMD $BGCMD_ARGS $WALLPAPER
 
 if which $COMPMGR
 then
-    $COMPMGR
+    $COMPMGR $COMPMGR_ARGS
 fi
 
 if [ -e ${HOME}/.xinitrc_after ]

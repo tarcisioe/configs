@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 if [[ $- != *i* ]] ; then
     # Shell is non-interactive.  Be done now!
     return
@@ -25,4 +27,7 @@ require ssh-agent
 require-if-exists plugins
 require-if-exists keyboard
 require-if-exists localpost
+
 cd .
+
+# zprof

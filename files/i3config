@@ -59,7 +59,7 @@ bindsym $mod+F4 exec --no-startup-id pavucontrol
 bindsym $mod+F5 exec --no-startup-id chromium-profile ccrypt --proxy-server=socks5://127.0.0.1:9050
 bindsym $mod+F8 exec --no-startup-id screenlayout
 bindsym $mod+Shift+F8 exec --no-startup-id screenlayout default.sh
-bindsym $mod+F10 exec --no-startup-id st -n khaki -e khaki
+bindsym $mod+F10 exec --no-startup-id st -n khaki -e khaki -w 60 -p 10
 
 bindsym $mod+Shift+Return exec --no-startup-id togglekbd
 bindsym Menu exec --no-startup-id console
@@ -205,7 +205,7 @@ bar {
     bindsym button5 nop
 
     font pango:DejaVu Sans Mono for Powerline, FontAwesome, icomoon 8
-    status_command $HOME/workspace/asyncstatus/example.py
+    status_command $HOME/workspace/asyncstatus/.venv/bin/python $HOME/workspace/asyncstatus/example.py
     tray_output primary
 }
 

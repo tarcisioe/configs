@@ -1,5 +1,6 @@
 require find-file-backwards
 require custom-cd
+require check-root
 
 function -export-pylintrc {
     local rc_path="$(find-file-backwards pylintrc)"
@@ -17,7 +18,11 @@ function -enter-venv {
 
     if [[ -z "${venv}" ]]
     then
-        [[ -n "${VIRTUAL_ENV}" ]] && deactivate
+        if [[ -n "${VIRTUAL_ENV}" ]]
+        then
+            [[ "${CONDA_SHLVL}" > 0 ]] && return 0  # oh shit this is conda, I hate conda
+            deactivate
+        fi
         return
     fi
 
@@ -45,4 +50,7 @@ function mkvenv {
     pip install --upgrade pip
 }
 
-eval "$(pyenv init -)"
+if [[ "${ROOT}" == "0" ]]
+then
+    eval "$(pyenv init -)"
+fi

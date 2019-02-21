@@ -20,6 +20,7 @@ Plug 'garbas/vim-snipmate'
 " Python
 Plug 'ncm2/ncm2-jedi'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'alfredodeza/pytest.vim'
 
 " LanguageServer
 Plug 'autozimu/LanguageClient-neovim', {

@@ -18,7 +18,6 @@ let g:airline#extensions#tabline#tab_min_count=2 " hide tabline for one tab
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
     \ 'typescript': ['typescript-language-server', '--stdio', '--log-level', '1'],
-    \ 'python': ['pyls'],
     \ }
 
 " Setup SnipMate
