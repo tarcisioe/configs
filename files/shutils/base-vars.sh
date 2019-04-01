@@ -1,14 +1,4 @@
-function add-path {
-    [[ ":$PATH:" != *":${1}:"* ]] && export PATH="${1}:${PATH}" || return 0
-}
-
-function remove-path() {
-   local p=":$1:"
-   local d=":$PATH:"
-   d=${d//$p/:}
-   d=${d/#:/}
-   export PATH=${d/%:/}
-}
+require path-util
 
 function first-of {
     for i in "$@"
@@ -27,8 +17,11 @@ export PYENV_ROOT="$HOME/.local/share/pyenv"
 add-path /usr/local/bin
 add-path "${GOPATH}/bin"
 add-path "${PYENV_ROOT}/bin"
+add-path "${PYENV_ROOT}/shims"
 add-path "${HOME}/.local/share/npm/packages/bin"
 add-path "${HOME}/.cargo/bin"
+
+remove-path "${HOME}/.local/bin"
 add-path "${HOME}/.local/bin"
 
 export EDITOR="$(first-of nvim vim nano)"

@@ -1,6 +1,7 @@
 require find-file-backwards
 require custom-cd
 require check-root
+require path-util
 
 function -export-pylintrc {
     local rc_path="$(find-file-backwards pylintrc)"
@@ -52,5 +53,8 @@ function mkvenv {
 
 if [[ "${ROOT}" == "0" ]]
 then
+    add-path "${HOME}/.local/share/pyenv/bin"
     eval "$(pyenv init -)"
+    remove-path "${HOME}/.local/share/pyenv/bin"
+    remove-path "${HOME}/.local/share/pyenv/shims"
 fi

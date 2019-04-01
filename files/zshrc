@@ -15,7 +15,6 @@ require-if-exists localpre
 
 require aliases
 require autoenv
-require base-vars
 require completion
 require custom-cd
 require dircolors
@@ -23,6 +22,8 @@ require prompt
 require python-utils
 require node-utils
 require ssh-agent
+
+require base-vars
 
 require-if-exists plugins
 require-if-exists keyboard
