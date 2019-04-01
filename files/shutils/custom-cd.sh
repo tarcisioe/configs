@@ -27,7 +27,7 @@ function custom-cd {
     builtin cd "$@"
     for hook in "${CD_HOOKS[@]}"
     do
-        eval "$hook"
+        eval -- "$hook"
     done
 }
 
