@@ -97,6 +97,7 @@ bindsym --release shift+$mod+o exec --no-startup-id sshot -cs
 bindsym --release shift+$mod+v exec --no-startup-id recordwindow
 
 # utils
+bindsym $mod+Ctrl+a exec --no-startup-id aesthetics
 bindsym $mod+Shift+c exec --no-startup-id carinhaaquela
 bindsym $mod+Shift+w exec --no-startup-id whatevs
 

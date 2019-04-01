@@ -19,6 +19,7 @@
 ~/.fonts/DroidSans.ttf DroidSans.ttf
 ~/.fonts/fontawesome-webfont.ttf fontawesome-webfont.ttf
 ~/.gitextra gitconfig
+~/.local/bin/aesthetics aesthetics
 ~/.local/bin/battstatus battstatus
 ~/.local/bin/calendar calendar
 ~/.local/bin/carinhaaquela carinhaaquela

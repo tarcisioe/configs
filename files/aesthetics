@@ -1,0 +1,7 @@
+#!/bin/bash
+
+text="$(xclip -o)"
+aestheticised=$(python -c "print(' '.join('${text}'))")
+
+echo -n "${aestheticised}" | xclip
+echo -n "${aestheticised}" | xclip -sel c
