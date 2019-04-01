@@ -2,7 +2,7 @@
 Description=i3 Workspace Daemon
 
 [Service]
-ExecStart=/home/tarcisioe/.local/bin/pyi3wsd
+ExecStart=%h/.local/bin/pyi3wsd
 Restart=always
 
 [Install]
