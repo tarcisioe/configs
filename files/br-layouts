@@ -230,7 +230,7 @@ xkb_symbols "dvorak-mod" {
     key <AD04> { [            p,               P,                thorn,            THORN ] };
     key <AD05> { [            y,               Y,                  yen,              yen ] };
     key <AD06> { [            f,               F,  leftdoublequotemark, leftsinglequotemark ] };
-    key <AD07> { [            g,               G, rightdoublequotemark, rightsinglequotemark ] };
+    key <AD07> { [            g,               G,          Greek_gamma,      Greek_GAMMA ] };
     key <AD08> { [            c,               C,              uparrow,        copyright ] };
     key <AD09> { [            r,               R,           registered,       registered ] };
     key <AD10> { [            l,               L,              lstroke,          Lstroke ] };
@@ -243,7 +243,7 @@ xkb_symbols "dvorak-mod" {
     key <AC03> { [            e,               E,             EuroSign,         EuroSign ] };
     key <AC04> { [            u,               U,               oslash,         Ooblique ] };
     key <AC05> { [            i,               I,             idotless,        Iabovedot ] };
-    key <AC06> { [            d,               D,                  eth,              ETH ] };
+    key <AC06> { [            d,               D,          Greek_delta,      Greek_DELTA ] };
     key <AC07> { [            h,               H,            leftarrow,        paragraph ] };
     key <AC08> { [            t,               T,           rightarrow,        trademark ] };
     key <AC09> { [            n,               N,                  eng,              ENG ] };
