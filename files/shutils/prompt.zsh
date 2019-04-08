@@ -1,6 +1,6 @@
-require git-color
-require vim-color
 require check-root
+require git
+require vim-color
 
 # setup hook for line-init, just needed for first time
 function zle-line-init {
@@ -34,20 +34,9 @@ ZLE_RPROMPT_INDENT=1
 # define right-prompt if not root, showing git information
 if [[ ${ROOT} == 0 ]]
 then
-    autoload -U vcs_info
-
-    zstyle ':vcs_info:*' action_formats '%b|%a'
-    zstyle ':vcs_info:*' formats '%b'
     precmd() {
-        vcs_info
-        if [[ -n "${vcs_info_msg_0_}" ]]
-        then
-            GIT_INFO="(%{$fg[$(git-color)]%}${vcs_info_msg_0_}%{$reset_color%})"
-        else
-            GIT_INFO=''
-        fi
         RETURN="%(?.. %? ↵"
-        RPROMPT="${GIT_INFO}${RETURN}"
+        RPROMPT="$(git-info)${RETURN}"
     }
 fi
 
