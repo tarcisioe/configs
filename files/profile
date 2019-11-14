@@ -1,0 +1,8 @@
+[[ -z ${POSIXLY_CORRECT} ]] || return # We are running as /bin/sh. No good. Just die.
+
+# get the require function
+PACKAGES=${HOME}/.shutils
+source ${PACKAGES}/init.sh &> /dev/null || return
+
+require base-vars
+require pyenv

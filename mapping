@@ -1,3 +1,4 @@
+~/.bash_profile zprofile
 ~/.bashrc zshrc
 ~/.config/compton.conf compton.conf
 ~/.config/dunst/dunstrc dunstrc
@@ -43,6 +44,7 @@
 ~/.local/bin/whatevs whatevs
 ~/.local/bin/wrap wrap
 ~/.nvm nvm
+~/.profile profile
 ~/.shutils shutils
 ~/.ssh/config sshconfig
 ~/.vim vim
@@ -50,4 +52,5 @@
 ~/.Xdefaults Xdefaults
 ~/.xsession xsession
 ~/.zkbd zkbd
+~/.zprofile zprofile
 ~/.zshrc zshrc

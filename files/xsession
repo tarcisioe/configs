@@ -1,46 +1,26 @@
 #!/bin/bash
 
-if [ -n $POSIXLY_CORRECT ]
-then
-    # LightDM on Arch tries to source this with /bin/sh. Eew!
-    return
-fi
+# LightDM on Arch tries to source this with /bin/sh. Eew!
+[[ -z "${POSIXLY_CORRECT}" ]] || return
 
-if [ -e ${HOME}/.xinitrc_before ]
-then
-    source ${HOME}/.xinitrc_before
-fi
+source-if-exists() {
+    [[ -e "${1}" ]] && source "${1}"
+}
 
-if [ -e ${HOME}/.bash_profile ]
-then
-    source ${HOME}/.bash_profile
-fi
-
-if [ -e ${HOME}/.shutils/base-vars.sh ]
-then
-    source ${HOME}/.shutils/base-vars.sh
-fi
+source-if-exists "${HOME}/.xinitrc_before"
+source-if-exists "${HOME}/.profile"
 
 $BGCMD $BGCMD_ARGS $WALLPAPER
 
-if which $COMPMGR
-then
-    $COMPMGR $COMPMGR_ARGS
-fi
+which "${COMPMGR}" > /dev/null 2>&1 && $COMPMGR $COMPMGR_ARGS
 
-if [ -e ${HOME}/.xinitrc_after ]
-then
-    source ${HOME}/.xinitrc_after
-fi
+source-if-exists ${HOME}/.xinitrc_after
 
-if [ -z "$WM" ]
-then
-    WM=i3
-fi
+WM="${WM:-i3}"
 
 $WM &
 
-systemctl --user import-environment PATH DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORiTY
+systemctl --user import-environment PATH DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 systemctl --no-block --user start xsession.target
 
 wait

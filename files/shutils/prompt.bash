@@ -1,6 +1,6 @@
 require check-root
 require colors
-require git-color
+require git
 
 if [[ ${ROOT} == 1 ]]
 then
