@@ -19,10 +19,8 @@ zle -N zle-keymap-select
 setopt prompt_subst
 
 # select color based on being root or not
-COLOR="$(print -P "%(#~${DARK_RED}~${LIGHT_BLUE})")"
-
 function color {
-    [[ $ROOT == "1" ]] && echo $DARK_RED || echo $LIGHT_BLUE
+    not-root && printf "${LIGHT_BLUE}" || printf "${DARK_RED}"
 }
 
 # define left-prompt
@@ -31,7 +29,8 @@ PROMPT='%B%F{$(color)}%n%f:%F{$(color)}%m%f %c %F{${prompt_vim_color}}%(#~#~$)%f
 ZLE_RPROMPT_INDENT=1
 
 # define right-prompt if not root, showing git information
-if [[ ${ROOT} == 0 ]]
+# if [[ ${ROOT} == 0 ]]
+if not-root
 then
     require git
 

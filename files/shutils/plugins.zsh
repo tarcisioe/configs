@@ -1,6 +1,6 @@
 require check-root
 
-if [[ ! (${ROOT} == 1) ]]
+if not-root
 then
     require zgen
 

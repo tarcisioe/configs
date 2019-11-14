@@ -2,10 +2,7 @@ require check-root
 require dircolors
 
 # add ./comp to completion path
-if [[ ${ROOT} == 0 ]]
-then
-    fpath=("${INITPATH}"/comp $fpath)
-fi
+not-root && fpath=("${INITPATH}"/comp $fpath)
 
 # load zsh completion utilities
 autoload -U compinit && compinit

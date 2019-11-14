@@ -1,12 +1,8 @@
 require check-root
 require colors
 
-if [[ ${ROOT} == 1 ]]
-then
-    COLOR="${DARK_RED}"
-else
-    COLOR="${LIGHT_BLUE}"
-fi
+
+COLOR=$(not-root && printf "${LIGHT_BLUE}" || printf "${DARK_RED}")
 
 function make_escape {
     echo "\[\033[$1m\]"
