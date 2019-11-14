@@ -1,5 +1,4 @@
 require check-root
-require git
 require vim-color
 
 # setup hook for line-init, just needed for first time
@@ -34,6 +33,8 @@ ZLE_RPROMPT_INDENT=1
 # define right-prompt if not root, showing git information
 if [[ ${ROOT} == 0 ]]
 then
+    require git
+
     precmd() {
         RETURN="%(?.. %? ↵"
         RPROMPT="$(git-info)${RETURN}"
