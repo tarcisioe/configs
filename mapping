@@ -1,11 +1,11 @@
 ~/.bash_profile zprofile
 ~/.bashrc zshrc
-~/.config/compton.conf compton.conf
 ~/.config/dunst/dunstrc dunstrc
 ~/.config/fontconfig fontconfig
 ~/.config/i3/config i3config
 ~/.config/i3/default i3config
 ~/.config/nvim vim
+~/.config/picom.conf picom.conf
 ~/.config/qutebrowser/autoconfig.yml qutebrowser-config.yml
 ~/.config/systemd systemd
 ~/.dir_colors dir_colors
