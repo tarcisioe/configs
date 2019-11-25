@@ -7,18 +7,35 @@ source-if-exists() {
     [[ -e "${1}" ]] && source "${1}"
 }
 
-source-if-exists "${HOME}/.xinitrc_before"
+command-available() {
+    which "${COMPMGR}" > /dev/null 2>&1
+}
+
+call-if-available()
+{
+    local command="${1}"
+
+    command-available "${command}" && "$@"
+}
+
 source-if-exists "${HOME}/.profile"
 
-$BGCMD $BGCMD_ARGS $WALLPAPER
+# Sane defaults. Can be overriden by ~/.xinitrc_before
 
-which "${COMPMGR}" > /dev/null 2>&1 && $COMPMGR $COMPMGR_ARGS
+BGCMD=hsetroot
+COMPMGR=picom
+COMPMGR_ARGS="-b"
 
-source-if-exists ${HOME}/.xinitrc_after
+source-if-exists "${HOME}/.xinitrc_before"
+
+call-if-available "${BGCMD}" ${BGCMD_ARGS} "${WALLPAPER}"
+call-if-available "${COMPMGR}" ${COMPMGR_ARGS}
+
+source-if-exists "${HOME}/.xinitrc_after"
 
 WM="${WM:-i3}"
 
-$WM &
+"${WM}" &
 
 systemctl --user import-environment PATH DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 systemctl --no-block --user start xsession.target
