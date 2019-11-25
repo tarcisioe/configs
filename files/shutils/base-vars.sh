@@ -26,4 +26,4 @@ add-path "${HOME}/.local/bin"
 
 export EDITOR="$(first-of nvim vim nano)"
 export TERMINAL="$(first-of st urxvt)"
-export BROWSER="$(first-of qutebrowser chromium google-chrome firefox)"
+export BROWSER="$(first-of firefox chromium google-chrome)"
