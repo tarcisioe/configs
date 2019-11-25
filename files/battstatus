@@ -19,4 +19,4 @@ else
     symbol=
 fi
 
-notify-send -t 1000 "$symbol $BATT%"
+notify-send -t 1000 ' ' "$symbol $BATT%"

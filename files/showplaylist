@@ -1,2 +1,2 @@
 #!/bin/bash
-notify-send -t 1000 -- "$(cleese playlist)"
+notify-send -t 1000 -- ' ' "$(cleese playlist)"

@@ -4,8 +4,8 @@ set -eou pipefail
 if [[ -f /tmp/vshot.pid ]]
 then
     kill $(</tmp/vshot.pid) &&
-        notify-send "Done capturing." ||
-        notify-send "Couldn't stop capture."
+        notify-send ' ' "Done capturing." ||
+        notify-send ' ' "Couldn't stop capture."
     rm -f /tmp/vshot.pid
     exit
 fi
