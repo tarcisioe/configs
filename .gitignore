@@ -1,3 +1,4 @@
+*.wants/
 *local.?*
 files/emacsd/.python-environments
 files/emacsd/ac-comphist.dat

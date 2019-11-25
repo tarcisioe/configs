@@ -236,3 +236,5 @@ for_window [class="^[Qq]utebrowser"] border none
 for_window [class="^[Mm]pv"] $float_video
 for_window [class="^[Pp]avucontrol"] floating enable border normal
 for_window [instance="urxvt-console"] floating enable
+
+exec --no-startup-id systemctl --no-block --user start i3.target

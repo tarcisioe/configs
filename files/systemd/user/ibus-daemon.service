@@ -1,5 +1,6 @@
 [Unit]
 Description=Ibus Daemon user service
+PartOf=graphical-session.target
 
 [Service]
 ExecStart=/usr/bin/ibus-daemon -rx

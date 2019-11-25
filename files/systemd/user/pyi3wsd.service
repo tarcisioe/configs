@@ -1,9 +1,10 @@
 [Unit]
 Description=i3 Workspace Daemon
+PartOf=i3.target
 
 [Service]
 ExecStart=%h/.local/bin/pyi3wsd
 Restart=always
 
 [Install]
-WantedBy=xsession.target
+WantedBy=i3.target
