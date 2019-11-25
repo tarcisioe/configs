@@ -10,15 +10,6 @@
 ~/.config/systemd systemd
 ~/.dir_colors dir_colors
 ~/.emacs.d emacsd
-~/.fonts/DejaVuSansMono-BoldOblique-Powerline.ttf DejaVuSansMono-BoldOblique-Powerline.ttf
-~/.fonts/DejaVuSansMono-Bold-Powerline.ttf DejaVuSansMono-Bold-Powerline.ttf
-~/.fonts/DejaVuSansMono-Oblique-Powerline.ttf DejaVuSansMono-Oblique-Powerline.ttf
-~/.fonts/DejaVuSansMono-Powerline.ttf DejaVuSansMono-Powerline.ttf
-~/.fonts/DroidSans-Bold.ttf DroidSans-Bold.ttf
-~/.fonts/DroidSansMono-Powerline.otf DroidSansMono-Powerline.otf
-~/.fonts/DroidSansMono.ttf DroidSansMono.ttf
-~/.fonts/DroidSans.ttf DroidSans.ttf
-~/.fonts/fontawesome-webfont.ttf fontawesome-webfont.ttf
 ~/.gitextra gitconfig
 ~/.local/bin/aesthetics aesthetics
 ~/.local/bin/battstatus battstatus
@@ -43,6 +34,7 @@
 ~/.local/bin/togglekbd togglekbd
 ~/.local/bin/whatevs whatevs
 ~/.local/bin/wrap wrap
+~/.local/share/fonts fonts
 ~/.nvm nvm
 ~/.profile profile
 ~/.shutils shutils
