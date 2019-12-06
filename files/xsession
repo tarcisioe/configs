@@ -8,7 +8,7 @@ source-if-exists() {
 }
 
 command-available() {
-    which "${COMPMGR}" > /dev/null 2>&1
+    which "${1}" > /dev/null 2>&1
 }
 
 call-if-available()
