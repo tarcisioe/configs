@@ -1,2 +1,0 @@
-#!/bin/bash
-notify-send -t 1000 -- ' ' "$(cleese playlist | grep -C 5 -- '->')"

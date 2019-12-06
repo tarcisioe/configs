@@ -28,7 +28,7 @@ PROMPT='%B%F{$(color)}%n%f:%F{$(color)}%m%f %c %F{${prompt_vim_color}}%(#~#~$)%f
 
 ZLE_RPROMPT_INDENT=1
 
-HOSTNAME="$(hostname)"  # Conda clobbers this, so we stuff it into another variable.
+HOSTNAME="$(nickname)"  # Conda clobbers this, so we stuff it into another variable.
 
 # define right-prompt if not root, showing git information
 # if [[ ${ROOT} == 0 ]]

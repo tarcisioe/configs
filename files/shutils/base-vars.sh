@@ -23,6 +23,7 @@ add-path "${HOME}/.cargo/bin"
 
 remove-path "${HOME}/.local/bin"
 add-path "${HOME}/.local/bin"
+add-path "${HOME}/workspace/scripts/bin"
 
 export EDITOR="$(first-of nvim vim nano)"
 export TERMINAL="$(first-of st urxvt)"
