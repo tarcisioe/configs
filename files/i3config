@@ -98,8 +98,8 @@ bindsym --release shift+$mod+v exec --no-startup-id recordwindow
 
 # utils
 bindsym $mod+Ctrl+a exec --no-startup-id aesthetics
-bindsym $mod+Shift+c exec --no-startup-id carinhaaquela
-bindsym $mod+Shift+w exec --no-startup-id whatevs
+bindsym $mod+Shift+c exec --no-startup-id lennyface
+bindsym $mod+Shift+w exec --no-startup-id shrug
 
 # brightness
 bindcode 86 exec --no-startup-id brightness keyboard up
