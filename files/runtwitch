@@ -1,6 +1,0 @@
-#!/bin/bash
-
-stream=$(dmenu -p "Enter twitch handle " <<< "")
-
-loadvideo "https://twitch.tv/$stream"
-# 2> /dev/null & disown
