@@ -11,6 +11,7 @@
 ~/.dir_colors dir_colors
 ~/.emacs.d emacsd
 ~/.gitextra gitconfig
+~/.inputrc inputrc
 ~/.local/bin/chromium-profile chromium-profile
 ~/.local/bin/console console
 ~/.local/share/fonts fonts
@@ -21,6 +22,5 @@
 ~/.vim vim
 ~/.Xdefaults Xdefaults
 ~/.xsession xsession
-~/.zkbd zkbd
 ~/.zprofile zprofile
 ~/.zshrc zshrc
