@@ -31,7 +31,6 @@ ZLE_RPROMPT_INDENT=1
 HOSTNAME="$(nickname)"  # Conda clobbers this, so we stuff it into another variable.
 
 # define right-prompt if not root, showing git information
-# if [[ ${ROOT} == 0 ]]
 if not-root
 then
     require git

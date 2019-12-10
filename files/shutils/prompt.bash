@@ -28,4 +28,4 @@ COLOR=$(make_bold_color ${COLOR})
 WHITE=$(make_bold_color ${WHITE})
 END=$(make_end)
 
-PS1="${COLOR}\u${WHITE}:${COLOR}\h${WHITE} \w ${COLOR}\$${END} "
+PS1="${COLOR}\u${WHITE}:${COLOR}$(nickname)${WHITE} \w ${COLOR}\$${END} "
