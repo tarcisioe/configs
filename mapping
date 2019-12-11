@@ -12,8 +12,6 @@
 ~/.emacs.d emacsd
 ~/.gitextra gitconfig
 ~/.inputrc inputrc
-~/.local/bin/chromium-profile chromium-profile
-~/.local/bin/console console
 ~/.local/share/fonts fonts
 ~/.nvm nvm
 ~/.profile profile
