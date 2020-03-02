@@ -1,9 +1,9 @@
 [Unit]
-Description=Ibus Daemon user service
+Description=Fcitx daemon user service
 PartOf=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/ibus-daemon -rx
+ExecStart=/usr/bin/fcitx -D
 Restart=always
 
 [Install]
