@@ -206,7 +206,7 @@ bar {
     bindsym button5 nop
 
     font pango:Hack, Font Awesome 5 Brands, Font Awesome 5 Free Regular, icomoon 8
-    status_command $HOME/workspace/asyncstatus/.venv/bin/python $HOME/workspace/asyncstatus/example.py
+    status_command $HOME/workspace/code/asyncstatus/.venv/bin/python $HOME/workspace/code/asyncstatus/example.py
     tray_output primary
 }
 
