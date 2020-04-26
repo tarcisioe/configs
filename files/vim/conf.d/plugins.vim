@@ -1,44 +1,28 @@
-" Vundle setup
+" Plug setup
 call plug#begin()
 
 Plug 'bling/vim-airline'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'chrisbra/NrrwRgn'
+Plug 'tpope/vim-repeat'
 Plug 'osyo-manga/vim-over'
-Plug 'w0rp/ale'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2'
-
-Plug 'ncm2/ncm2-bufword'
-
-" SnipMate
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'garbas/vim-snipmate'
-
-" Python
-Plug 'ncm2/ncm2-jedi'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'alfredodeza/pytest.vim'
-
-" LanguageServer
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
-" C++
-Plug 'ncm2/ncm2-pyclang'
-
-" Rust
-Plug 'rust-lang/rust.vim'
-
-" TypeScript
-Plug 'leafgarland/typescript-vim'
 
 " Theme
 Plug 'jnurmine/Zenburn'
-Plug 'vim-airline/vim-airline-themes' " zenburn for airline
+Plug 'vim-airline/vim-airline-themes' " Contains zenburn for airline
+
+" Static check
+Plug 'dense-analysis/ale'
+
+" Completion
+Plug 'roxma/nvim-yarp'  " required by ncm2
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'  " Buffer word completionn
+Plug 'ncm2/ncm2-path'  " Path-completion
+Plug 'ncm2/ncm2-jedi'  " Python
+Plug 'ncm2/ncm2-pyclang'  " C and C++
+
+" Python
+Plug 'michaeljsmith/vim-indent-object'  " Handle intended blocks as text objects
+Plug 'alfredodeza/pytest.vim'  " Run pytest from vim.
 
 call plug#end()
