@@ -23,6 +23,7 @@ source-if-exists "${HOME}/.profile"
 # Sane defaults. Can be overriden by ~/.xinitrc_before
 
 BGCMD=hsetroot
+BGCMD_ARGS="-full"
 COMPMGR=picom
 COMPMGR_ARGS="-b"
 
