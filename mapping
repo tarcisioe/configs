@@ -18,7 +18,7 @@
 ~/.shutils shutils
 ~/.ssh/config sshconfig
 ~/.vim vim
-~/.Xdefaults Xdefaults
+~/.Xresources Xresources
 ~/.xsession xsession
 ~/.zprofile zprofile
 ~/.zshrc zshrc
