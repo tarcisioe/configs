@@ -6,12 +6,7 @@ URxvt*.scrollBar: false
 URxvt*.scrollTtyOutput: false
 URxvt*.scrollTtyKeypress: true
 URxvt*.font: xft:monospace:size=9
-URxvt*.perl-ext-common: font-size
-URxvt*.keysym.C-Up: perl:font-size:increase
-URxvt*.keysym.C-Down: perl:font-size:decrease
-URxvt*.keysym.C-S-Up: perl:font-size:incglobal
-URxvt*.keysym.C-S-Down: perl:font-size:decglobal
-URxvt*.keysym.C-0: perl:font-size:reset
+URxvt*.perl-ext-common: resize-font
 
 xft.antialias: true
 xft.hinting: true
