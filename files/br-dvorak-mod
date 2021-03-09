@@ -1,0 +1,45 @@
+// Brazilian Modified Dvorak keyboard                               2011-09-10
+// "Teclado Simplificado Brasileiro" ou "Dvorak Brasileiro Modificado"
+//
+// Tarcisio Crocomo tarcisioe@pm.me
+//
+partial alphanumeric_keys
+xkb_symbols "dvorak-mod" {
+    include "br(dvorak)"
+
+    name[Group1]="Portuguese (Brazil, Dvorak Mod)";
+
+// Numeric row
+    // Adds ccedilla to apostrophe key for ANSI/us-intl compatibility.
+    key <TLDE> { [     apostrophe,        quotedbl,             ccedilla,         Ccedilla ] };
+    // Flips numbers and symbols.
+    key <AE01> { [         exclam,               1,          onesuperior,       exclamdown ] };
+    key <AE02> { [             at,               2,          twosuperior,          onehalf ] };
+    key <AE03> { [     numbersign,               3,        threesuperior,    threequarters ] };
+    key <AE04> { [         dollar,               4,             sterling,       onequarter ] };
+    key <AE05> { [        percent,               5,                 cent,       0x01002030 ] };
+    key <AE06> { [ dead_diaeresis,               6,              notsign,        diaeresis ] };
+    key <AE07> { [      ampersand,               7,        dead_belowdot,    dead_abovedot ] };
+    key <AE08> { [       asterisk,               8,          dead_ogonek,        dead_horn ] };
+    key <AE09> { [      parenleft,               9,         dead_cedilla,        dead_hook ] };
+    key <AE10> { [     parenright,               0,          dead_macron,       dead_breve ] };
+    key <AE11> { [      braceleft,     bracketleft,          ordfeminine,       0x01000326 ] };
+    key <AE12> { [     braceright,    bracketright,            masculine,   dead_abovering ] };
+
+
+// Upper row
+    // Adds backslash to slash key for ANSI/us-intl compatibility.
+    key <AD01> { [        slash,        question,            backslash,     questiondown ] };
+    // Adds Greek gamma.
+    key <AD07> { [            g,               G,          Greek_gamma,      Greek_GAMMA ] };
+
+// Central row:
+    // Adds Greek delta.
+    key <AC06> { [            d,               D,          Greek_delta,      Greek_DELTA ] };
+    // Adds bar for ANSI/us-intl compatibility.
+    key <BKSL> { [        minus,      underscore,                  bar,       0x01000336 ] };
+
+// Lower row modifications
+    // Remove nobreakspace.
+    key <SPCE> { [        space,           space,                space,            space ] };
+};
