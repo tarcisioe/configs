@@ -63,6 +63,7 @@ bindsym $mod+F10 exec --no-startup-id urxvt --name khaki -e khaki
 
 bindsym $mod+Shift+Return exec --no-startup-id togglekbd
 bindsym Menu exec --no-startup-id console
+bindsym Super_R exec --no-startup-id console
 bindsym $mod+Shift+t exec --no-startup-id showponto
 bindsym $mod+y exec --no-startup-id loadvideo -c
 
