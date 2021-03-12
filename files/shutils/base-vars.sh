@@ -26,5 +26,5 @@ add-path "${HOME}/.local/bin"
 add-path "${HOME}/workspace/scripts/bin"
 
 export EDITOR="$(first-of nvim vim nano)"
-export TERMINAL="$(first-of st urxvt)"
+export TERMINAL="urxvt"
 export BROWSER="$(first-of firefox chromium google-chrome)"
