@@ -23,7 +23,7 @@ xkb_symbols "dvorak-mod" {
     key <AE08> { [       asterisk,               8,          dead_ogonek,        dead_horn ] };
     key <AE09> { [      parenleft,               9,         dead_cedilla,        dead_hook ] };
     key <AE10> { [     parenright,               0,          dead_macron,       dead_breve ] };
-    key <AE11> { [      braceleft,     bracketleft,          ordfeminine,       0x01000326 ] };
+    key <AE11> { [      braceleft,     bracketleft,          ordfeminine,      dead_macron ] };
     key <AE12> { [     braceright,    bracketright,            masculine,   dead_abovering ] };
 
 
