@@ -1,7 +1,7 @@
 #!/bin/bash
 
 install-scripts() {
-    local workspace = "${HOME}/workspace"
+    local workspace="${HOME}/workspace"
     local scripts="${workspace}/scripts"
 
     mkdir -p "${workspace}" &&
