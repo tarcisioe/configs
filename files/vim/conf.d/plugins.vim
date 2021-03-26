@@ -21,6 +21,9 @@ Plug 'ncm2/ncm2-path'  " Path-completion
 Plug 'ncm2/ncm2-jedi'  " Python
 Plug 'ncm2/ncm2-pyclang'  " C and C++
 
+" Emmet
+Plug 'mattn/emmet-vim'
+
 " Python
 Plug 'michaeljsmith/vim-indent-object'  " Handle intended blocks as text objects
 Plug 'alfredodeza/pytest.vim'  " Run pytest from vim.
