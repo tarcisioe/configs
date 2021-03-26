@@ -6,7 +6,7 @@ install-scripts() {
 
     mkdir -p "${workspace}" &&
     [[ ! -d "${scripts}" ]] &&
-        git clone git@gitlab.com:tarcisioe/scripts "${scripts}"
+        git clone git@github.com:tarcisioe/scripts "${scripts}"
 }
 
 git submodule init
