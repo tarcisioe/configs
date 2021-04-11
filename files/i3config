@@ -96,7 +96,7 @@ bindsym --release Print exec --no-startup-id sshot
 bindsym --release shift+Print exec --no-startup-id sshot -c
 bindsym --release $mod+Print exec --no-startup-id sshot -s
 bindsym --release shift+$mod+Print exec --no-startup-id sshot -cs
-bindsym --release shift+$mod+o exec --no-startup-id sshot -cs
+bindsym --release shift+$mod+o exec --no-startup-id sshot -csf
 bindsym --release shift+$mod+v exec --no-startup-id recordwindow
 
 # utils
