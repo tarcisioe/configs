@@ -209,7 +209,8 @@ bar {
     bindsym button5 nop
 
     font pango:monospace, Font Awesome 5 Brands, Font Awesome 5 Free Regular, icomoon 8
-    status_command $HOME/workspace/code/asyncstatus/.venv/bin/python $HOME/workspace/code/asyncstatus/example.py
+    # status_command $HOME/workspace/code/asyncstatus/.venv/bin/python $HOME/workspace/code/asyncstatus/example.py
+    status_command $HOME/workspace/code/asyncstatus/example.sh
     tray_output primary
 }
 
@@ -233,7 +234,7 @@ assign [title="khaki"] workspace number 10
 
 # for_window [class="^[Mm]pv"] $float_video
 for_window [class="^[Cc]hromium"] border none
-for_window [class="^[Ff]irefox"] border none, focus child, layout tabbed
+for_window [class="^[Ff]irefox"] border none
 for_window [class="^[Gg]oogle"] border none
 for_window [class="^[Qq]utebrowser"] border none
 for_window [class="^[Mm]pv"] $float_video
