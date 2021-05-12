@@ -3,7 +3,6 @@ arandr
 bluez-tools
 bluez-utils
 dunst
-earlyoom
 fcitx-configtool
 fcitx-mozc
 fcitx-qt5
