@@ -20,7 +20,7 @@ new_float normal
 font pango:Droid Sans Mono 8
 
 # set long command to float, sticky and resize windows
-set $float_video floating enable border none, resize shrink width 10000 px, resize grow width 885 px, resize shrink height 10000 px, resize grow height 490 px, sticky toggle, exec --no-startup-id movefloat up right
+set $float_video floating enable border none, resize set 885 490, sticky enable, exec --no-startup-id movefloat up right
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -140,6 +140,8 @@ bindsym $mod+Ctrl+j move workspace to output down
 bindsym $mod+Ctrl+k move workspace to output up
 bindsym $mod+Ctrl+l move workspace to output right
 
+bindsym $mod+Mod1+l layout toggle splith tabbed
+
 # bindsym $mod+Shift+Ctrl+h exec --no-startup-id swapws left
 # bindsym $mod+Shift+Ctrl+j exec --no-startup-id swapws down
 # bindsym $mod+Shift+Ctrl+k exec --no-startup-id swapws up
@@ -156,7 +158,7 @@ mode "resize" {
         bindsym Down resize grow height 10 px or 10 ppt
 
 # resize players
-        bindsym $mod+t $float_video
+        bindsym $mod+t floating enable border none, resize set 450 257, sticky enable
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -222,15 +224,14 @@ client.unfocused        #333333 #000000 #AAAAAA
 client.urgent           #666666 #900000 #CCCCCC
 
 # assignments
-
 assign [class="^[Tt]elegram"] workspace number 1
-assign [class="^[Cc]hromium"] workspace number 2
+assign [class="^[Cc]hromium"] workspace number 5
 assign [class="^[Ff]irefox"] workspace number 2
-assign [class="^[Gg]oogle"] workspace number 2
-assign [class="^[Qq]utebrowser"] workspace number 2
 assign [class="^[Zz]athura"] workspace number 3
+assign [class="^[Oo]bs"] workspace number 9
 assign [class="^[Rr]ocket.[Cc]hat"] workspace number 10
 assign [title="khaki"] workspace number 10
+assign [title="lecture"] workspace number 5
 
 # for_window [class="^[Mm]pv"] $float_video
 for_window [class="^[Cc]hromium"] border none
