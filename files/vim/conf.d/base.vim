@@ -14,7 +14,11 @@ set nofoldenable                "disable default folding of text
 set number                      "line numbers
 set path=**                     "make file search recursive
 set ruler                       "show row and column on bottom right
-set title                       "set the terminal window title
+if !empty($VIM_NO_TITLE)
+    set notitle                 "avoid setting the terminal window title
+else
+    set title                   "set the terminal window title
+endif
 set ttimeoutlen=0               "no delay when going back into normal mode
 set wildmenu                    "enable cool menu
 
