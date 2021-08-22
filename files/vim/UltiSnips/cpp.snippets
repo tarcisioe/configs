@@ -1,0 +1,28 @@
+snippet guard "Include guard" b
+#ifndef $1
+#define $1
+
+
+#endif
+endsnippet
+
+snippet class "Class" b
+class ${1:name} {
+	$0
+};
+endsnippet
+
+snippet qobj "QObject derived class" b
+class ${1:name}: public ${2:QObject} {
+	Q_OBJECT
+
+	$0
+}
+endsnippet
+
+snippet func "Function" b
+${1:type} ${2:name}(${3:params})
+{
+	$0
+}
+endsnippet

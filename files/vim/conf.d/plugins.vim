@@ -5,6 +5,7 @@ Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'osyo-manga/vim-over'
+Plug 'SirVer/ultisnips'
 
 " Theme
 Plug 'jnurmine/Zenburn'
