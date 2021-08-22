@@ -7,7 +7,3 @@ let g:airline#extensions#tabline#tab_min_count=2 " hide tabline for one tab
 " Enable ncm2
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
-
-" Emmet setup
-let g:user_emmet_mode='n'
-let g:user_emmet_leader_key=','
