@@ -36,9 +36,7 @@ source-if-exists "${HOME}/.xinitrc_after"
 
 WM="${WM:-i3}"
 
-"${WM}" &
-
 systemctl --user import-environment PATH DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 systemctl --no-block --user start xsession.target
 
-wait
+"${WM}"
