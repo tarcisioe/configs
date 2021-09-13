@@ -25,6 +25,12 @@ nmap <silent> <F11> :set list!<CR>
 "   toggle relative line numbers
 nmap <silent> <F12> :set rnu!<CR>
 
+"   buffer navigation
+nmap <silent> <leader>l :bnext<CR>
+nmap <silent> <leader>h :bprevious<CR>
+nmap <silent> <leader>bq :bp <BAR> bd #<CR>
+nmap <silent> <leader>bl :ls<CR>
+
 "   turn off arrows
 nnoremap <silent> <Left> <NOP>
 nnoremap <silent> <Down> <NOP>

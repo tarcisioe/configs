@@ -3,7 +3,7 @@ set nocompatible                "no vi compatibility
 syntax on                       "enable syntax highlighting
 filetype plugin on              "enable plugins for filetypes
 
-set autochdir                   "change directory to where the file is
+" set autochdir                   "change directory to where the file is
 set backspace=indent,eol,start  "make backspace work everywhere
 set clipboard=unnamedplus       "make vim clipboard the same as the system one
 set guicursor=                  "leave terminal cursor as is

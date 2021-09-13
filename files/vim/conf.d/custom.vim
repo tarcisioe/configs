@@ -41,4 +41,6 @@ autocmd BufReadPost *
       \   exe "normal! g'\"" |
       \ endif
 
-
+if findfile("CMakeLists.txt", ".") == "CMakeLists.txt"
+    set wildignore+=**/build*/**
+endif
