@@ -19,6 +19,15 @@ au BufWritePre * :%s/\s\+$//e
 "   highlight stuff after column 88
 match ErrorMsg '\%89v.\+'
 
+"   configure terminal mode to be more friendly
+augroup terminal
+    autocmd!
+    " start in insert mode
+    autocmd TermOpen * startinsert
+    " disable numbers
+    autocmd TermOpen * setlocal nonumber norelativenumber
+augroup END
+
 let g:python_host_prog = $HOME . '/.local/nvenv/nvim2/bin/python'
 let g:python3_host_prog = $HOME . '/.local/nvenv/nvim3/bin/python'
 
