@@ -21,6 +21,7 @@ else
 endif
 set ttimeoutlen=0               "no delay when going back into normal mode
 set wildmenu                    "enable cool menu
+set hidden                      "enable hidden (unsaved) buffers
 
 set expandtab                   "spaces instead of tab
 set tabstop=4                   "tabwidth is 4 spaces

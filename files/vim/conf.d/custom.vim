@@ -13,11 +13,21 @@ else
     colorscheme desert
 endif
 
-"   clear whitespace before saving
-au BufWritePre * :%s/\s\+$//e
+augroup onread
+    autocmd!
+    "   open file in last position
+    autocmd BufReadPost *
+          \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+          \   exe "normal! g'\"" |
+          \ endif
+augroup END
 
-"   highlight stuff after column 88
-match ErrorMsg '\%89v.\+'
+augroup onwrite
+    " clear group
+    autocmd!
+    " remove trailing newlines
+    autocmd BufWritePre * :%s/\s\+$//e
+augroup END
 
 "   configure terminal mode to be more friendly
 augroup terminal
@@ -43,12 +53,6 @@ if has('persistent_undo')
     call system('mkdir ' . undodir)
     set undofile
 endif
-
-"   open file in last position
-autocmd BufReadPost *
-      \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-      \   exe "normal! g'\"" |
-      \ endif
 
 if findfile("CMakeLists.txt", ".") == "CMakeLists.txt"
     set wildignore+=**/build*/**

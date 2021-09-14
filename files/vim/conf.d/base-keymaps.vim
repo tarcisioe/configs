@@ -20,7 +20,10 @@ nmap <silent> <leader>n :lnext<CR>
 nmap <silent> <leader>p :lprev<CR>
 
 "   toggle showing whitespace as characters
-nmap <silent> <F11> :set list!<CR>
+nmap <silent> <F10> :set list!<CR>
+
+"   toggle relative line numbers
+nmap <silent> <F11> :set number!<CR>
 
 "   toggle relative line numbers
 nmap <silent> <F12> :set rnu!<CR>
@@ -36,6 +39,11 @@ nnoremap <silent> <Left> <NOP>
 nnoremap <silent> <Down> <NOP>
 nnoremap <silent> <Up> <NOP>
 nnoremap <silent> <Right> <NOP>
+
+"   terminal mappings
+nnoremap <silent> <leader>t :below split \| resize 15 \| terminal<CR>
+tnoremap <silent> <C-w>n <C-\><C-N>
+tnoremap <silent> <C-w>k <C-\><C-N><C-w>k
 
 " Insert mappings:
 "   turn off arrows
