@@ -17,6 +17,7 @@
 ~/.profile profile
 ~/.shutils shutils
 ~/.ssh/config sshconfig
+~/.tmux.conf tmux.conf
 ~/.vim vim
 ~/.Xresources Xresources
 ~/.xsession xsession
