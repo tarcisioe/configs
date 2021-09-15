@@ -11,19 +11,8 @@ Plug 'SirVer/ultisnips'
 Plug 'jnurmine/Zenburn'
 Plug 'vim-airline/vim-airline-themes' " Contains zenburn for airline
 
-" LSP
-Plug 'neovim/nvim-lspconfig'
-
-" Static check
-Plug 'dense-analysis/ale'
-
-" Completion
-Plug 'roxma/nvim-yarp'  " required by ncm2
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-bufword'  " Buffer word completionn
-Plug 'ncm2/ncm2-path'  " Path-completion
-" Plug 'ncm2/ncm2-jedi'  " Python
-" Plug 'ncm2/ncm2-pyclang'  " C and C++
+" LSP/completion/everything
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Emmet
 Plug 'mattn/emmet-vim'

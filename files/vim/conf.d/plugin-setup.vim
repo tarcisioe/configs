@@ -5,38 +5,34 @@ let g:airline#extensions#tabline#show_buffers=1  " show buffers
 let g:airline#extensions#tabline#tab_min_count=2 " hide tabline for one tab
 let g:airline#extensions#tabline#fnamemod = ':t' " show only filename on buffer
 
-" Enable ncm2
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
+let g:coc_global_extensions = [
+\   'coc-clangd',
+\]
 
-" Language servers
-lua << EOF
-local nvim_lsp = require('lspconfig')
-local ncm2 = require('ncm2')
+inoremap <silent><expr> <C-n> coc#refresh()
 
-local servers = {
-    'clangd',
-    'jedi_language_server',
-}
+" lsp functionality mappings
+nmap <silent> gD <Plug>(coc-declaration)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>rn <Plug>(coc-rename)
 
-local on_attach = function(client, bufnr)
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+" show documentation in preview window.
+nnoremap <silent> <leader>k :call <SID>show_documentation()<CR>
 
-    local opts = { noremap=true, silent=true }
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
-    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', '<leader>k', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+" apply action
+nmap <leader>ac <Plug>(coc-codeaction)
 
-end
-
-for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup({
-        on_init = ncm2.register_lsp_source,
-        on_attach = on_attach,
-    })
-end
-EOF
+" format code
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)

@@ -2,9 +2,9 @@
 let mapleader=','
 
 " Normal mappings:
-"   quit with q when no changes were made
+"   quit with <leader>q when no changes were made
 nmap <silent> q :q<CR>
-nmap <silent> <leader>q :q all<CR>
+nmap <silent> <leader>Q :qa<CR>
 
 "   indent the whole file
 nmap <silent> <leader>i gg=G''
@@ -31,7 +31,7 @@ nmap <silent> <F12> :set rnu!<CR>
 "   buffer navigation
 nmap <silent> <leader>l :bnext<CR>
 nmap <silent> <leader>h :bprevious<CR>
-nmap <silent> <leader>bq :bp <BAR> bd #<CR>
+nmap <silent> <leader>q :bp <BAR> bd #<CR>
 nmap <silent> <leader>bl :ls<CR>
 
 "   turn off arrows

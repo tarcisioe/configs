@@ -36,6 +36,8 @@ augroup terminal
     autocmd TermOpen * startinsert
     " disable numbers
     autocmd TermOpen * setlocal nonumber norelativenumber
+    " don't list as a buffer
+    autocmd TermOpen * setlocal nobuflisted
 augroup END
 
 let g:python_host_prog = $HOME . '/.local/nvenv/nvim2/bin/python'
