@@ -7,6 +7,7 @@ let g:airline#extensions#tabline#fnamemod = ':t' " show only filename on buffer
 
 let g:coc_global_extensions = [
 \   'coc-clangd',
+\   'coc-jedi',
 \]
 
 inoremap <silent><expr> <C-n> coc#refresh()
