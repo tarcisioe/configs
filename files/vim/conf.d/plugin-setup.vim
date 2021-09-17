@@ -6,8 +6,12 @@ let g:airline#extensions#tabline#tab_min_count=2 " hide tabline for one tab
 let g:airline#extensions#tabline#fnamemod = ':t' " show only filename on buffer
 
 let g:coc_global_extensions = [
+\   'coc-cmake',
 \   'coc-clangd',
-\   'coc-jedi',
+\   'coc-json',
+\   'coc-pyright',
+\   'coc-tsserver',
+\   'coc-vimlsp',
 \]
 
 inoremap <silent><expr> <C-n> coc#refresh()

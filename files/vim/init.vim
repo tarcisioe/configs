@@ -5,3 +5,4 @@ Source base-keymaps.vim
 Source plugins.vim
 Source plugin-setup.vim
 Source custom.vim
+Source colors.vim
