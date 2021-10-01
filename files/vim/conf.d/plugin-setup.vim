@@ -6,10 +6,11 @@ let g:airline#extensions#tabline#tab_min_count=2 " hide tabline for one tab
 let g:airline#extensions#tabline#fnamemod = ':t' " show only filename on buffer
 
 let g:coc_global_extensions = [
-\   'coc-cmake',
 \   'coc-clangd',
+\   'coc-cmake',
 \   'coc-json',
 \   'coc-pyright',
+\   'coc-rust-analyzer',
 \   'coc-tsserver',
 \   'coc-vimlsp',
 \]
@@ -21,6 +22,9 @@ nmap <silent> gD <Plug>(coc-declaration)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>rn <Plug>(coc-rename)
+
+nmap <silent> <c-h> <Plug>(coc-diagnostic-prev)
+nmap <silent> <c-l> <Plug>(coc-diagnostic-next)
 
 " show documentation in preview window.
 nnoremap <silent> <leader>k :call <SID>show_documentation()<CR>
