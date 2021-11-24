@@ -5,4 +5,3 @@ PACKAGES=${HOME}/.shutils
 source ${PACKAGES}/init.sh &> /dev/null || return
 
 require base-vars
-require pyenv
