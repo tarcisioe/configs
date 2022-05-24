@@ -24,6 +24,7 @@ noto-fonts-cjk
 ntfs-3g
 openvpn
 pass
+passff-host
 pavucontrol
 picom
 redshift
