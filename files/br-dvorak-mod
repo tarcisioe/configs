@@ -32,10 +32,14 @@ xkb_symbols "dvorak-mod" {
     key <AD01> { [        slash,        question,            backslash,     questiondown ] };
     // Adds Greek gamma.
     key <AD07> { [            g,               G,          Greek_gamma,      Greek_GAMMA ] };
+    key <AD08> { [            c,               C,          Up,               uparrow ] };
 
 // Central row:
     // Adds Greek delta.
     key <AC06> { [            d,               D,          Greek_delta,      Greek_DELTA ] };
+    key <AC07> { [            h,               H,                 Left,        leftarrow ] };
+    key <AC08> { [            t,               T,                 Down,        downarrow ] };
+    key <AC09> { [            n,               N,                Right,       rightarrow ] };
     // Adds bar for ANSI/us-intl compatibility.
     key <BKSL> { [        minus,      underscore,                  bar,       0x01000336 ] };
 
