@@ -6,6 +6,8 @@ autoload -U down-line-or-beginning-search
 # set hooks for better history searching
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
+bindkey -M vicmd "k" up-line-or-beginning-search
+bindkey -M vicmd "j" down-line-or-beginning-search
 
 # load the definitions for the keyboard
 # if local definitions are needed, place in ${PACKAGES}/kbd/${TERM}.zsh
@@ -27,3 +29,7 @@ setup-key "${key[Down]}" down-line-or-beginning-search
 setup-key "${key[Left]}" backward-char
 setup-key "${key[Right]}" forward-char
 setup-key "${key[Backspace]}" backward-delete-char
+
+function foreground() { fg; }
+zle -N foreground
+bindkey '^Z' foreground
