@@ -15,7 +15,16 @@ let g:coc_global_extensions = [
 \   'coc-vimlsp',
 \]
 
-inoremap <silent><expr> <C-n> coc#refresh()
+inoremap <silent><expr> <C-n>
+    \ coc#pum#visible() ? coc#pum#next(1) :
+    \ CheckBackspace() ? "\<Tab>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+function! CheckBackspace() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1] =~# '\s'
+endfunction
 
 " lsp functionality mappings
 nmap <silent> gD <Plug>(coc-declaration)
@@ -43,5 +52,5 @@ endfunction
 nmap <leader>ac <Plug>(coc-codeaction)
 
 " format code
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format-selected)

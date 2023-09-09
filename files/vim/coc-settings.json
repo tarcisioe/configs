@@ -1,4 +1,5 @@
 {
+    "suggest.virtualText": true,
     "pyright.disableDiagnostics": true,
     "pyright.organizeImports.provider": "isort",
     "python.analysis.typeCheckingMode": "off",

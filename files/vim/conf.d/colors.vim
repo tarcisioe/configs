@@ -14,3 +14,7 @@ endif
 " CoC custom colors
 hi CocErrorSign ctermfg=174 cterm=bold
 hi CocWarningSign ctermfg=228 cterm=bold
+" Make virtual text be a ghostly grey
+hi CocVirtualText ctermfg=DarkGrey
+" Make search use Zenburn's string pink
+hi CocSearch ctermfg=174
