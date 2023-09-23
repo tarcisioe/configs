@@ -23,7 +23,7 @@ source-if-exists "${HOME}/.profile"
 # Sane defaults. Can be overriden by ~/.xinitrc_before
 
 BGCMD=hsetroot
-BGCMD_ARGS="-full"
+BGCMD_ARGS="-root -full"
 COMPMGR=picom
 COMPMGR_ARGS="-b"
 
@@ -39,4 +39,4 @@ WM="${WM:-i3}"
 systemctl --user import-environment PATH DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 systemctl --no-block --user start xsession.target
 
-"${WM}"
+exec "${WM}"
