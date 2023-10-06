@@ -15,11 +15,14 @@ let g:coc_global_extensions = [
 \   'coc-vimlsp',
 \]
 
-inoremap <silent><expr> <C-n>
-    \ coc#pum#visible() ? coc#pum#next(1) :
+inoremap <silent><expr> <Tab>
+    \ coc#pum#visible() ? coc#pum#confirm() :
     \ CheckBackspace() ? "\<Tab>" :
     \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> j
+    \ coc#pum#visible() ? coc#pum#next(1) : "\j"
+inoremap <silent><expr> k
+    \ coc#pum#visible() ? coc#pum#prev(1) : "\k"
 
 function! CheckBackspace() abort
     let col = col('.') - 1
