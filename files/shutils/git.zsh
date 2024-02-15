@@ -1,10 +1,19 @@
-require plugins
+require find-file-backwards
 
 GITSTATUS_TOKEN=TOKEN_$$
 
-gitstatus_start "${GITSTATUS_TOKEN}"
+function load-gitstatus {
+    [[ -n "$(find-file-backwards .git)" ]] && {
+        require plugins
 
-function git-color {
+        gitstatus_start "${GITSTATUS_TOKEN}"
+
+        function load-gitstatus {
+        }
+    } || return 1
+}
+
+function -git-color {
     if [[ "${VCS_STATUS_RESULT}" != ok-sync ]]
     then
         return
@@ -26,7 +35,7 @@ function git-color {
 }
 
 
-function git-head() {
+function -git-head() {
     if [[ "${VCS_STATUS_RESULT}" != ok-sync ]]
     then
         return
@@ -51,5 +60,5 @@ function git-info() {
         return
     fi
 
-    echo "(%{$fg[$(git-color)]%}$(git-head)%{$reset_color%})"
+    echo "(%{$fg[$(-git-color)]%}$(-git-head)%{$reset_color%})"
 }

@@ -1,52 +1,90 @@
-if [[ "$ZSH_VERSION" != "" ]]
+if [[ -n "$ZSH_VERSION" ]]
 then
-    INIT_SH=zsh
-    INIT_BASENAME="${0}"
-elif [[ "$BASH_VERSION" != "" ]]
+    INIT_SH="zsh"
+elif [[ -n "$BASH_VERSION" ]]
 then
-    INIT_SH=bash
-    INIT_BASENAME="${BASH_SOURCE[0]}"
+    INIT_SH="bash"
 else
     return
 fi
 
-INITPATH="$(cd "$(dirname "${INIT_BASENAME}")"; pwd -P)"
+INITPATH="$(realpath ${1})"
 MY_SCRIPTS_PATH=$INITPATH
 
-function script-path {
-    local partial="${INITPATH}"/"${1}"
-    case "${INIT_SH}" in
-        zsh)
-            local preferred="${partial}".zsh ;;
-        bash)
-            local preferred="${partial}".bash ;;
-    esac
+declare -A SHUTIL_MODULE_PATHS
 
-    [[ -f "${preferred}" ]] && echo "${preferred}" || echo "${partial}.sh"
+function shutil-module-path {
+    local shutil_module_name="${1}"
+
+    local lookup="${SHUTIL_MODULE_PATHS["${1}"]:-}"
+    [[ -n "${lookup}" ]] &&
+    {
+        echo "${lookup}"
+        return 0
+    }
+
+    local partial="${INITPATH}"/"${1}"
+
+    local preferred="${partial}.${INIT_SH}"
+
+    local result=$([[ -f "${preferred}" ]] && echo "${preferred}" || echo "${partial}.sh")
+
+    SHUTIL_MODULE_PATHS["${shutil_module_name}"]="${result}"
+    echo "${result}"
 }
 
+declare -A REQUIRES
+
 function require {
-    local importedvar=${1//-/_}_IMPORTED
+    local shutil_module_name="${1}"
+    local already_required="${REQUIRES["${shutil_module_name}"]:-}"
 
-    case $INIT_SH in
-        zsh)
-            local is_imported=${(P)importedvar} ;;
-        bash)
-            local is_imported=${!importedvar} ;;
-    esac
-
-    [[ ${is_imported} == "1" ]] && return 0
-
-    if source "$(script-path "${1}")"
-    then
-        eval ${importedvar}=1
+    [[ -n "${already_required}" ]] &&
         return 0
-    else
-        echo "Could not require '${1}' successfully, with path '$(script-path "${1}")'." >&2
-        return -1
+
+    if ! source "$(shutil-module-path "${shutil_module_name}")"
+    then
+        echo "Could not require '${shutil_module_name}' successfully." >&2
+        return 1
     fi
+    REQUIRES["${shutil_module_name}"]=1
+}
+
+function _require {
+    local shutil_module_name="${1}"
+    local already_required="${REQUIRES["${shutil_module_name}"]:-}"
+
+    timer=$(date +%s%3N)
+    LEVELS=$(($LEVELS + 1))
+    _require "${@}"
+    LEVELS=$(($LEVELS - 1))
+    now=$(date +%s%3N)
+    elapsed=$(($now-$timer))
+
+    [[ "${elapsed}" -gt 10 ]] &&
+    {
+        for i in $(seq $LEVELS)
+        do
+            echo -n "    "
+        done
+
+        echo -n "Required ${1} in ${elapsed} milliseconds." &&
+        {
+            [[ -n "${already_required}" ]] &&
+            echo -n " (Was already required)"
+        }
+        echo
+    }
 }
 
 function require-if-exists {
-    [[ -f "$(script-path "${1}")" ]] && require "${1}" || return 1
+    local shutil_module_name="${1}"
+
+    local shutil_module_path
+    shutil_module_path="$(shutil-module-path "${shutil_module_name}")"
+
+    [[ -f "${shutil_module_path}" ]] ||
+        return 1
+
+    require "${shutil_module_name}"
 }

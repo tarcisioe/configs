@@ -3,7 +3,7 @@ require path-util
 function first-of {
     for i in "$@"
     do
-        if /usr/bin/which "$i" 2> /dev/null > /dev/null
+        if which "$i" 2> /dev/null > /dev/null
         then
             echo "$i"
             return
@@ -26,5 +26,5 @@ add-path "${HOME}/.local/bin"
 add-path "${HOME}/workspace/scripts/bin"
 
 export EDITOR="$(first-of nvim vim nano)"
-export TERMINAL="urxvt"
+export TERMINAL="urxvtc-autostart"
 export BROWSER="$(first-of firefox chromium google-chrome)"

@@ -1,22 +1,19 @@
 # zmodload zsh/zprof
 
-if [[ $- != *i* ]] ; then
+[[ $- != *i* ]] &&
     # Shell is non-interactive.  Be done now!
     return
-fi
 
 # get the require function
-PACKAGES=${HOME}/.shutils
-source ${PACKAGES}/init.sh &> /dev/null || return
+PACKAGES="${HOME}/.shutils"
+source "${PACKAGES}"/init.sh "${PACKAGES}" || return
 
 require-if-exists base
-
 require-if-exists localpre
 
 require aliases
 require autoenv
 require completion
-require custom-cd
 require dircolors
 require prompt
 require python-utils
@@ -29,6 +26,6 @@ require-if-exists plugins
 require-if-exists keyboard
 require-if-exists localpost
 
-cd .
+[[ "${PWD}" != "${HOME}" ]] && cd .
 
 # zprof

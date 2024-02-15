@@ -5,7 +5,7 @@ require dircolors
 not-root && fpath=("${INITPATH}"/comp $fpath)
 
 # load zsh completion utilities
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit
 
 # configure completion to behave nicely
 zstyle ':completion:*' insert-unambiguous true # insert directly if not in doubt

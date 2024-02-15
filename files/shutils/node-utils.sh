@@ -1,5 +1,5 @@
-require find-file-backwards
 require custom-cd
+require find-file-backwards
 
 NODE_ENV=""
 NODE_OLD_PATH=""

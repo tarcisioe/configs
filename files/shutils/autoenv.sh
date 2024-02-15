@@ -17,7 +17,7 @@ function -autoenv-enter() {
 function -autoenv() {
     local env="$(find-file-backwards .env)"
 
-    if [[ "${AUTOENV_CURRENT}" == "${env}" ]]
+    if [[ -n "${AUTOENV_CURRENT}" ]] && [[ -n "${env}" ]]
     then
         return 0
     fi

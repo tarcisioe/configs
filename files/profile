@@ -2,6 +2,6 @@
 
 # get the require function
 PACKAGES=${HOME}/.shutils
-source ${PACKAGES}/init.sh &> /dev/null || return
+source ${PACKAGES}/init.sh "${PACKAGES}" &> /dev/null || return
 
 require base-vars

@@ -1,5 +1,3 @@
-. /etc/zsh/zprofile
-
 HISTFILE=~/.histfile
 HISTSIZE=32000
 SAVEHIST=32000

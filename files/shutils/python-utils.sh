@@ -1,31 +1,27 @@
-require find-file-backwards
 require custom-cd
-require check-root
-require path-util
+require find-file-backwards
 
 function -export-pylintrc {
     local rc_path="$(find-file-backwards pylintrc)"
 
-    if [[ -n ${rc_path} ]]
-    then
-        export PYLINTRC="${rc_path}"
-    else
+    [[ -z ${rc_path} ]] && {
         unset PYLINTRC
-    fi
+        return 0
+    }
+
+    export PYLINTRC="${rc_path}"
 }
 
 function -enter-venv {
     local venv="$(find-file-backwards .venv)"
 
-    if [[ -z "${venv}" ]]
-    then
-        if [[ -n "${VIRTUAL_ENV}" ]]
-        then
-            [[ "${CONDA_SHLVL}" > 0 ]] && return 0  # oh shit this is conda, I hate conda
-            deactivate
-        fi
-        return
-    fi
+    [[ -z "${venv}" ]] &&
+    {
+        [[ -z "${VIRTUAL_ENV}" ]] && return 0
+
+        deactivate
+        return 0
+    }
 
     if [[ -z "${VIRTUAL_ENV}" || "$(readlink -f "${VIRTUAL_ENV}")" != "$(readlink "${venv}")" ]]
     then
@@ -39,8 +35,6 @@ function python-cd-hooks {
     -export-pylintrc
 }
 
-cd-hook python-cd-hooks
-
 function mkvenv {
     local python="${1}"
     [[ -n ${python} ]] || python=python
@@ -51,3 +45,4 @@ function mkvenv {
     pip install --upgrade pip
 }
 
+cd-hook python-cd-hooks
