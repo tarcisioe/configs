@@ -3,7 +3,10 @@ require find-file-backwards
 GITSTATUS_TOKEN=TOKEN_$$
 
 function load-gitstatus {
-    [[ -n "$(find-file-backwards .git)" ]] && {
+    local git_folder
+    find-file-backwards git_folder .git
+
+    [[ -n "${git_folder}" ]] && {
         require plugins
 
         gitstatus_start "${GITSTATUS_TOKEN}"

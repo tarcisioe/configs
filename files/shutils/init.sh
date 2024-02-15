@@ -1,9 +1,19 @@
 if [[ -n "$ZSH_VERSION" ]]
 then
     INIT_SH="zsh"
+
+    function assign {
+        : ${(P)1::="${2}"}
+    }
+
 elif [[ -n "$BASH_VERSION" ]]
 then
     INIT_SH="bash"
+
+    function assign {
+        local -n output="${1}"
+        output="${2}"
+    }
 else
     return
 fi
@@ -14,74 +24,61 @@ MY_SCRIPTS_PATH=$INITPATH
 declare -A SHUTIL_MODULE_PATHS
 
 function shutil-module-path {
-    local shutil_module_name="${1}"
+    local output="${1}"
+    local shutil_module_name="${2}"
 
-    local lookup="${SHUTIL_MODULE_PATHS["${1}"]:-}"
+    local lookup="${SHUTIL_MODULE_PATHS["${shutil_module_name}"]:-}"
     [[ -n "${lookup}" ]] &&
     {
-        echo "${lookup}"
+        assign "${output}" "${lookup}"
         return 0
     }
 
-    local partial="${INITPATH}"/"${1}"
+    local partial="${INITPATH}"/"${shutil_module_name}"
 
     local preferred="${partial}.${INIT_SH}"
 
     local result=$([[ -f "${preferred}" ]] && echo "${preferred}" || echo "${partial}.sh")
 
     SHUTIL_MODULE_PATHS["${shutil_module_name}"]="${result}"
-    echo "${result}"
+    assign "${output}" "${result}"
 }
 
 declare -A REQUIRES
 
-function require {
+function _source_module {
     local shutil_module_name="${1}"
-    local already_required="${REQUIRES["${shutil_module_name}"]:-}"
+    local shutil_module_path
+    shutil-module-path shutil_module_path "${shutil_module_name}"
 
-    [[ -n "${already_required}" ]] &&
-        return 0
-
-    if ! source "$(shutil-module-path "${shutil_module_name}")"
-    then
-        echo "Could not require '${shutil_module_name}' successfully." >&2
-        return 1
-    fi
-    REQUIRES["${shutil_module_name}"]=1
+    source "${shutil_module_path}"
+    # if ! source "$(shutil-module-path "${shutil_module_name}")"
+    # then
+    #     echo "Could not require '${shutil_module_name}' successfully." >&2
+    #     return 1
+    # fi
+    REQUIRES["${shutil_module_name}"]=0
 }
 
-function _require {
+function already-required {
     local shutil_module_name="${1}"
-    local already_required="${REQUIRES["${shutil_module_name}"]:-}"
+    local already_required="${REQUIRES["${shutil_module_name}"]:-1}"
 
-    timer=$(date +%s%3N)
-    LEVELS=$(($LEVELS + 1))
-    _require "${@}"
-    LEVELS=$(($LEVELS - 1))
-    now=$(date +%s%3N)
-    elapsed=$(($now-$timer))
+    return "${already_required}"
+}
 
-    [[ "${elapsed}" -gt 10 ]] &&
-    {
-        for i in $(seq $LEVELS)
-        do
-            echo -n "    "
-        done
+function require {
+    local shutil_module_name="${1}"
 
-        echo -n "Required ${1} in ${elapsed} milliseconds." &&
-        {
-            [[ -n "${already_required}" ]] &&
-            echo -n " (Was already required)"
-        }
-        echo
-    }
+    already-required "${shutil_module_name}" ||
+        _source_module "${shutil_module_name}"
 }
 
 function require-if-exists {
     local shutil_module_name="${1}"
 
     local shutil_module_path
-    shutil_module_path="$(shutil-module-path "${shutil_module_name}")"
+    shutil-module-path shutil_module_path "${shutil_module_name}"
 
     [[ -f "${shutil_module_path}" ]] ||
         return 1

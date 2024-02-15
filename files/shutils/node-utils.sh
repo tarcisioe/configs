@@ -28,7 +28,8 @@ function -leave-node-env {
 }
 
 function -enter-node-env {
-    local node_env="$(find-file-backwards node_modules)"
+    local node_env
+    find-file-backwards node_env node_modules
 
     if [[ -z "${node_env}" ]]
     then

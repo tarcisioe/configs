@@ -2,7 +2,8 @@ require custom-cd
 require find-file-backwards
 
 function -export-pylintrc {
-    local rc_path="$(find-file-backwards pylintrc)"
+    local rc_path
+    find-file-backwards rc_path pylintrc
 
     [[ -z ${rc_path} ]] && {
         unset PYLINTRC
@@ -13,7 +14,8 @@ function -export-pylintrc {
 }
 
 function -enter-venv {
-    local venv="$(find-file-backwards .venv)"
+    local venv
+    find-file-backwards venv .venv
 
     [[ -z "${venv}" ]] &&
     {

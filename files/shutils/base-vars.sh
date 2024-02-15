@@ -1,11 +1,13 @@
 require path-util
 
 function first-of {
-    for i in "$@"
+    local output="${1}"
+
+    for i in "${@:2}"
     do
         if which "$i" 2> /dev/null > /dev/null
         then
-            echo "$i"
+            assign "${1}" "${i}"
             return
         fi
     done
@@ -25,6 +27,7 @@ remove-path "${HOME}/.local/bin"
 add-path "${HOME}/.local/bin"
 add-path "${HOME}/workspace/scripts/bin"
 
-export EDITOR="$(first-of nvim vim nano)"
+export EDITOR
+first-of EDITOR nvim vim nano
 export TERMINAL="urxvtc-autostart"
-export BROWSER="$(first-of firefox chromium google-chrome)"
+first-of BROWSER firefox chromium google-chrome
