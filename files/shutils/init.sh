@@ -38,7 +38,10 @@ function shutil-module-path {
 
     local preferred="${partial}.${INIT_SH}"
 
-    local result=$([[ -f "${preferred}" ]] && echo "${preferred}" || echo "${partial}.sh")
+    local result
+    [[ -f "${preferred}" ]] &&
+        result="${preferred}" ||
+        result="${partial}.sh"
 
     SHUTIL_MODULE_PATHS["${shutil_module_name}"]="${result}"
     assign "${output}" "${result}"
@@ -51,12 +54,12 @@ function _source_module {
     local shutil_module_path
     shutil-module-path shutil_module_path "${shutil_module_name}"
 
-    source "${shutil_module_path}"
-    # if ! source "$(shutil-module-path "${shutil_module_name}")"
-    # then
-    #     echo "Could not require '${shutil_module_name}' successfully." >&2
-    #     return 1
-    # fi
+    source "${shutil_module_path}" ||
+        {
+            echo "Could not require '${shutil_module_name}' successfully." >&2
+            return 1
+        }
+
     REQUIRES["${shutil_module_name}"]=0
 }
 

@@ -1,9 +1,11 @@
 require check-root
 require vim-color
 
+declare PROMPT_VIM_COLOR
+
 # setup hook for line-init, just needed for first time
 function zle-line-init {
-    prompt_vim_color=$(vim-color)
+    vim-color PROMPT_VIM_COLOR
     zle reset-prompt
 }
 
@@ -19,12 +21,12 @@ zle -N zle-keymap-select
 setopt prompt_subst
 
 # select color based on being root or not
-function color {
+PROMPT_COLOR="$(
     not-root && printf "${LIGHT_BLUE}" || printf "${DARK_RED}"
-}
+)"
 
 # define left-prompt
-PROMPT='%B%F{$(color)}%n%f:%F{$(color)}%m%f %c %F{${prompt_vim_color}}%(#~#~$)%f%b '
+PROMPT='%B%F{${PROMPT_COLOR}}%n%f:%F{${PROMPT_COLOR}}%m%f %c %F{${PROMPT_VIM_COLOR}}%(#~#~$)%f%b '
 
 ZLE_RPROMPT_INDENT=1
 

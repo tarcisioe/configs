@@ -9,6 +9,7 @@ files/emacsd/elpa
 files/emacsd/semanticdb
 files/emacsd/srecode-map.el
 files/shutils/local*.*
+files/shutils/_dircolors.sh
 files/vim/.netrwhist
 files/vim/autoload/plug.vim
 files/vim/bundle
