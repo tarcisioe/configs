@@ -1,11 +1,12 @@
 {
     "suggest.virtualText": true,
     "pyright.disableDiagnostics": true,
-    "pyright.organizeImports.provider": "isort",
+    "pyright.organizeimports.provider": "isort",
     "python.analysis.typeCheckingMode": "off",
     "python.formatting.provider": "black",
     "python.linting.flake8Enabled": true,
     "python.linting.mypyEnabled": true,
     "python.linting.pylintEnabled": true,
-    "python.linting.pytypeEnabled": false
+    "python.linting.pytypeEnabled": false,
+    "Lua.diagnostics.globals": [ "vim" ]
 }

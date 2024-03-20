@@ -4,7 +4,7 @@
 ~/.config/fontconfig fontconfig
 ~/.config/i3/config i3config
 ~/.config/i3/default i3config
-~/.config/nvim vim
+~/.config/nvim nvim
 ~/.config/picom.conf picom.conf
 ~/.config/qutebrowser/autoconfig.yml qutebrowser-config.yml
 ~/.config/systemd systemd
@@ -18,7 +18,7 @@
 ~/.shutils shutils
 ~/.ssh/config sshconfig
 ~/.tmux.conf tmux.conf
-~/.vim vim
+~/.vimrc vimrc
 ~/.Xresources Xresources
 ~/.xsession xsession
 ~/.zprofile zprofile

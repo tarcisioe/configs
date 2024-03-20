@@ -1,0 +1,135 @@
+set nocompatible                "no vi compatibility
+
+syntax on                       "enable syntax highlighting
+filetype plugin on              "enable plugins for filetypes
+
+" set autochdir                   "change directory to where the file is
+set backspace=indent,eol,start  "make backspace work everywhere
+set clipboard=unnamedplus       "make vim clipboard the same as the system one
+set guicursor=                  "leave terminal cursor as is
+set laststatus=2                "alway have a status line
+set mouse=a                     "get mouse working on mouse-capable terminals
+set nobackup                    "no annoying backups of files
+set nofoldenable                "disable default folding of text
+set number                      "line numbers
+set path=**                     "make file search recursive
+set ruler                       "show row and column on bottom right
+set ttimeoutlen=0               "no delay when going back into normal mode
+set wildmenu                    "enable cool menu
+set hidden                      "enable hidden (unsaved) buffers
+set updatetime=100
+
+set expandtab                   "spaces instead of tab
+set tabstop=4                   "tabwidth is 4 spaces
+set shiftwidth=4                "indent by 4 with >> and <<
+set autoindent                  "start nextline indented
+
+set hlsearch                    "highlight searches
+set incsearch                   "do incremental searching
+set showmatch                   "jump to matches when entering regexp
+set ignorecase                  "ignore case on search
+set smartcase                   "uppercase forces search casing
+
+set completeopt-=preview        "no preview window for completion
+
+set listchars=tab:——,space:·
+
+" Key mappings
+let mapleader=','
+
+" Normal mappings:
+"   quit with <leader>q when no changes were made
+nmap <silent> q :q<CR>
+nmap <silent> <leader>Q :qa<CR>
+
+"   indent the whole file
+nmap <silent> <leader>i gg=G''
+
+"   run spawn script for opening new terminal
+nmap <silent> <leader>c :!spawn<CR><CR>
+
+"   remove highlights
+nmap <silent> <leader>h :nohl<CR>
+
+"   run lnext or lprev
+nmap <silent> <leader>n :lnext<CR>
+nmap <silent> <leader>p :lprev<CR>
+
+"   toggle showing whitespace as characters
+nmap <silent> <F10> :set list!<CR>
+
+"   toggle relative line numbers
+nmap <silent> <F11> :set number!<CR>
+
+"   toggle relative line numbers
+nmap <silent> <F12> :set rnu!<CR>
+
+"   buffer navigation
+nmap <silent> <leader>l :bnext<CR>
+nmap <silent> <leader>h :bprevious<CR>
+nmap <silent> <leader>q :bp <BAR> bd #<CR>
+nmap <silent> <leader>bl :ls<CR>
+
+"   turn off arrows
+nnoremap <silent> <Left> <NOP>
+nnoremap <silent> <Down> <NOP>
+nnoremap <silent> <Up> <NOP>
+nnoremap <silent> <Right> <NOP>
+
+" Insert mappings:
+"   turn off arrows
+inoremap <silent> <Left> <NOP>
+inoremap <silent> <Down> <NOP>
+inoremap <silent> <Up> <NOP>
+inoremap <silent> <Right> <NOP>
+
+"   disable F1 calling help
+imap <silent> <F1> <NOP>
+
+"   enable other F keys in insert mode as well
+imap <silent> <F11> <C-o><F11>
+imap <silent> <F12> <C-o><F12>
+
+"   call autocomplete with ctrl+space
+inoremap <C-Space> <C-x><C-o>
+
+" Visual mappings:
+"   turn off arrows
+vnoremap <silent> <Left> <NOP>
+vnoremap <silent> <Down> <NOP>
+vnoremap <silent> <Up> <NOP>
+vnoremap <silent> <Right> <NOP>
+
+"   copy on mouse selection
+vmap <LeftRelease> "*ygv
+
+"General customizations
+
+augroup onread
+    autocmd!
+    "   open file in last position
+    autocmd BufReadPost *
+          \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+          \   exe "normal! g'\"" |
+          \ endif
+augroup END
+
+augroup onwrite
+    " clear group
+    autocmd!
+    " remove trailing newlines
+    autocmd BufWritePre * :%s/\s\+$//e
+augroup END
+
+"   netrw (vim file manager) setup
+let g:netrw_banner = 0
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_liststyle = 3
+
+"   setup persistent undo (undo between sessions).
+if has('persistent_undo')
+    let undodir = '~/.vim/undodir'
+    call system('mkdir ' . undodir)
+    set undofile
+endif
