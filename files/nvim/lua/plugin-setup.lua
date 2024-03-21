@@ -8,8 +8,14 @@ vim.g["airline#extensions#tabline#tab_nr_type"] = 1  -- Show tab numbers
 vim.g["airline#extensions#tabline#tab_min_count"] = 2  -- Hide tabline when there is only one tab
 
 vim.g["coc_global_extensions"] = {
-    "coc-lua",
+    "coc-clangd",
+    "coc-cmake",
     "coc-json",
+    "coc-lua",
+    "coc-pyright",
+    "coc-rust-analyzer",
+    "coc-tsserver",
+    "coc-vimlsp",
 }
 
 -- Completion mappings
