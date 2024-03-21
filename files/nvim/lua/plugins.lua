@@ -17,6 +17,6 @@ plug("neoclide/coc.nvim", { branch = "release" })
 -- Misc
 plug("mattn/emmet-vim")
 plug("michaeljsmith/vim-indent-object")
-plug("alfredodez/pytest.vim")
+plug("alfredodeza/pytest.vim")
 
 vim.fn["plug#end"]()
