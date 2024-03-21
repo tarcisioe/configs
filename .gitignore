@@ -10,7 +10,8 @@ files/emacsd/semanticdb
 files/emacsd/srecode-map.el
 files/shutils/local*.*
 files/shutils/_dircolors.sh
-files/vim/.netrwhist
-files/vim/autoload/plug.vim
-files/vim/bundle
-files/vim/plugged
+files/nvim/.netrwhist
+files/nvim/autoload/plug.vim
+files/nvim/autoload/plug.vim.old
+files/nvim/bundle
+files/nvim/plugged
