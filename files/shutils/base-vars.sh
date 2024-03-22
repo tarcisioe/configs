@@ -3,6 +3,8 @@ require path-util
 function first-of {
     local output="${1}"
 
+    local i
+
     for i in "${@:2}"
     do
         if which "$i" 2> /dev/null > /dev/null
@@ -30,4 +32,5 @@ add-path "${HOME}/workspace/scripts/bin"
 export EDITOR
 first-of EDITOR nvim vim nano
 export TERMINAL="urxvtc-autostart"
+export BROWSER
 first-of BROWSER firefox chromium google-chrome

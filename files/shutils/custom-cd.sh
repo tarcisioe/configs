@@ -17,6 +17,8 @@ function -cd-hook-keys {
 }
 
 function cd-hooks {
+    local key
+
     for key in $(-cd-hook-keys)
     do
         echo "$key" "${CD_HOOKS[$key]}"
@@ -25,6 +27,9 @@ function cd-hooks {
 
 function custom-cd {
     builtin cd "$@"
+
+    local hook
+
     for hook in "${CD_HOOKS[@]}"
     do
         "$hook"
