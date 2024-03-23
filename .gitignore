@@ -11,7 +11,4 @@ files/emacsd/srecode-map.el
 files/shutils/local*.*
 files/shutils/_dircolors.sh
 files/nvim/.netrwhist
-files/nvim/autoload/plug.vim
-files/nvim/autoload/plug.vim.old
-files/nvim/bundle
-files/nvim/plugged
+files/nvim/lazy-lock.json

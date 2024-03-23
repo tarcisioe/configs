@@ -19,3 +19,5 @@ vim.opt.listchars = {
     space = "·",
     tab = "--",
 }
+
+vim.opt.cursorline = true
