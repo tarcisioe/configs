@@ -14,6 +14,7 @@ vim.g["coc_global_extensions"] = {
     "coc-lua",
     "coc-pyright",
     "coc-rust-analyzer",
+    "coc-snippets",
     "coc-tsserver",
     "coc-vimlsp",
 }
