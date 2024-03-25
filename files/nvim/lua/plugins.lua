@@ -110,6 +110,7 @@ require("lazy-bootstrap").setup({
     {
         "jnurmine/Zenburn",
         config = colorscheme_config,
+        priority = 1000,
     },
     {
         "nvim-neorg/neorg",
