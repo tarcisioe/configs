@@ -1,8 +1,8 @@
-local set = require("vim-helpers").set
+local set_local = require("vim-helpers").set_local
 
-set("n", "<leader>=", "yyp:s/./=/g<CR>:nohl<CR>")
-set("n", "<leader>-", "yyp:s/./-/g<CR>:nohl<CR>")
-set("n", "<leader>u", "@='0i#<C-V><ESC>'<CR>")
-set("n", "<leader>b", "maysiw*lysiw*`all")
-set("n", "<leader>i", "maysiw_`al", { force_remap = true })
-set("n", "<leader>m", "maysiw``al")
+set_local("n", "<leader>=", "yyp:s/./=/g<CR>:nohl<CR>")
+set_local("n", "<leader>-", "yyp:s/./-/g<CR>:nohl<CR>")
+set_local("n", "<leader>u", "@='0i#<C-V><ESC>'<CR>")
+set_local("n", "<leader>b", "maysiw*lysiw*`all")
+set_local("n", "<leader>i", "maysiw_`al", { force_remap = true })
+set_local("n", "<leader>m", "maysiw``al")

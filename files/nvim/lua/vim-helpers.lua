@@ -8,11 +8,11 @@ local function vim_condition(condition)
     )
 end
 
-local vim_helpers = {}
-
-function vim_helpers.vim_bool_call(function_name)
-    return is_vim_value_true(vim.fn[function_name]())
+local function is_pop_up_menu_visible()
+    return is_vim_value_true(vim.fn.pumvisible())
 end
+
+local vim_helpers = {}
 
 function vim_helpers.toggle_whitespace()
     vim.o.list = not vim.o.list
@@ -42,6 +42,30 @@ local function set_keymap_for_modes(modes, keymap)
     end
 end
 
+local function count_loaded_buffers()
+    local count = {
+        normal = 0, acwrite = 0, help = 0, nofile = 0,
+        nowrite = 0, quickfix = 0, terminal = 0, prompt = 0,
+        total = 0
+    }
+
+    for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
+
+        if vim.api.nvim_buf_is_loaded(buffer) then
+            local buftype = vim.api.nvim_get_option_value('buftype', { buf = buffer })
+
+            if buftype == '' then
+                buftype = 'normal'
+            end
+
+            count[buftype] = count[buftype] + 1
+            count.total = count.total + 1
+        end
+    end
+
+    return count
+end
+
 function vim_helpers.set(modes, lhs, rhs, options)
     if options == nil then
         options = {}
@@ -51,7 +75,7 @@ function vim_helpers.set(modes, lhs, rhs, options)
         modes = { modes }
     end
 
-    if not options.force_remap then
+    if not options.force_remap and not options.buffer then
         local already_mapped = {}
         for _, mode in ipairs(modes) do
             if get_keymaps_for_mode(mode)[lhs] then
@@ -74,10 +98,23 @@ function vim_helpers.set(modes, lhs, rhs, options)
     end
 
     options["force_remap"] = nil
-    options["silent"] = true
+
+    if options.silent == nil then
+        options["silent"] = true
+    end
 
     vim.keymap.set(modes, lhs, rhs, options)
     set_keymap_for_modes(modes, lhs)
+end
+
+function vim_helpers.set_local(modes, lhs, rhs, options)
+    if options == nil then
+        options = {}
+    end
+
+    options["buffer"] = 0
+
+    vim_helpers.set(modes, lhs, rhs, options)
 end
 
 function vim_helpers.is_linux_terminal()
@@ -103,6 +140,38 @@ function vim_helpers.go_to_last_open_position()
     if line > 0 and line <= vim.fn.line("$") then
         vim.cmd("normal! g'\"")
     end
+end
+
+function vim_helpers.cmp_set(lhs, rhs)
+    local function wrap()
+        if not is_pop_up_menu_visible() then
+            return lhs
+        end
+
+        if type(rhs) == "string" then
+            return rhs
+        end
+
+        return rhs()
+    end
+
+    vim_helpers.set('i', lhs, wrap, { silent = true, expr = true, noremap = true })
+end
+
+function vim_helpers.confirm_completion()
+    if vim.fn.complete_info().selected == -1 then
+        return "<C-n><C-y>"
+    end
+
+    return "<C-y>"
+end
+
+function vim_helpers.close_current_buffer()
+    if count_loaded_buffers().total == 1 then
+        vim.cmd.quit()
+    end
+
+    vim.cmd.bdelete()
 end
 
 return vim_helpers

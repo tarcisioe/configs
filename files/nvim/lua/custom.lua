@@ -27,8 +27,6 @@ autocmd(
     }
 )
 
-vim.g.python3_host_prog = vim.env.HOME .. "/.local/nvenv/nvim3/bin/python"
-
 -- Configure vim builtin file manager (netrw)
 vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 4
