@@ -36,6 +36,8 @@ lspconfig.lua_ls.setup({
     },
 })
 
+lspconfig.pyright.setup({})
+
 set("n", "<leader>e", vim.diagnostic.open_float)
 set("n", "<C-h>", vim.diagnostic.goto_prev)
 set("n", "<C-l>", vim.diagnostic.goto_next)

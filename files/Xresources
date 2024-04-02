@@ -13,6 +13,3 @@ xft.hinting: true
 xft.hintstyle: hintslight
 
 xft.dpi: 100
-
-Emacs.font: Droid Sans Mono for Powerline:size=18
-Emacs.fontBackend: xft
