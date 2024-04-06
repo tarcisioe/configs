@@ -2,11 +2,12 @@
 ~/.bashrc zshrc
 ~/.config/dunst/dunstrc dunstrc
 ~/.config/fontconfig fontconfig
-~/.config/i3/config i3config
-~/.config/i3/default i3config
+~/.config/foot foot
+~/.config/i3 i3
 ~/.config/nvim nvim
 ~/.config/picom.conf picom.conf
 ~/.config/qutebrowser/autoconfig.yml qutebrowser-config.yml
+~/.config/sway sway
 ~/.config/systemd systemd
 ~/.dir_colors dir_colors
 ~/.emacs.d emacsd

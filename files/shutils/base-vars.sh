@@ -31,6 +31,14 @@ add-path "${HOME}/workspace/scripts/bin"
 
 export EDITOR
 first-of EDITOR nvim vim nano
-export TERMINAL="urxvtc-autostart"
+
+export TERMINAL
+case "${XDG_SESSION_TYPE}" in
+    "wayland")
+        TERMINAL="footclient-autostart" ;;
+    "x11")
+        TERMINAL="urxvtc-autostart" ;;
+esac
+
 export BROWSER
 first-of BROWSER firefox chromium google-chrome

@@ -1,0 +1,6 @@
+# In i3 we use bindsym as usual
+set $bindsym bindsym
+set $criterion class
+set $tray_output primary
+
+include conf.d/common.conf

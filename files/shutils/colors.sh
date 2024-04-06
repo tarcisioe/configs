@@ -1,5 +1,5 @@
 # color aliases
-if [[ $TERM =~ "256color" ]]
+if [[ "${TERM}" =~ "256color" ]] || [[ "${TERM}" == "foot" ]]
 then
     LIGHT_BLUE=25
     DARK_RED=124

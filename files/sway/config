@@ -1,0 +1,18 @@
+set $bindsym bindsym --to-code
+set $criterion app_id
+set $tray_output *
+
+include ../i3/conf.d/common.conf
+
+input * {
+    xkb_layout br,br-dvorak-mod
+    xkb_variant abnt2,
+    xkb_switch_layout next
+    xkb_options ctrl:swapcaps
+}
+
+input type:touchpad {
+    click_method "clickfinger"
+}
+
+exec setwallpaper
