@@ -36,7 +36,9 @@ lspconfig.lua_ls.setup({
     },
 })
 
+lspconfig.clangd.setup({})
 lspconfig.pyright.setup({})
+lspconfig.rust_analyzer.setup({})
 
 set("n", "<leader>e", vim.diagnostic.open_float)
 set("n", "<C-h>", vim.diagnostic.goto_prev)
@@ -55,6 +57,7 @@ autocmd(
             local opts = { buffer = ev.buf }
 
             set("n", "gd", vim.lsp.buf.definition, opts)
+            set("n", "gD", vim.lsp.buf.declaration, opts)
             set("n", "gr", vim.lsp.buf.references, opts)
             set("n", "<leader>k", vim.lsp.buf.hover, opts)
             set("n", "<leader>K", vim.lsp.buf.signature_help, opts)

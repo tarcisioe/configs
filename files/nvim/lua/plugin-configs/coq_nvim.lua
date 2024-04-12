@@ -1,5 +1,3 @@
-local h = require("vim-helpers")
-
 vim.g.coq_settings = {
     auto_start = "shut-up",
     keymap = {
@@ -25,6 +23,13 @@ vim.g.coq_settings = {
                 {"", "NormalFloat"},
                 {" ", "NormalFloat"},
             }
-        }
-    }
+        },
+        icons = {
+            mode = "none",
+        },
+        pum = {
+            kind_context = {" [", "]"},
+            source_context = {"(",")"},
+        },
+    },
 }

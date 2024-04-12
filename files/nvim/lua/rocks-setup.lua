@@ -5,6 +5,48 @@ local rocks_config = {
     luarocks_binary = "luarocks",
 }
 
+if not vim.fn.executable(rocks_config.luarocks_binary) then
+    vim.notify("Luarocks not found, cannot configure rocks.nvim.", vim.log.levels.WARN)
+    return
+end
+
+function run_luarocks(args)
+    return vim.system({
+        rocks_config.luarocks_binary,
+        "--lua-version=5.1",
+        ("--tree=%s"):format(rocks_config.rocks_path),
+        unpack(args),
+    })
+end
+
+function install_rocks_nvim()
+    if run_luarocks({ "which", "rocks" }):wait().code ==0 then
+        return true
+    end
+
+    local install_rocks = run_luarocks({ "install", "rocks.nvim" })
+    vim.notify("rocks.nvim not installed, installing.")
+
+    local exit_code = install_rocks:wait().code
+
+    if exit_code ~= 0 then
+        vim.notify(
+            (
+                "Error installing rocks.nvim. Clean the tree at '%s' and try again."
+            ):format(rocks_config.rocks_path),
+            vim.log.levels.WARN
+        )
+        return false
+    end
+
+    vim.notify("Finished installing rocks.nvim! Run `Rocks sync` to install all plugins.")
+    return true
+end
+
+if not install_rocks_nvim() then
+    return
+end
+
 local luarocks_path = {
     vim.fs.joinpath(rocks_config.rocks_path, "share", "lua", "5.1", "?.lua"),
     vim.fs.joinpath(rocks_config.rocks_path, "share", "lua", "5.1", "?", "init.lua"),
