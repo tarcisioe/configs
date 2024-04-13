@@ -2,6 +2,9 @@ set $bindsym bindsym --to-code
 set $criterion app_id
 set $tray_output *
 
+# This ensures systemd loads necessary environment variables on Arch
+include /etc/sway/config.d/*
+
 include ../i3/conf.d/common.conf
 
 input * {
@@ -13,6 +16,8 @@ input * {
 
 input type:touchpad {
     click_method "clickfinger"
+    # Requires libinput 1.26 and currently my fork of Sway
+    clickfinger_button_map "lmr"
 }
 
 exec setwallpaper
