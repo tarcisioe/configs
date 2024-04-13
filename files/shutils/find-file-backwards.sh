@@ -2,7 +2,7 @@ function find-file-backwards {
     local output="${1}"
     local filename="${2}"
 
-    local current_path="${PWD}"
+    local current_path="$(readlink -f ${PWD})"
     while [[ "${current_path}" != "/" ]]
     do
         local file="${current_path}/${filename}"
