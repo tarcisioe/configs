@@ -40,7 +40,7 @@ local function check_lua_errors()
 end
 
 function health.error(message, advice)
-    table.insert(health.errors, { debug.getinfo(2,'S').source:match("[^/]*.lua$"), message, advice })
+    table.insert(health.errors, { debug.getinfo(2, "S").source:match("[^/]*.lua$"), message, advice })
 end
 
 function health.check()

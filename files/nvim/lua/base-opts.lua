@@ -4,8 +4,8 @@ vim.opt.laststatus = 2
 vim.opt.foldenable = false
 vim.opt.number = true
 vim.opt.path = "**"
-vim.opt.ttimeoutlen=0
-vim.opt.updatetime=100
+vim.opt.ttimeoutlen = 0
+vim.opt.updatetime = 100
 
 vim.opt.expandtab = true
 vim.opt.tabstop = 4

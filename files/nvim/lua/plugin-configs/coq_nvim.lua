@@ -14,22 +14,22 @@ vim.g.coq_settings = {
     display = {
         preview = {
             border = {
-                {"", "NormalFloat"},
-                {"", "NormalFloat"},
-                {"", "NormalFloat"},
-                {" ", "NormalFloat"},
-                {"", "NormalFloat"},
-                {"", "NormalFloat"},
-                {"", "NormalFloat"},
-                {" ", "NormalFloat"},
-            }
+                { "", "NormalFloat" },
+                { "", "NormalFloat" },
+                { "", "NormalFloat" },
+                { " ", "NormalFloat" },
+                { "", "NormalFloat" },
+                { "", "NormalFloat" },
+                { "", "NormalFloat" },
+                { " ", "NormalFloat" },
+            },
         },
         icons = {
             mode = "none",
         },
         pum = {
-            kind_context = {" [", "]"},
-            source_context = {"(",")"},
+            kind_context = { " [", "]" },
+            source_context = { "(", ")" },
         },
     },
 }

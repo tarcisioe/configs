@@ -17,13 +17,13 @@ set("n", "<leader>c", ":!spawn<CR><CR>")
 set("n", "<leader>nh", vim.cmd.nohl)
 
 -- Toggle showing whitespace as characters
-set({"i", "n", "v"}, "<F10>", h.toggle_whitespace)
+set({ "i", "n", "v" }, "<F10>", h.toggle_whitespace)
 
 -- Toggle line numbers
-set({"i", "n", "v"}, "<F11>", h.toggle_line_numbers)
+set({ "i", "n", "v" }, "<F11>", h.toggle_line_numbers)
 
 -- Toggle line numbers
-set({"n", "v", "i"}, "<F12>", h.toggle_relative_line_numbers)
+set({ "n", "v", "i" }, "<F12>", h.toggle_relative_line_numbers)
 
 -- Buffer navigation
 set("n", "<leader>h", vim.cmd.bprevious)
@@ -34,13 +34,13 @@ set("n", "<leader>bl", vim.cmd.ls)
 set("n", "<leader>q", h.close_current_buffer)
 
 -- Disable help on F1
-set({"i", "n", "v"}, "<F1>", "<NOP>")
+set({ "i", "n", "v" }, "<F1>", "<NOP>")
 
 -- Disable arrows
-set({"i", "n", "v"}, "<Left>", "<NOP>", { noremap = true })
-set({"i", "n", "v"}, "<Down>", "<NOP>", { noremap = true })
-set({"i", "n", "v"}, "<Up>", "<NOP>", { noremap = true })
-set({"i", "n", "v"}, "<Right>", "<NOP>", { noremap = true })
+set({ "i", "n", "v" }, "<Left>", "<NOP>", { noremap = true })
+set({ "i", "n", "v" }, "<Down>", "<NOP>", { noremap = true })
+set({ "i", "n", "v" }, "<Up>", "<NOP>", { noremap = true })
+set({ "i", "n", "v" }, "<Right>", "<NOP>", { noremap = true })
 
 -- Call autocomplete
 set("i", "<C-Space>", "<C-x><C-o>", { noremap = true })

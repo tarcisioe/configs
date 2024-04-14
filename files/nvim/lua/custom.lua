@@ -6,26 +6,20 @@ local autocmd = vim.api.nvim_create_autocmd
 local onread_group = augroup("onread", {})
 
 -- Open file in the last position
-autocmd(
-    "BufReadPost",
-    {
-        pattern = "*",
-        group = onread_group,
-        callback = h.go_to_last_open_position
-    }
-)
+autocmd("BufReadPost", {
+    pattern = "*",
+    group = onread_group,
+    callback = h.go_to_last_open_position,
+})
 
 local onwrite_group = augroup("onwrite", {})
 
 -- Remove trailing whitespaces from lines
-autocmd(
-    "BufWritePre",
-    {
-        pattern = "*",
-        group = onwrite_group,
-        command = [[:%s/\s\+$//e]],
-    }
-)
+autocmd("BufWritePre", {
+    pattern = "*",
+    group = onwrite_group,
+    command = [[:%s/\s\+$//e]],
+})
 
 -- Configure vim builtin file manager (netrw)
 vim.g.netrw_banner = 0

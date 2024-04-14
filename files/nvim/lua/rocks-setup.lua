@@ -22,7 +22,7 @@ local function run_luarocks(args)
 end
 
 local function install_rocks_nvim()
-    if run_luarocks({ "which", "rocks" }):wait().code ==0 then
+    if run_luarocks({ "which", "rocks" }):wait().code == 0 then
         return true
     end
 
@@ -32,14 +32,9 @@ local function install_rocks_nvim()
     local exit_code = install_rocks:wait().code
 
     if exit_code ~= 0 then
-        h.error(
-            "Error installing rocks.nvim.",
-            {
-                ("Clean the tree at '%s' and try again."):format(
-                    rocks_config.rocks_path
-                )
-            }
-        )
+        h.error("Error installing rocks.nvim.", {
+            ("Clean the tree at '%s' and try again."):format(rocks_config.rocks_path),
+        })
         return false
     end
 

@@ -3,6 +3,6 @@ require("lualine").setup({
         theme = "zenburn",
     },
     tabline = {
-        lualine_a = {'buffers'}
+        lualine_a = { "buffers" },
     },
 })

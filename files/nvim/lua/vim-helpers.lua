@@ -3,9 +3,7 @@ local function is_vim_value_true(value)
 end
 
 local function vim_condition(condition)
-    return is_vim_value_true(
-        vim.api.nvim_eval(condition)
-    )
+    return is_vim_value_true(vim.api.nvim_eval(condition))
 end
 
 local function is_pop_up_menu_visible()
@@ -48,18 +46,23 @@ end
 
 local function count_loaded_buffers()
     local count = {
-        normal = 0, acwrite = 0, help = 0, nofile = 0,
-        nowrite = 0, quickfix = 0, terminal = 0, prompt = 0,
-        total = 0
+        normal = 0,
+        acwrite = 0,
+        help = 0,
+        nofile = 0,
+        nowrite = 0,
+        quickfix = 0,
+        terminal = 0,
+        prompt = 0,
+        total = 0,
     }
 
     for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
-
         if vim.api.nvim_buf_is_loaded(buffer) then
-            local buftype = vim.api.nvim_get_option_value('buftype', { buf = buffer })
+            local buftype = vim.api.nvim_get_option_value("buftype", { buf = buffer })
 
-            if buftype == '' then
-                buftype = 'normal'
+            if buftype == "" then
+                buftype = "normal"
             end
 
             count[buftype] = count[buftype] + 1
@@ -159,7 +162,7 @@ function vim_helpers.cmp_set(lhs, rhs)
         return rhs()
     end
 
-    vim_helpers.set('i', lhs, wrap, { silent = true, expr = true, noremap = true })
+    vim_helpers.set("i", lhs, wrap, { silent = true, expr = true, noremap = true })
 end
 
 function vim_helpers.confirm_completion()
