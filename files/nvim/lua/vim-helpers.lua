@@ -14,6 +14,10 @@ end
 
 local vim_helpers = {}
 
+function vim_helpers.executable(command)
+    return is_vim_value_true(vim.fn.executable(command))
+end
+
 function vim_helpers.toggle_whitespace()
     vim.o.list = not vim.o.list
 end
