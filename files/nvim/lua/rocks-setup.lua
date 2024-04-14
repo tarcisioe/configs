@@ -12,6 +12,9 @@ if not vh.executable(rocks_config.luarocks_binary) then
     return
 end
 
+---Execute `luarocks` inside the rocks.nvim tree.
+---@param args string[] Arguments for `luarocks`.
+---@return vim.SystemObj
 local function run_luarocks(args)
     return vim.system({
         rocks_config.luarocks_binary,
@@ -21,6 +24,8 @@ local function run_luarocks(args)
     })
 end
 
+---Install rocks.nvim, if not installed.
+---@return boolean installed Whether rocks.nvim was properly installed.
 local function install_rocks_nvim()
     if run_luarocks({ "which", "rocks" }):wait().code == 0 then
         return true
