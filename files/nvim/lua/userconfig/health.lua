@@ -42,11 +42,17 @@ local function check_lua_errors()
     end
 end
 
+local function file_name(stackpos)
+    stackpos = stackpos + 1
+
+    return debug.getinfo(stackpos, "S").source:match("[^/]*.lua$")
+end
+
 ---Insert an error to be reported on `:checkhealth`.
 ---@param message string The error message to show.
 ---@param advice string[] A list of advice to show.
 function health.error(message, advice)
-    table.insert(health.errors, { debug.getinfo(2, "S").source:match("[^/]*.lua$"), message, advice })
+    table.insert(health.errors, { file_name(2), message, advice })
 end
 
 ---Perform the health checks. Required by neovim.
