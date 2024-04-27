@@ -35,14 +35,9 @@ local function get_current_file_path()
     return vim.api.nvim_buf_get_name(0)
 end
 
----@return string[] | nil
-local function make_manim_command()
-    local current_class = get_current_class()
-
-    if current_class == nil then
-        return nil
-    end
-
+---@param current_class string
+---@return string[]
+local function make_manim_command(current_class)
     return {
         "manim",
         "-p",
@@ -52,13 +47,18 @@ local function make_manim_command()
 end
 
 local function run_current_manim_animation()
-    local command = make_manim_command()
+    local current_class = get_current_class()
 
-    if command == nil then
+    if current_class == nil then
         vim.notify("No command generated. Maybe not inside a class?")
         return
     end
 
+    local command = make_manim_command(current_class)
+
+    vim.notify(
+        ("Running animation %s"):format(current_class)
+    )
     return vim.system(command)
 end
 
