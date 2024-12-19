@@ -29,3 +29,9 @@ vim.g.netrw_liststyle = 3
 
 -- Enable undo between sessions
 vim.opt.undofile = true
+
+local nvim_venv = vim.fs.joinpath(vim.fn.stdpath("config"), "nvim-env", ".venv")
+
+if vim.uv.fs_stat(nvim_venv) then
+    vim.g.python3_host_prog = vim.fs.joinpath(vim.fs.joinpath(nvim_venv, "bin", "python"))
+end
