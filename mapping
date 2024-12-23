@@ -4,6 +4,7 @@
 ~/.config/fontconfig fontconfig
 ~/.config/foot foot
 ~/.config/i3 i3
+~/.config/kanata kanata
 ~/.config/nvim nvim
 ~/.config/picom.conf picom.conf
 ~/.config/qutebrowser/autoconfig.yml qutebrowser-config.yml

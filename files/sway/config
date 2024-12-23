@@ -11,7 +11,7 @@ input * {
     xkb_layout br,br-dvorak-mod
     xkb_variant abnt2,
     xkb_switch_layout next
-    xkb_options ctrl:swapcaps
+    # xkb_options ctrl:swapcaps
 }
 
 input type:touchpad {

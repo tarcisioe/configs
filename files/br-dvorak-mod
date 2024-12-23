@@ -11,7 +11,6 @@ xkb_symbols "dvorak-mod" {
 
 // Numeric row
     // Adds ccedilla to apostrophe key for ANSI/us-intl compatibility.
-    key <ESC>  { [         Escape,          Escape,               Escape,           Escape ] };
     key <TLDE> { [     apostrophe,        quotedbl,             ccedilla,         Ccedilla ] };
     // Flips numbers and symbols.
     key <AE01> { [         exclam,               1,          onesuperior,       exclamdown ] };
