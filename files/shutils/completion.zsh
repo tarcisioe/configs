@@ -4,8 +4,21 @@ require dircolors
 # add ./comp to completion path
 not-root && fpath=("${INITPATH}"/comp $fpath)
 
-# load zsh completion utilities
-autoload -Uz compinit && compinit
+function mod-day {
+    local file_path="${1}"
+
+    { stat -c '%y' "${file_path}" | cut -d' ' -f1 }
+}
+
+function _compinit {
+    # load zsh completion utilities
+    autoload -Uz compinit &&
+    [[ "$(date +'%Y-%m-%d')" != "$(mod-day ~/.zcompdump)" ]] &&
+        compinit ||
+        compinit -C
+}
+
+_compinit
 
 # configure completion to behave nicely
 zstyle ':completion:*' insert-unambiguous true # insert directly if not in doubt
