@@ -1,68 +1,71 @@
 -- According to :h lua 5.1 is considered the permanent interface
-local vh = require("vim-helpers")
 local h = require("userconfig.health")
 
 local rocks_config = {
-    rocks_path = vim.fn.stdpath("data") .. "/rocks",
-    luarocks_binary = "luarocks",
+    rocks_path = vim.fs.joinpath(
+        vim.fn.stdpath("data") --[[@as string]], "/rocks"
+    ),
 }
 
-if not vh.executable(rocks_config.luarocks_binary) then
-    h.error("Luarocks not found, cannot configure rocks.nvim.", { "Install luarocks." })
-    return
-end
+local rocks_repo_location = vim.fs.joinpath(
+    vim.fn.stdpath("cache") --[[@as string]], "rocks.nvim"
+)
 
----Execute `luarocks` inside the rocks.nvim tree.
----@param args string[] Arguments for `luarocks`.
----@return vim.SystemObj
-local function run_luarocks(args)
-    return vim.system({
-        rocks_config.luarocks_binary,
-        "--lua-version=5.1",
-        ("--tree=%s"):format(rocks_config.rocks_path),
-        unpack(args),
-    })
-end
+local rocks_url = "https://github.com/lumen-oss/rocks.nvim"
 
----Install rocks.nvim, if not installed.
----@return boolean installed Whether rocks.nvim was properly installed.
-local function install_rocks_nvim()
-    if run_luarocks({ "which", "rocks" }):wait().code == 0 then
+---Ensure we have a clone of rocks.nvim repo to get the bootstrap script from.
+---@return boolean cloned Whether we have a clone of rocks.nvim.
+local function ensure_rocks_repo()
+    if vim.uv.fs_stat(rocks_repo_location) then
         return true
     end
 
-    local install_rocks = run_luarocks({ "install", "rocks.nvim" })
-    vim.notify("rocks.nvim not installed, installing.")
+    vim.notify("Could not find the rocks.nvim repo, cloning....")
+    local result = vim.system({ "git", "clone", "--filter=blob:none", rocks_url, rocks_repo_location })
 
-    local exit_code = install_rocks:wait().code
+    return result:wait().code == 0
+end
 
-    if exit_code ~= 0 then
-        h.error("Error installing rocks.nvim.", {
-            ("Clean the tree at '%s' and try again."):format(rocks_config.rocks_path),
-        })
-        return false
+---Ensure that rocks.nvim is installed.
+local function ensure_rocks()
+    if pcall(require, "rocks") then
+        return
     end
 
+    vim.notify("rocks.nvim not installed, installing.")
+
+    if not ensure_rocks_repo() then
+        h.error("Error cloning rocks.nvim repository.", {
+            ("Check if Git is properly installed in your system."),
+        })
+        return
+    end
+
+    vim.cmd.source(vim.fs.joinpath(rocks_repo_location, "bootstrap.lua"))
+    vim.fn.delete(rocks_repo_location, "rf")
+
     vim.notify("Finished installing rocks.nvim! Run `Rocks sync` to install all plugins.")
-    return true
 end
 
-if not install_rocks_nvim() then
-    return
+local function setup_rocks()
+    vim.g.rocks_nvim = rocks_config
+
+    local luarocks_path = {
+        vim.fs.joinpath(rocks_config.rocks_path, "share", "lua", "5.1", "?.lua"),
+        vim.fs.joinpath(rocks_config.rocks_path, "share", "lua", "5.1", "?", "init.lua"),
+    }
+
+    local luarocks_cpath = {
+        vim.fs.joinpath(rocks_config.rocks_path, "lib", "lua", "5.1", "?.so"),
+        vim.fs.joinpath(rocks_config.rocks_path, "lib64", "lua", "5.1", "?.so"),
+    }
+
+    package.path = package.path .. ";" .. table.concat(luarocks_path, ";")
+    package.cpath = package.cpath .. ";" .. table.concat(luarocks_cpath, ";")
+
+    vim.opt.runtimepath:append(vim.fs.joinpath(rocks_config.rocks_path, "lib", "luarocks", "rocks-5.1", "rocks.nvim", "*"))
+
+    ensure_rocks()
 end
 
-local luarocks_path = {
-    vim.fs.joinpath(rocks_config.rocks_path, "share", "lua", "5.1", "?.lua"),
-    vim.fs.joinpath(rocks_config.rocks_path, "share", "lua", "5.1", "?", "init.lua"),
-}
-
-local luarocks_cpath = {
-    vim.fs.joinpath(rocks_config.rocks_path, "lib", "lua", "5.1", "?.so"),
-    vim.fs.joinpath(rocks_config.rocks_path, "lib64", "lua", "5.1", "?.so"),
-}
-
-vim.g.rocks_nvim = rocks_config
-package.path = package.path .. ";" .. table.concat(luarocks_path, ";")
-package.cpath = package.cpath .. ";" .. table.concat(luarocks_cpath, ";")
-
-vim.opt.runtimepath:append(vim.fs.joinpath(rocks_config.rocks_path, "lib", "luarocks", "rocks-5.1", "rocks.nvim", "*"))
+setup_rocks()
