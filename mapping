@@ -6,12 +6,9 @@
 ~/.config/i3 i3
 ~/.config/kanata kanata
 ~/.config/nvim nvim
-~/.config/picom.conf picom.conf
-~/.config/qutebrowser/autoconfig.yml qutebrowser-config.yml
 ~/.config/sway sway
 ~/.config/systemd systemd
 ~/.dir_colors dir_colors
-~/.emacs.d emacsd
 ~/.gitextra gitconfig
 ~/.inputrc inputrc
 ~/.local/share/fonts fonts
